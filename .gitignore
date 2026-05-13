@@ -1,0 +1,68 @@
+node_modules
+.DS_Store
+server/public
+vite.config.ts.*
+*.tar.gz
+
+# Environment files with secrets
+.env
+.env.local
+.env.*.local
+
+# Keep example file
+!.env.example
+
+# Data directories
+data/
+uploads/
+!data/.gitkeep
+!uploads/.gitkeep
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Runtime files
+*.pid
+*.seed
+*.pid.lock
+
+# Local state/memory
+.local/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
+Desktop.ini
+
+# Build outputs
+dist/
+*.tsbuildinfo
+
+# Test/coverage
+coverage/
+.nyc_output/
+
+# Distribution packages
+*.zip
+agentlabs-*.zip
+
+# Replit-specific files
+.replit
+replit.nix
+replit.md
+.upm/
+
+# Attached assets (development screenshots)
+attached_assets/
+
+# Non-production files
+INTERNAL-GUIDE.md
+scripts/create-production-zip.sh
+tmpdist/

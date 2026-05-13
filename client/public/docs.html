@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgentHR Documentation - AI-Powered HR Hiring Platform</title>
+<meta name="description" content="Complete documentation for AgentHR HR platform. Installation guide, product features, and troubleshooting.">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--primary:#176BD0;--primary-light:#EFF5FF;--primary-dark:#0B2D68;--text:#1e293b;--text-secondary:#475569;--text-tertiary:#94a3b8;--bg:#ffffff;--bg-alt:#f8fafc;--border:#e2e8f0;--code-bg:#f1f5f9;--success:#10b981;--warning:#f59e0b;--danger:#ef4444;--sidebar-w:280px;--header-h:64px}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.7;font-size:15px}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.doc-header{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:var(--primary-dark);color:#fff;display:flex;align-items:center;padding:0 24px;z-index:100;gap:16px}
+.doc-header .logo{font-size:20px;font-weight:700;letter-spacing:-0.3px}
+.doc-header .logo span{color:#60a5fa}
+.doc-header .subtitle{font-size:13px;color:#94b8db;margin-left:8px}
+.menu-toggle{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer;padding:4px 8px}
+
+.sidebar{position:fixed;top:var(--header-h);left:0;width:var(--sidebar-w);height:calc(100vh - var(--header-h));overflow-y:auto;background:var(--bg);border-right:1px solid var(--border);padding:20px 0;z-index:90}
+.sidebar::-webkit-scrollbar{width:4px}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.sidebar .nav-section{padding:0 16px;margin-bottom:16px}
+.sidebar .nav-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-tertiary);padding:8px 0 4px;display:block}
+.sidebar .nav-link{display:block;padding:5px 12px;font-size:13.5px;color:var(--text-secondary);border-radius:6px;transition:background .15s,color .15s}
+.sidebar .nav-link:hover{background:var(--primary-light);color:var(--primary);text-decoration:none}
+.sidebar .nav-link.sub{padding-left:24px;font-size:12.5px;color:var(--text-tertiary)}
+.sidebar .nav-link.sub:hover{color:var(--primary)}
+
+.main{margin-left:var(--sidebar-w);padding:calc(var(--header-h) + 32px) 48px 80px;max-width:900px}
+.main h1{font-size:32px;font-weight:800;color:var(--primary-dark);margin-bottom:8px;letter-spacing:-0.5px}
+.main .lead{font-size:17px;color:var(--text-secondary);margin-bottom:32px;line-height:1.7}
+.main h2{font-size:24px;font-weight:700;color:var(--text);margin:48px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--primary-light)}
+.main h3{font-size:18px;font-weight:600;color:var(--text);margin:32px 0 12px}
+.main h4{font-size:15px;font-weight:600;color:var(--text-secondary);margin:20px 0 8px}
+.main p{margin-bottom:14px;color:var(--text-secondary)}
+.main ul,.main ol{margin:0 0 16px 24px;color:var(--text-secondary)}
+.main li{margin-bottom:6px}
+.main li strong{color:var(--text)}
+.main img{max-width:100%;border-radius:8px;margin:16px 0}
+
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.3px}
+.badge-required{background:#fee2e2;color:#991b1b}
+.badge-optional{background:#e0f2fe;color:#075985}
+.badge-recommended{background:#d1fae5;color:#065f46}
+
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-size:13px;font-family:'SF Mono',Monaco,'Cascadia Code',Consolas,monospace;color:#c2410c}
+pre{background:var(--primary-dark);color:#e2e8f0;padding:20px 24px;border-radius:8px;overflow-x:auto;margin:16px 0;font-size:13px;line-height:1.6}
+pre code{background:none;color:inherit;padding:0;font-size:13px}
+.code-title{background:#1e3a5f;color:#94b8db;padding:8px 24px;border-radius:8px 8px 0 0;font-size:12px;font-weight:600;margin-top:16px;margin-bottom:0}
+.code-title+pre{margin-top:0;border-radius:0 0 8px 8px}
+
+.card{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin:16px 0}
+.card-blue{background:var(--primary-light);border-color:#bfdbfe}
+.card-green{background:#ecfdf5;border-color:#a7f3d0}
+.card-yellow{background:#fffbeb;border-color:#fde68a}
+.card-red{background:#fef2f2;border-color:#fecaca}
+.card h4{margin-top:0}
+.card p:last-child{margin-bottom:0}
+
+.env-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13.5px}
+.env-table th{background:var(--primary-dark);color:#fff;padding:10px 16px;text-align:left;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:0.5px}
+.env-table td{padding:10px 16px;border-bottom:1px solid var(--border);vertical-align:top}
+.env-table tr:hover td{background:var(--primary-light)}
+.env-table td:first-child{font-family:'SF Mono',Monaco,Consolas,monospace;font-size:12.5px;font-weight:600;color:var(--primary-dark);white-space:nowrap}
+
+.steps{counter-reset:step;list-style:none;margin-left:0;padding-left:0}
+.steps li{position:relative;padding:16px 20px 16px 60px;margin-bottom:12px;background:var(--bg-alt);border-radius:8px;border:1px solid var(--border);counter-increment:step}
+.steps li::before{content:counter(step);position:absolute;left:16px;top:16px;width:32px;height:32px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:16px 0}
+.feature-card{background:var(--bg-alt);border:1px solid var(--border);border-radius:8px;padding:20px}
+.feature-card h4{margin:0 0 8px;color:var(--primary-dark);font-size:14px}
+.feature-card p{font-size:13px;margin:0;color:var(--text-secondary)}
+
+.faq-item{border:1px solid var(--border);border-radius:8px;margin:8px 0}
+.faq-item summary{padding:14px 20px;font-weight:600;color:var(--text);cursor:pointer;background:var(--bg-alt);display:flex;justify-content:space-between;align-items:center;font-size:14px;list-style:none;border-radius:8px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';font-size:20px;color:var(--primary);font-weight:300;transition:transform .2s}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item[open] summary{border-radius:8px 8px 0 0}
+.faq-item .faq-a{padding:0 20px 16px;font-size:13.5px;color:var(--text-secondary)}
+
+.pipeline-flow{display:flex;gap:4px;flex-wrap:wrap;align-items:center;margin:16px 0}
+.pipeline-stage{padding:8px 16px;border-radius:6px;font-size:12px;font-weight:600;color:#fff;white-space:nowrap}
+.pipeline-arrow{color:var(--text-tertiary);font-size:18px}
+
+.back-top{position:fixed;bottom:24px;right:24px;width:40px;height:40px;background:var(--primary);color:#fff;border:none;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.back-top.visible{opacity:1}
+
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:85}
+
+@media(max-width:900px){
+  .sidebar{transform:translateX(-100%);transition:transform .3s}
+  .sidebar.open{transform:translateX(0)}
+  .sidebar-overlay.open{display:block}
+  .main{margin-left:0;padding:calc(var(--header-h) + 24px) 20px 60px}
+  .menu-toggle{display:block}
+  .feature-grid{grid-template-columns:1fr}
+  .pipeline-flow{flex-direction:column;align-items:flex-start}
+  .pipeline-arrow{transform:rotate(90deg)}
+}
+.dl-btn{display:inline-block;padding:6px 16px;background:rgba(255,255,255,.15);color:#fff;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;transition:background .2s}
+.dl-btn:hover{background:rgba(255,255,255,.25);text-decoration:none}
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Toggle menu">&#9776;</button>
+  <div class="logo">Agent<span>HR</span></div>
+  <div class="subtitle">Documentation</div>
+  <div style="margin-left:auto">
+    <a href="/docs.html" download="AgentHR-Documentation.html" class="dl-btn" aria-label="Download documentation">&#11015; Download</a>
+  </div>
+</header>
+
+<div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+<nav class="sidebar">
+  <div class="nav-section">
+    <span class="nav-label">Getting Started</span>
+    <a class="nav-link" href="#overview">Overview</a>
+    <a class="nav-link" href="#requirements">System Requirements</a>
+  </div>
+  <div class="nav-section">
+    <span class="nav-label">Installation</span>
+    <a class="nav-link" href="#env-variables">Environment Variables</a>
+    <a class="nav-link" href="#installation-steps">Step-by-Step Setup</a>
+    <a class="nav-link" href="#setup-wizard">Setup Wizard</a>
+    <a class="nav-link" href="#production">Production Deployment</a>
+  </div>
+  <div class="nav-section">
+    <span class="nav-label">Product Guide</span>
+    <a class="nav-link" href="#dashboard">Dashboard</a>
+    <a class="nav-link" href="#jobs">Jobs</a>
+    <a class="nav-link" href="#candidates">Candidates</a>
+    <a class="nav-link" href="#pipeline">Pipeline</a>
+    <a class="nav-link" href="#cv-upload">CV Upload</a>
+    <a class="nav-link" href="#interviews">Interviews</a>
+    <a class="nav-link" href="#hiring-agents">Hiring Agents</a>
+    <a class="nav-link" href="#flows">Interview Flows</a>
+    <a class="nav-link" href="#phone-numbers">Phone Numbers</a>
+    <a class="nav-link" href="#hiring-widget">Hiring Widget</a>
+    <a class="nav-link" href="#knowledge-base">Knowledge Base</a>
+    <a class="nav-link" href="#analytics">Analytics</a>
+    <a class="nav-link" href="#billing">Billing &amp; Credits</a>
+    <a class="nav-link" href="#settings">Settings</a>
+    <a class="nav-link" href="#admin-panel">Admin Panel</a>
+    <a class="nav-link" href="#rest-api">REST API Plugin</a>
+    <a class="nav-link" href="#sip-engine">SIP Engine Plugin</a>
+  </div>
+  <div class="nav-section">
+    <span class="nav-label">Support</span>
+    <a class="nav-link" href="#troubleshooting">Troubleshooting</a>
+    <a class="nav-link" href="#faq">FAQ</a>
+    <a class="nav-link" href="#contact-support">Contact Support</a>
+  </div>
+</nav>
+
+<main class="main">
+
+<!-- ============================================ -->
+<!-- OVERVIEW -->
+<!-- ============================================ -->
+<h1 id="overview">AgentHR Documentation</h1>
+<p class="lead">
+  AgentHR is an AI-powered HR hiring platform that automates candidate screening, AI phone interviews, and recruitment pipeline management. This documentation covers everything you need to install, configure, and use the platform effectively.
+</p>
+
+<div class="feature-grid">
+  <div class="feature-card">
+    <h4>AI Candidate Screening</h4>
+    <p>Upload CVs individually or in bulk ZIP files. AI analyzes and scores each candidate against job requirements automatically.</p>
+  </div>
+  <div class="feature-card">
+    <h4>Automated Phone Interviews</h4>
+    <p>Conduct AI-powered voice interviews using ElevenLabs, OpenAI, Twilio, or Plivo telephony. Get transcripts and evaluation scores.</p>
+  </div>
+  <div class="feature-card">
+    <h4>Visual Pipeline Management</h4>
+    <p>Track candidates through stages from upload to hire. Visual pipeline boards with drag-and-drop stage management.</p>
+  </div>
+  <div class="feature-card">
+    <h4>Embeddable Hiring Widget</h4>
+    <p>Let candidates apply and take instant AI interviews directly from your company website with a simple embed code.</p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SYSTEM REQUIREMENTS -->
+<!-- ============================================ -->
+<h2 id="requirements">System Requirements</h2>
+
+<table class="env-table">
+  <thead><tr><th>Component</th><th>Minimum</th><th>Recommended</th></tr></thead>
+  <tbody>
+    <tr><td>Node.js</td><td>18.x LTS</td><td>20.x LTS</td></tr>
+    <tr><td>PostgreSQL</td><td>14.x</td><td>15.x or 16.x</td></tr>
+    <tr><td>RAM</td><td>2 GB</td><td>4 GB+</td></tr>
+    <tr><td>Storage</td><td>10 GB</td><td>20 GB+</td></tr>
+    <tr><td>OS</td><td colspan="2">Linux (Ubuntu 22.04+), macOS, or Windows with WSL2</td></tr>
+    <tr><td>Reverse Proxy</td><td colspan="2">Nginx (recommended for production SSL and WebSocket support)</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================================ -->
+<!-- ENVIRONMENT VARIABLES -->
+<!-- ============================================ -->
+<h2 id="env-variables">Environment Variables</h2>
+<p>Create a <code>.env</code> file in the project root. A template is available at <code>.env.example</code>.</p>
+
+<h3>Core Configuration <span class="badge badge-required">Required</span></h3>
+<table class="env-table">
+  <thead><tr><th>Variable</th><th>Description</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td>DATABASE_URL</td><td>PostgreSQL connection string</td><td><code>postgresql://user:pass@localhost:5432/agenthr</code></td></tr>
+    <tr><td>SESSION_SECRET</td><td>64-character random string for session encryption</td><td><code>openssl rand -hex 32</code></td></tr>
+    <tr><td>JWT_SECRET</td><td>64-character random string for authentication tokens</td><td><code>openssl rand -hex 32</code></td></tr>
+    <tr><td>APP_URL</td><td>Base URL where the application is hosted</td><td><code>https://yourdomain.com</code></td></tr>
+    <tr><td>NODE_ENV</td><td>Runtime environment</td><td><code>production</code> or <code>development</code></td></tr>
+  </tbody>
+</table>
+
+<h3>AI &amp; Telephony Integrations <span class="badge badge-recommended">Recommended</span></h3>
+<table class="env-table">
+  <thead><tr><th>Variable</th><th>Description</th><th>Used For</th></tr></thead>
+  <tbody>
+    <tr><td>ELEVENLABS_API_KEY</td><td>ElevenLabs API key</td><td>Conversational AI voices</td></tr>
+    <tr><td>OPENAI_API_KEY</td><td>OpenAI API key</td><td>CV screening, LLM models, Realtime voice</td></tr>
+    <tr><td>TWILIO_ACCOUNT_SID</td><td>Twilio account SID</td><td>Phone number provisioning &amp; calls</td></tr>
+    <tr><td>TWILIO_AUTH_TOKEN</td><td>Twilio auth token</td><td>Phone number provisioning &amp; calls</td></tr>
+    <tr><td>PLIVO_AUTH_ID</td><td>Plivo auth ID</td><td>Alternative telephony provider</td></tr>
+    <tr><td>PLIVO_AUTH_TOKEN</td><td>Plivo auth token</td><td>Alternative telephony provider</td></tr>
+  </tbody>
+</table>
+
+<h3>Email (SMTP) <span class="badge badge-recommended">Recommended</span></h3>
+<table class="env-table">
+  <thead><tr><th>Variable</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td>SMTP_HOST</td><td>SMTP server hostname (e.g., <code>smtp.gmail.com</code>)</td></tr>
+    <tr><td>SMTP_PORT</td><td>SMTP port (usually <code>587</code> for TLS)</td></tr>
+    <tr><td>SMTP_USER</td><td>SMTP username / email address</td></tr>
+    <tr><td>SMTP_PASS</td><td>SMTP password or app-specific password</td></tr>
+    <tr><td>SMTP_FROM_EMAIL</td><td>Sender email address shown to recipients</td></tr>
+  </tbody>
+</table>
+
+<h3>Payment Gateways <span class="badge badge-optional">Optional</span></h3>
+<table class="env-table">
+  <thead><tr><th>Variable</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td>STRIPE_SECRET_KEY</td><td>Stripe secret key for payment processing</td></tr>
+    <tr><td>VITE_STRIPE_PUBLIC_KEY</td><td>Stripe publishable key (frontend)</td></tr>
+    <tr><td>STRIPE_WEBHOOK_SECRET</td><td>Stripe webhook signing secret</td></tr>
+    <tr><td>RAZORPAY_KEY_ID</td><td>Razorpay key ID</td></tr>
+    <tr><td>RAZORPAY_KEY_SECRET</td><td>Razorpay secret key</td></tr>
+    <tr><td>PAYSTACK_SECRET_KEY</td><td>Paystack secret key</td></tr>
+    <tr><td>PAYSTACK_PUBLIC_KEY</td><td>Paystack public key</td></tr>
+    <tr><td>MERCADOPAGO_ACCESS_TOKEN</td><td>MercadoPago access token</td></tr>
+    <tr><td>PAYPAL_CLIENT_ID</td><td>PayPal client ID</td></tr>
+    <tr><td>PAYPAL_CLIENT_SECRET</td><td>PayPal client secret</td></tr>
+  </tbody>
+</table>
+
+<h3>Advanced <span class="badge badge-optional">Optional</span></h3>
+<table class="env-table">
+  <thead><tr><th>Variable</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td>ENABLE_BULLMQ</td><td>Enable Redis-based job queue for large campaigns (<code>true</code>/<code>false</code>)</td></tr>
+    <tr><td>REDIS_URL</td><td>Redis connection URL (required if BullMQ enabled)</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================================ -->
+<!-- INSTALLATION STEPS -->
+<!-- ============================================ -->
+<h2 id="installation-steps">Step-by-Step Installation</h2>
+
+<ol class="steps">
+  <li>
+    <strong>Clone the repository</strong>
+    <pre><code>git clone https://github.com/your-org/agenthr.git
+cd agenthr</code></pre>
+  </li>
+  <li>
+    <strong>Install dependencies</strong>
+    <pre><code>npm install</code></pre>
+  </li>
+  <li>
+    <strong>Create your environment file</strong>
+    <pre><code>cp .env.example .env</code></pre>
+    <p>Open <code>.env</code> and fill in your database URL, secrets, and API keys as described in the <a href="#env-variables">Environment Variables</a> section above.</p>
+  </li>
+  <li>
+    <strong>Set up the database</strong>
+    <p>Ensure PostgreSQL is running and your <code>DATABASE_URL</code> is correct, then push the schema:</p>
+    <pre><code>npm run db:push</code></pre>
+  </li>
+  <li>
+    <strong>Seed initial data</strong>
+    <p>This populates default plans, LLM models, templates, languages, and sample HR data:</p>
+    <pre><code>npx tsx server/seed-all.ts</code></pre>
+  </li>
+  <li>
+    <strong>Start the development server</strong>
+    <pre><code>npm run dev</code></pre>
+    <p>The application will be available at <code>http://localhost:5000</code>. On first launch, the <a href="#setup-wizard">Setup Wizard</a> will guide you through initial configuration.</p>
+  </li>
+</ol>
+
+<div class="card card-green">
+  <h4>Seed Data Included</h4>
+  <p>The seeder creates 4 sample jobs (Senior Software Engineer, Product Manager, UX Designer, Data Analyst), 12 candidates at various pipeline stages, pipeline history entries, and interview sessions so you can explore the platform immediately.</p>
+</div>
+
+<!-- ============================================ -->
+<!-- SETUP WIZARD -->
+<!-- ============================================ -->
+<h2 id="setup-wizard">Setup Wizard</h2>
+<p>When you first access the application, the <strong>Setup Wizard</strong> automatically launches at <code>/install</code>. It walks you through:</p>
+<ol>
+  <li><strong>Environment Check</strong> &mdash; Verifies all required environment variables are set and the database connection works.</li>
+  <li><strong>Integration Verification</strong> &mdash; Tests connectivity to configured services (ElevenLabs, Twilio, OpenAI, Stripe, SMTP).</li>
+  <li><strong>Admin Account Creation</strong> &mdash; Creates your first administrator account with email and password.</li>
+  <li><strong>Platform Branding</strong> &mdash; Set your company name, logo, and primary colors.</li>
+</ol>
+<div class="card card-blue">
+  <h4>Note</h4>
+  <p>The Setup Wizard only appears when no admin account exists. After completing it, you can manage all settings from the <a href="#admin-panel">Admin Panel</a> at <code>/admin</code>.</p>
+</div>
+
+<!-- ============================================ -->
+<!-- PRODUCTION DEPLOYMENT -->
+<!-- ============================================ -->
+<h2 id="production">Production Deployment</h2>
+
+<h3>Build for Production</h3>
+<pre><code># Build frontend (Vite) and backend (esbuild)
+npm run build
+
+# Start the production server
+npm run start</code></pre>
+<p>This bundles the frontend and backend into the <code>dist/</code> directory and runs <code>dist/index.js</code>.</p>
+
+<h3>Production Process Management</h3>
+<p>Use the included production script to manage the application process:</p>
+<pre><code># Start the application in the background
+bash scripts/production.sh start
+
+# Stop the application
+bash scripts/production.sh stop
+
+# Restart the application
+bash scripts/production.sh restart
+
+# Check application status
+bash scripts/production.sh status</code></pre>
+
+<h3>Nginx Reverse Proxy</h3>
+<p>Configure Nginx to handle SSL termination and proxy requests to the Node.js server:</p>
+<div class="code-title">nginx.conf</div>
+<pre><code>server {
+    listen 80;
+    server_name yourdomain.com;
+    return 301 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name yourdomain.com;
+
+    ssl_certificate     /etc/letsencrypt/live/yourdomain.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem;
+
+    location / {
+        proxy_pass http://127.0.0.1:5000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 86400;
+    }
+}</code></pre>
+
+<div class="card card-yellow">
+  <h4>WebSocket Support</h4>
+  <p>The <code>Upgrade</code> and <code>Connection</code> headers in the Nginx config are essential for WebSocket connections used by real-time call streaming and live updates.</p>
+</div>
+
+<h3>SSL with Let's Encrypt</h3>
+<pre><code># Install Certbot
+sudo apt install certbot python3-certbot-nginx
+
+# Obtain and auto-configure SSL certificate
+sudo certbot --nginx -d yourdomain.com
+
+# Auto-renewal is set up automatically by Certbot</code></pre>
+
+<!-- ============================================ -->
+<!-- PRODUCT GUIDE: DASHBOARD -->
+<!-- ============================================ -->
+<h2 id="dashboard">Dashboard</h2>
+<p>The Dashboard (<code>/app/dashboard</code>) provides an at-a-glance overview of your hiring activity with real-time metrics pulled from your HR data.</p>
+
+<h3>Key Metrics</h3>
+<ul>
+  <li><strong>Total Candidates</strong> &mdash; Number of candidates across all jobs.</li>
+  <li><strong>Total Interviews</strong> &mdash; Number of AI phone interviews conducted.</li>
+  <li><strong>Shortlisted Candidates</strong> &mdash; Candidates who passed AI screening thresholds.</li>
+  <li><strong>Completion Rate</strong> &mdash; Percentage of interviews completed vs. scheduled.</li>
+  <li><strong>Shortlist Rate</strong> &mdash; Percentage of screened candidates who were shortlisted.</li>
+  <li><strong>Active Jobs</strong> &mdash; Number of currently open positions.</li>
+</ul>
+<p>The dashboard also shows recent activity, upcoming interviews, and pipeline distribution charts.</p>
+
+<!-- ============================================ -->
+<!-- JOBS -->
+<!-- ============================================ -->
+<h2 id="jobs">Jobs</h2>
+<p>The Jobs page (<code>/app/jobs</code>) is where you create and manage job openings. Each job defines the requirements against which candidates are screened.</p>
+
+<h3>Creating a Job</h3>
+<ol>
+  <li>Click <strong>Create Job</strong> from the Jobs page.</li>
+  <li>Fill in the job details:
+    <ul>
+      <li><strong>Title</strong> &mdash; e.g., "Senior Software Engineer"</li>
+      <li><strong>Description</strong> &mdash; Full job description</li>
+      <li><strong>Department</strong> &mdash; Engineering, Product, Design, etc.</li>
+      <li><strong>Location &amp; Type</strong> &mdash; Onsite, Remote, or Hybrid</li>
+      <li><strong>Employment Type</strong> &mdash; Full-time, Part-time, Contract, Internship</li>
+      <li><strong>Salary Range</strong> &mdash; Min/Max with currency</li>
+      <li><strong>Experience Level</strong> &mdash; Entry, Mid, Senior, Lead, Executive</li>
+      <li><strong>Required Skills</strong> &mdash; Skills candidates must have</li>
+      <li><strong>Preferred Skills</strong> &mdash; Nice-to-have skills</li>
+      <li><strong>Education Level</strong> &mdash; Minimum education requirement</li>
+    </ul>
+  </li>
+</ol>
+
+<h3>AI Screening Configuration</h3>
+<p>Each job has configurable AI screening weights that determine how candidates are scored:</p>
+<ul>
+  <li><strong>Skills Weight</strong> (default 40%) &mdash; How much skill match affects the score</li>
+  <li><strong>Experience Weight</strong> (default 35%) &mdash; How much experience alignment affects the score</li>
+  <li><strong>Education Weight</strong> (default 25%) &mdash; How much education match affects the score</li>
+  <li><strong>Shortlist Threshold</strong> (default 70) &mdash; Candidates scoring above this are auto-shortlisted</li>
+</ul>
+
+<h3>Interview Questions</h3>
+<p>You can define structured interview questions with categories (technical, behavioral, cultural) and weights. These are used by AI agents during phone interviews.</p>
+
+<h3>Hiring Widget Toggle</h3>
+<p>Each job has a toggle to make it visible in the <a href="#hiring-widget">Hiring Widget</a>. When enabled, candidates can apply and take AI interviews directly from your website.</p>
+
+<!-- ============================================ -->
+<!-- CANDIDATES -->
+<!-- ============================================ -->
+<h2 id="candidates">Candidates</h2>
+<p>The Candidates page (<code>/app/candidates</code>) displays all candidates across your jobs. You can filter by job, pipeline stage, AI score, and more.</p>
+
+<h3>Adding Candidates</h3>
+<ul>
+  <li><strong>Manual Entry</strong> &mdash; Add candidates one by one with their details.</li>
+  <li><strong>Individual CV Upload</strong> &mdash; Upload a single PDF resume. AI extracts structured data (skills, experience, education) and scores the candidate.</li>
+  <li><strong>Bulk ZIP Upload</strong> &mdash; Upload a ZIP file containing multiple CVs. See <a href="#cv-upload">CV Upload</a> for details.</li>
+  <li><strong>Widget Applications</strong> &mdash; Candidates apply through the <a href="#hiring-widget">Hiring Widget</a> on your website.</li>
+  <li><strong>REST API</strong> &mdash; Add candidates programmatically via the <a href="#rest-api">REST API</a>.</li>
+</ul>
+
+<h3>AI Screening Scores</h3>
+<p>After AI screening, each candidate receives:</p>
+<ul>
+  <li><strong>Overall AI Score</strong> (0-100) &mdash; Composite score based on configured weights</li>
+  <li><strong>Skills Score</strong> &mdash; Match percentage for required and preferred skills</li>
+  <li><strong>Experience Score</strong> &mdash; Alignment with experience requirements</li>
+  <li><strong>Education Score</strong> &mdash; Match with education requirements</li>
+  <li><strong>AI Summary</strong> &mdash; Natural language assessment of the candidate</li>
+  <li><strong>Strengths</strong> &mdash; Key strengths identified by AI</li>
+  <li><strong>Weaknesses</strong> &mdash; Areas where the candidate falls short</li>
+  <li><strong>Recommendation</strong> &mdash; Advance, Hold, or Reject</li>
+</ul>
+
+<h3>Candidate Profile</h3>
+<p>Each candidate profile shows parsed CV data, work history, education, contact information, AI scores, interview history, pipeline stage, and user comments.</p>
+
+<!-- ============================================ -->
+<!-- PIPELINE -->
+<!-- ============================================ -->
+<h2 id="pipeline">Pipeline</h2>
+<p>The Pipeline page (<code>/app/pipeline</code>) provides a visual board showing candidates organized by their current stage in the hiring process.</p>
+
+<h3>Pipeline Stages</h3>
+<div class="pipeline-flow">
+  <span class="pipeline-stage" style="background:#6b7280">Uploaded</span>
+  <span class="pipeline-arrow">&rarr;</span>
+  <span class="pipeline-stage" style="background:#3b82f6">AI Screened</span>
+  <span class="pipeline-arrow">&rarr;</span>
+  <span class="pipeline-stage" style="background:#8b5cf6">Shortlisted</span>
+  <span class="pipeline-arrow">&rarr;</span>
+  <span class="pipeline-stage" style="background:#f59e0b">Interview Scheduled</span>
+  <span class="pipeline-arrow">&rarr;</span>
+  <span class="pipeline-stage" style="background:#06b6d4">Interviewed</span>
+  <span class="pipeline-arrow">&rarr;</span>
+  <span class="pipeline-stage" style="background:#10b981">Hired</span>
+</div>
+<p style="margin-top:4px"><span class="pipeline-stage" style="background:#ef4444">Rejected</span> &mdash; Candidates can be rejected at any stage.</p>
+
+<h3>Stage Descriptions</h3>
+<ul>
+  <li><strong>Uploaded</strong> &mdash; CV received but not yet screened by AI.</li>
+  <li><strong>AI Screened</strong> &mdash; AI has analyzed the CV and assigned a score. Candidates above the shortlist threshold automatically advance.</li>
+  <li><strong>Shortlisted</strong> &mdash; Candidate meets requirements and is ready for interview scheduling.</li>
+  <li><strong>Interview Scheduled</strong> &mdash; An AI phone interview has been scheduled.</li>
+  <li><strong>Interviewed</strong> &mdash; AI interview is complete with evaluation scores.</li>
+  <li><strong>Hired</strong> &mdash; Offer extended and accepted.</li>
+  <li><strong>Rejected</strong> &mdash; Candidate did not meet requirements at any stage.</li>
+</ul>
+
+<h3>Pipeline History</h3>
+<p>Every stage change is recorded with a timestamp, reason, and who initiated the change (AI, system, or user). This provides a complete audit trail for each candidate's journey.</p>
+
+<!-- ============================================ -->
+<!-- CV UPLOAD -->
+<!-- ============================================ -->
+<h2 id="cv-upload">CV Upload</h2>
+<p>The CV Upload page (<code>/app/cv-upload</code>) lets you upload CVs in bulk for processing.</p>
+
+<h3>How It Works</h3>
+<ol>
+  <li><strong>Select a Job</strong> &mdash; Choose which job opening the CVs are for.</li>
+  <li><strong>Upload a ZIP File</strong> &mdash; The ZIP can contain PDF, DOC, or DOCX resume files.</li>
+  <li><strong>Processing</strong> &mdash; The system extracts each file, parses the content, creates candidate records, and runs AI screening.</li>
+  <li><strong>Results</strong> &mdash; View processing status: total files, processed, failed, and candidates created.</li>
+</ol>
+
+<div class="card card-blue">
+  <h4>Supported Formats</h4>
+  <p>Individual uploads accept PDF files. Bulk uploads accept ZIP files containing PDF, DOC, or DOCX resumes. Each CV is parsed using AI to extract structured candidate data.</p>
+</div>
+
+<!-- ============================================ -->
+<!-- INTERVIEWS -->
+<!-- ============================================ -->
+<h2 id="interviews">Interviews</h2>
+<p>The Interviews page (<code>/app/interviews</code>) manages AI-powered phone interviews with candidates.</p>
+
+<h3>Interview Types</h3>
+<ul>
+  <li><strong>Phone Interviews</strong> &mdash; AI calls the candidate on their phone number using Twilio or Plivo. The conversation is conducted by an AI agent configured with job-specific questions.</li>
+  <li><strong>Widget Interviews</strong> &mdash; Browser-based interviews initiated through the <a href="#hiring-widget">Hiring Widget</a>.</li>
+</ul>
+
+<h3>Interview Flow</h3>
+<ol>
+  <li>A shortlisted candidate is scheduled for an interview (manually or via auto-caller).</li>
+  <li>The AI agent calls the candidate at the scheduled time.</li>
+  <li>The agent asks job-specific interview questions configured in the <a href="#jobs">Job settings</a>.</li>
+  <li>After the call, the system generates:
+    <ul>
+      <li><strong>Overall Score</strong> (0-100)</li>
+      <li><strong>Communication Score</strong> &mdash; Clarity, articulation, language proficiency</li>
+      <li><strong>Technical Score</strong> &mdash; Domain knowledge and problem-solving</li>
+      <li><strong>Culture Fit Score</strong> &mdash; Alignment with company values</li>
+      <li><strong>Per-question Scores</strong> &mdash; Individual evaluation for each question asked</li>
+      <li><strong>Full Transcript</strong> &mdash; Complete conversation text</li>
+      <li><strong>AI Evaluation</strong> &mdash; Written assessment with recommendation (advance/hold/reject)</li>
+      <li><strong>Recording URL</strong> &mdash; Audio recording of the interview</li>
+    </ul>
+  </li>
+  <li>The candidate's pipeline stage updates to "Interviewed" with scores attached.</li>
+</ol>
+
+<h3>Auto-Caller</h3>
+<p>Jobs can be configured with an <strong>Auto-Caller</strong> that automatically calls shortlisted candidates who meet a minimum AI score threshold. Configure concurrent call limits, retry attempts, and delays in the Job settings.</p>
+
+<!-- ============================================ -->
+<!-- HIRING AGENTS -->
+<!-- ============================================ -->
+<h2 id="hiring-agents">Hiring Agents</h2>
+<p>Hiring Agents (<code>/app/agents</code>) are the AI personalities that conduct phone interviews and handle incoming calls.</p>
+
+<h3>Agent Types</h3>
+<ul>
+  <li><strong>Natural (LLM-Powered)</strong> &mdash; Uses a large language model with a system prompt you write. The AI conversates naturally based on the prompt instructions. Best for open-ended interviews.</li>
+  <li><strong>Flow (Visual Editor)</strong> &mdash; Uses a visual conversation flow you design with the <a href="#flows">Flow Builder</a>. The AI follows a structured path. Best for standardized screenings.</li>
+  <li><strong>Incoming</strong> &mdash; Handles calls from candidates who call back. Recognizes returning candidates by phone number and personalizes the conversation with their context.</li>
+</ul>
+
+<h3>Configuration</h3>
+<ul>
+  <li><strong>Voice</strong> &mdash; Choose from available voices (ElevenLabs voice library or OpenAI voices).</li>
+  <li><strong>LLM Model</strong> &mdash; Select the language model and temperature for response generation.</li>
+  <li><strong>System Prompt</strong> &mdash; Define the agent's personality, instructions, and interview guidelines.</li>
+  <li><strong>First Message</strong> &mdash; The opening message the agent says when the call connects. Supports variable substitution (e.g., <code>{{contact_name}}</code>).</li>
+  <li><strong>Human Transfer</strong> &mdash; Configure when and how the agent transfers to a human interviewer.</li>
+  <li><strong>Background Sound</strong> &mdash; Optional ambient audio for a more natural call experience.</li>
+  <li><strong>Incoming Calls</strong> &mdash; Enable incoming call handling and assign a phone number. The agent uses callback recognition to identify returning candidates.</li>
+</ul>
+
+<!-- ============================================ -->
+<!-- FLOWS -->
+<!-- ============================================ -->
+<h2 id="flows">Interview Flows</h2>
+<p>The Flows page (<code>/app/flows</code>) provides a visual editor for designing structured conversation flows for AI agents.</p>
+
+<h3>Flow Builder</h3>
+<p>The drag-and-drop flow builder lets you create conversation trees with:</p>
+<ul>
+  <li><strong>Message Nodes</strong> &mdash; What the AI says to the candidate</li>
+  <li><strong>Question Nodes</strong> &mdash; Questions with expected answer types</li>
+  <li><strong>Condition Nodes</strong> &mdash; Branch logic based on candidate responses</li>
+  <li><strong>Action Nodes</strong> &mdash; Trigger actions like scheduling, form collection, or call transfer</li>
+  <li><strong>End Nodes</strong> &mdash; Conclude the conversation with a summary</li>
+</ul>
+
+<h3>Flow Templates</h3>
+<p>Pre-built templates are available for common interview scenarios. You can use them as-is or customize them for your needs. Templates include technical screenings, behavioral interviews, and qualification calls.</p>
+
+<h3>Compilation</h3>
+<p>Flows are compiled to the appropriate format for the selected AI engine (ElevenLabs workflow JSON or OpenAI instructions) when assigned to an agent.</p>
+
+<!-- ============================================ -->
+<!-- PHONE NUMBERS -->
+<!-- ============================================ -->
+<h2 id="phone-numbers">Phone Numbers</h2>
+<p>The Phone Numbers page (<code>/app/phone-numbers</code>) manages the phone numbers used for outbound and inbound calls.</p>
+
+<h3>Provisioning</h3>
+<ul>
+  <li><strong>Twilio Numbers</strong> &mdash; Search and purchase phone numbers from Twilio by country and area code.</li>
+  <li><strong>Plivo Numbers</strong> &mdash; Search and purchase phone numbers from Plivo.</li>
+  <li><strong>SIP Trunks</strong> &mdash; Use your own SIP trunk provider via the <a href="#sip-engine">SIP Engine Plugin</a>.</li>
+</ul>
+
+<h3>Number Assignment</h3>
+<p>Assign phone numbers to Hiring Agents to enable:</p>
+<ul>
+  <li><strong>Outbound Calls</strong> &mdash; The number appears as the caller ID when the agent calls candidates.</li>
+  <li><strong>Incoming Calls</strong> &mdash; Candidates can call this number to reach the AI agent. The agent recognizes returning candidates and provides personalized responses.</li>
+</ul>
+
+<div class="card card-yellow">
+  <h4>KYC Verification</h4>
+  <p>Some countries require identity verification before purchasing phone numbers. The platform includes a KYC verification system that guides you through document upload and approval.</p>
+</div>
+
+<!-- ============================================ -->
+<!-- HIRING WIDGET -->
+<!-- ============================================ -->
+<h2 id="hiring-widget">Hiring Widget</h2>
+<p>The Hiring Widget is an embeddable JavaScript widget that lets candidates apply to jobs and take AI interviews directly from your company website.</p>
+
+<h3>Features</h3>
+<ul>
+  <li><strong>6-Step Wizard</strong> &mdash; Personal details &rarr; CV upload &rarr; AI analysis &rarr; Job matches &rarr; Schedule interview &rarr; Confirmation</li>
+  <li><strong>Multi-Job Matching</strong> &mdash; CV is scored against all open, widget-enabled jobs</li>
+  <li><strong>Score Transparency</strong> &mdash; Candidates see match percentage with strengths and gaps for each job</li>
+  <li><strong>Two Interview Modes</strong> &mdash; Schedule a date/time or take an instant AI phone interview</li>
+  <li><strong>Company Branding</strong> &mdash; Customize colors, logo, and company name</li>
+  <li><strong>Mobile Responsive</strong> &mdash; Works on all device sizes</li>
+  <li><strong>Two Display Modes</strong> &mdash; Floating button or inline embed</li>
+</ul>
+
+<h3>Embedding the Widget</h3>
+<h4>Floating Button Mode</h4>
+<pre><code>&lt;script
+  src="https://yourdomain.com/hiring-widget/embed.js"
+  data-token="YOUR_WIDGET_TOKEN"
+&gt;&lt;/script&gt;</code></pre>
+
+<h4>Inline Embed Mode</h4>
+<pre><code>&lt;div id="agenthr-hiring"&gt;&lt;/div&gt;
+&lt;script
+  src="https://yourdomain.com/hiring-widget/embed.js"
+  data-token="YOUR_WIDGET_TOKEN"
+  data-mode="inline"
+  data-container="agenthr-hiring"
+&gt;&lt;/script&gt;</code></pre>
+
+<h3>Configuration</h3>
+<p>Manage widget settings from the Jobs page &mdash; toggle which jobs appear in the widget, copy embed code, preview the widget, and customize appearance from the Widgets page (<code>/app/tools/widgets</code>).</p>
+
+<!-- ============================================ -->
+<!-- KNOWLEDGE BASE -->
+<!-- ============================================ -->
+<h2 id="knowledge-base">Knowledge Base</h2>
+<p>The Knowledge Base (<code>/app/knowledge-base</code>) allows you to upload documents that provide context to AI agents during interviews.</p>
+
+<h3>How It Works</h3>
+<ol>
+  <li><strong>Upload Documents</strong> &mdash; Upload PDFs, text files, or other documents containing company information, job details, product knowledge, or interview guidelines.</li>
+  <li><strong>Processing</strong> &mdash; Documents are automatically chunked, embedded, and stored for retrieval-augmented generation (RAG).</li>
+  <li><strong>Context Injection</strong> &mdash; During interviews, the AI agent retrieves relevant chunks from the knowledge base to provide accurate, context-aware responses.</li>
+</ol>
+<p>This is particularly useful for giving agents access to company policies, product details, or technical specifications they might need to discuss during interviews.</p>
+
+<!-- ============================================ -->
+<!-- ANALYTICS -->
+<!-- ============================================ -->
+<h2 id="analytics">Analytics</h2>
+<p>The Analytics page (<code>/app/analytics</code>) provides detailed insights into your hiring performance.</p>
+
+<h3>Available Metrics</h3>
+<ul>
+  <li><strong>Pipeline Funnel</strong> &mdash; Visual funnel showing candidate drop-off at each stage</li>
+  <li><strong>Time-to-Hire</strong> &mdash; Average time from candidate upload to hire</li>
+  <li><strong>AI Score Distribution</strong> &mdash; Distribution of candidate scores across jobs</li>
+  <li><strong>Interview Completion Rate</strong> &mdash; Percentage of scheduled interviews that were completed</li>
+  <li><strong>Source Effectiveness</strong> &mdash; Which candidate sources (LinkedIn, Indeed, Referral, etc.) produce the best results</li>
+  <li><strong>Job-level Metrics</strong> &mdash; Per-job breakdown of candidates, interviews, and hires</li>
+</ul>
+
+<!-- ============================================ -->
+<!-- BILLING -->
+<!-- ============================================ -->
+<h2 id="billing">Billing &amp; Credits</h2>
+<p>The Billing page (<code>/app/billing</code>) manages your subscription plan, credits, and payment history.</p>
+
+<h3>Plans</h3>
+<ul>
+  <li><strong>Free Plan</strong> &mdash; Limited features and call minutes for trying the platform.</li>
+  <li><strong>Pro Plan</strong> &mdash; Full access to all features, higher limits, and priority support.</li>
+</ul>
+
+<h3>Credit System</h3>
+<p>AI phone interviews consume credits based on call duration. Credits can be purchased in packages or included with your subscription plan. The dashboard shows your current credit balance and usage history.</p>
+
+<h3>Payment Gateways</h3>
+<p>The platform supports five payment gateways. Your administrator configures which gateways are available:</p>
+<ul>
+  <li>Stripe (credit/debit cards, global)</li>
+  <li>Razorpay (India-focused)</li>
+  <li>PayPal (global)</li>
+  <li>Paystack (Africa-focused)</li>
+  <li>MercadoPago (Latin America-focused)</li>
+</ul>
+
+<h3>Invoices</h3>
+<p>PDF invoices are automatically generated for each purchase and available for download from the billing page.</p>
+
+<!-- ============================================ -->
+<!-- SETTINGS -->
+<!-- ============================================ -->
+<h2 id="settings">Settings</h2>
+<p>The Settings page (<code>/app/settings</code>) manages your account and workspace configuration.</p>
+
+<ul>
+  <li><strong>Profile</strong> &mdash; Name, email, password, avatar</li>
+  <li><strong>API Keys</strong> &mdash; Generate API keys for <a href="#rest-api">REST API</a> access with scoped permissions</li>
+  <li><strong>Notifications</strong> &mdash; Configure email notification preferences</li>
+  <li><strong>Team Management</strong> &mdash; Invite team members, assign roles, and set section-wise permissions (requires Team Management plugin)</li>
+  <li><strong>Webhooks</strong> &mdash; Configure webhook endpoints for event notifications with HMAC-SHA256 verification</li>
+</ul>
+
+<!-- ============================================ -->
+<!-- ADMIN PANEL -->
+<!-- ============================================ -->
+<h2 id="admin-panel">Admin Panel</h2>
+<p>The Admin Panel (<code>/admin</code>) is accessible to users with administrator privileges and provides platform-wide management capabilities.</p>
+
+<h3>Dashboard</h3>
+<p>Platform-wide analytics including total users, total candidates, total interviews, active campaigns, phone line usage, and subscription metrics.</p>
+
+<h3>User Management</h3>
+<p>View, search, and manage platform users. Adjust credit balances, change plans, suspend accounts, and view per-user analytics.</p>
+
+<h3>API Key Pools</h3>
+<p>Manage pooled API keys for ElevenLabs, OpenAI, and Twilio. The platform supports multi-key pooling with automatic fallback &mdash; if one key hits rate limits, the system automatically routes to another key.</p>
+
+<h3>Global Settings</h3>
+<ul>
+  <li><strong>Platform Branding</strong> &mdash; Company name, logo, colors, favicon</li>
+  <li><strong>Authentication</strong> &mdash; JWT expiry, session configuration, OTP settings</li>
+  <li><strong>Email (SMTP)</strong> &mdash; Configure or update SMTP settings from the admin panel</li>
+  <li><strong>Payment Gateways</strong> &mdash; Enable/disable and configure Stripe, Razorpay, PayPal, Paystack, MercadoPago</li>
+  <li><strong>Call Limits</strong> &mdash; Default concurrent call limits, retry settings</li>
+  <li><strong>LLM Models</strong> &mdash; Configure which AI models are available and their tier (free/pro)</li>
+  <li><strong>Resource Monitoring</strong> &mdash; View memory usage, set auto-restart thresholds</li>
+</ul>
+
+<h3>Plugin Management</h3>
+<p>Enable or disable platform plugins (REST API, SIP Engine, Team Management). Each plugin adds features and API endpoints without requiring code changes.</p>
+
+<!-- ============================================ -->
+<!-- REST API -->
+<!-- ============================================ -->
+<h2 id="rest-api">REST API Plugin</h2>
+<p>The REST API plugin provides programmatic access to platform features for external integrations.</p>
+
+<h3>Authentication</h3>
+<p>Authenticate API requests using an API key in the <code>X-API-Key</code> header:</p>
+<pre><code>curl -H "X-API-Key: your_api_key_here" \
+  https://yourdomain.com/api/v1/contacts</code></pre>
+<p>Generate API keys from <a href="#settings">Settings</a> with scoped permissions (read/write access per resource).</p>
+
+<h3>Endpoints</h3>
+<table class="env-table">
+  <thead><tr><th>Endpoint</th><th>Methods</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td>/api/v1/contacts</td><td>GET, POST</td><td>List and create candidates</td></tr>
+    <tr><td>/api/v1/contacts/:id</td><td>GET, PUT, DELETE</td><td>Manage individual candidates</td></tr>
+    <tr><td>/api/v1/contacts/bulk-import</td><td>POST</td><td>Bulk import candidates</td></tr>
+    <tr><td>/api/v1/calls</td><td>GET</td><td>List call history</td></tr>
+    <tr><td>/api/v1/calls/trigger</td><td>POST</td><td>Trigger an outbound call</td></tr>
+    <tr><td>/api/v1/campaigns</td><td>GET</td><td>List campaigns</td></tr>
+    <tr><td>/api/v1/agents</td><td>GET</td><td>List agents</td></tr>
+    <tr><td>/api/v1/credits</td><td>GET</td><td>Check credit balance</td></tr>
+    <tr><td>/api/v1/analytics</td><td>GET</td><td>Retrieve analytics data</td></tr>
+    <tr><td>/api/v1/webhooks</td><td>GET, POST</td><td>Manage webhook subscriptions</td></tr>
+  </tbody>
+</table>
+
+<h3>Rate Limiting</h3>
+<p>API requests are rate-limited per API key. Standard limits are 60 requests per minute for read operations and 30 requests per minute for write operations.</p>
+
+<h3>Documentation</h3>
+<p>Interactive API documentation is available at:</p>
+<ul>
+  <li><strong>Redoc</strong> (read-only): <code>/api/docs</code></li>
+  <li><strong>Swagger UI</strong> (interactive): <code>/api/docs/playground</code></li>
+</ul>
+
+<!-- ============================================ -->
+<!-- SIP ENGINE -->
+<!-- ============================================ -->
+<h2 id="sip-engine">SIP Engine Plugin</h2>
+<p>The SIP Engine plugin allows you to use your own SIP trunk provider instead of Twilio or Plivo for telephony.</p>
+
+<h3>Supported Engines</h3>
+<ul>
+  <li><strong>ElevenLabs SIP</strong> &mdash; Full inbound and outbound call support via SIP trunks connected to ElevenLabs conversational AI.</li>
+  <li><strong>OpenAI SIP</strong> &mdash; Incoming call support via SIP trunks connected to OpenAI Realtime API.</li>
+</ul>
+
+<h3>Supported Providers</h3>
+<p>The SIP Engine supports 13+ SIP trunk providers including Telnyx, Vonage, Bandwidth, SignalWire, and more. Configure your trunk credentials and the platform routes calls through your provider.</p>
+
+<h3>Configuration</h3>
+<p>Set up SIP trunks from the user dashboard at <code>/app/phone-numbers</code> (SIP tab) or manage platform-wide SIP settings from the admin panel.</p>
+
+<!-- ============================================ -->
+<!-- TROUBLESHOOTING -->
+<!-- ============================================ -->
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<h3>Application Won't Start</h3>
+<div class="card card-red">
+  <h4>Common Causes</h4>
+  <ul>
+    <li><strong>Missing DATABASE_URL</strong> &mdash; Ensure the <code>DATABASE_URL</code> environment variable is set and the PostgreSQL server is running.</li>
+    <li><strong>Port already in use</strong> &mdash; The default port is 5000. Check if another process is using it: <code>lsof -i :5000</code></li>
+    <li><strong>Missing dependencies</strong> &mdash; Run <code>npm install</code> again to ensure all packages are installed.</li>
+    <li><strong>Schema mismatch</strong> &mdash; Run <code>npm run db:push</code> to sync the database schema.</li>
+    <li><strong>Node.js version</strong> &mdash; Ensure you're running Node.js 18.x or 20.x. Check with <code>node --version</code></li>
+  </ul>
+</div>
+
+<h3>Database Connection Errors</h3>
+<ul>
+  <li>Verify PostgreSQL is running: <code>pg_isready</code></li>
+  <li>Test the connection string: <code>psql $DATABASE_URL -c "SELECT 1"</code></li>
+  <li>Check for firewall rules blocking port 5432.</li>
+  <li>Ensure the database user has proper permissions.</li>
+</ul>
+
+<h3>AI Screening Not Working</h3>
+<ul>
+  <li>Verify <code>OPENAI_API_KEY</code> is set and valid.</li>
+  <li>Check the admin panel &rarr; Settings &rarr; OpenAI connection test.</li>
+  <li>Ensure the OpenAI key has access to the required models (GPT-4o recommended).</li>
+  <li>Check server logs for API error messages.</li>
+</ul>
+
+<h3>Interview Calls Failing</h3>
+<ul>
+  <li><strong>No calls going out:</strong>
+    <ul>
+      <li>Verify Twilio/Plivo credentials are correct (test connection in Admin Panel).</li>
+      <li>Ensure a phone number is purchased and assigned to the agent.</li>
+      <li>Check the candidate has a valid phone number with country code.</li>
+      <li>Verify you have sufficient credits.</li>
+    </ul>
+  </li>
+  <li><strong>Calls connect but no AI response:</strong>
+    <ul>
+      <li>Check ElevenLabs or OpenAI API key validity.</li>
+      <li>Verify the agent has a voice selected.</li>
+      <li>Check WebSocket connectivity (ensure Nginx proxies WebSocket correctly).</li>
+    </ul>
+  </li>
+  <li><strong>Webhook errors:</strong>
+    <ul>
+      <li>Ensure <code>APP_URL</code> is publicly accessible (Twilio/Plivo need to reach your server).</li>
+      <li>Check SSL certificate validity.</li>
+      <li>Verify webhook URLs in the server logs.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Hiring Widget Not Loading</h3>
+<ul>
+  <li>Verify the widget token is correct (copy from Jobs page).</li>
+  <li>Check that at least one job has the widget enabled.</li>
+  <li>Ensure the script URL is correct and your server is publicly accessible.</li>
+  <li>Check browser console for CORS errors &mdash; the widget script is served with CORS headers by default.</li>
+  <li>If embedding on HTTPS pages, your server must also use HTTPS.</li>
+</ul>
+
+<h3>Email Not Sending</h3>
+<ul>
+  <li>Verify SMTP settings in the admin panel (Settings &rarr; Communications).</li>
+  <li>Use the "Test Connection" button to verify SMTP connectivity.</li>
+  <li>For Gmail: use an App Password (not your regular password) and ensure "Less secure apps" is configured or use OAuth.</li>
+  <li>Check that the SMTP port matches your provider (587 for TLS, 465 for SSL, 25 for unencrypted).</li>
+  <li>Review server logs for specific SMTP error messages.</li>
+</ul>
+
+<h3>Credit/Billing Issues</h3>
+<ul>
+  <li><strong>Credits not deducting</strong> &mdash; Check that the payment gateway processed successfully (view transaction history in Billing).</li>
+  <li><strong>Insufficient credits</strong> &mdash; Purchase additional credit packages from the Billing page or ask your admin to adjust your balance.</li>
+  <li><strong>Payment failing</strong> &mdash; Verify payment gateway configuration in the admin panel. Check webhook secrets for Stripe.</li>
+</ul>
+
+<h3>Performance Optimization</h3>
+<ul>
+  <li>Use Node.js cluster mode or a reverse proxy for multi-core utilization.</li>
+  <li>Enable Redis and BullMQ for large campaign processing (set <code>ENABLE_BULLMQ=true</code>).</li>
+  <li>Monitor memory usage from the Admin Panel dashboard.</li>
+  <li>Configure auto-restart thresholds in Admin &rarr; Settings to prevent memory leaks from affecting service.</li>
+  <li>Use connection pooling for PostgreSQL (configured automatically by default).</li>
+</ul>
+
+<h3>Debugging Tips</h3>
+<ul>
+  <li>Server logs are output to stdout. In production, view them: <code>bash scripts/production.sh logs</code></li>
+  <li>Set <code>NODE_ENV=development</code> for more verbose logging.</li>
+  <li>Use the Health Check endpoint: <code>GET /api/health</code> to verify all services.</li>
+  <li>Check integration status on startup &mdash; the server logs show connection status for each service (ElevenLabs, Twilio, OpenAI, Stripe, SMTP).</li>
+  <li>For WebSocket issues, check browser developer tools Network tab for WS connections.</li>
+</ul>
+
+<!-- ============================================ -->
+<!-- FAQ -->
+<!-- ============================================ -->
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<details class="faq-item">
+  <summary>How many candidates can I screen at once?</summary>
+  <div class="faq-a"><p>There is no hard limit. Bulk ZIP uploads can contain hundreds of CVs. Processing happens sequentially but is optimized for throughput. For very large batches (1000+), consider enabling BullMQ with Redis for background processing.</p></div>
+</details>
+
+<details class="faq-item">
+  <summary>Which AI models are used for screening?</summary>
+  <div class="faq-a"><p>CV screening uses OpenAI models (GPT-4o recommended for best results). The admin can configure which models are available and assign them to free or pro tiers. Screening analyzes skills, experience, and education against job requirements.</p></div>
+</details>
+
+<details class="faq-item">
+  <summary>Can I use multiple telephony providers simultaneously?</summary>
+  <div class="faq-a"><p>Yes. You can have Twilio numbers, Plivo numbers, and SIP trunk numbers active at the same time. Each agent or job can be configured with a different telephony provider and phone number.</p></div>
+</details>
+
+<details class="faq-item">
+  <summary>How does the AI scoring work?</summary>
+  <div class="faq-a"><p>Each job defines weights for skills (default 40%), experience (35%), and education (25%). The AI analyzes the CV against the job's required/preferred skills, experience range, and education level. The composite score is 0-100, with candidates above the shortlist threshold automatically advancing to the "Shortlisted" stage.</p></div>
+</details>
+
+<details class="faq-item">
+  <summary>Can candidates call back after a missed interview?</summary>
+  <div class="faq-a"><p>Yes. When a Hiring Agent has incoming calls enabled with an assigned phone number, candidates can call that number. The system automatically recognizes the caller by phone number, retrieves their candidate profile, job context, and previous interaction history, then personalizes the conversation accordingly.</p></div>
+</details>
+
+<details class="faq-item">
+  <summary>Is the platform multi-tenant?</summary>
+  <div class="faq-a"><p>Yes. Each registered user has their own isolated workspace with separate jobs, candidates, agents, and phone numbers. The admin panel provides platform-wide oversight. Team management allows inviting team members with role-based permissions.</p></div>
+</details>
+
+<details class="faq-item">
+  <summary>How do I update the platform?</summary>
+  <div class="faq-a"><p>Pull the latest code from the repository, run <code>npm install</code> to update dependencies, run <code>npm run db:push</code> to apply schema changes, rebuild with <code>npm run build</code>, and restart the server. The seeder is idempotent and safe to re-run.</p></div>
+</details>
+
+<details class="faq-item">
+  <summary>What happens when API keys hit rate limits?</summary>
+  <div class="faq-a"><p>The platform supports multi-key pooling for ElevenLabs, OpenAI, and Twilio. When one key hits rate limits, the system automatically routes requests to another available key. Configure multiple keys in the admin panel under API Key Pools.</p></div>
+</details>
+
+<details class="faq-item">
+  <summary>Can I customize the interview scoring criteria?</summary>
+  <div class="faq-a"><p>Yes. Each job has configurable screening weights (skills, experience, education) and custom criteria with keywords. Interview questions can be categorized (technical, behavioral, cultural) with individual weights. The shortlist threshold is also configurable per job.</p></div>
+</details>
+
+<details class="faq-item">
+  <summary>Does the platform support multiple languages?</summary>
+  <div class="faq-a"><p>Yes. The UI supports 11 languages with full internationalization (including RTL languages). AI agents can conduct interviews in multiple languages depending on the voice and model configuration.</p></div>
+</details>
+
+<details class="faq-item">
+  <summary>How is data privacy handled?</summary>
+  <div class="faq-a"><p>The platform runs on your own infrastructure (self-hosted), so all data stays within your control. Candidate data is isolated per user (multi-tenant), passwords are hashed with bcrypt, sessions use secure cookies, and webhook payloads are signed with HMAC-SHA256. The platform includes privacy policy and terms of service page templates.</p></div>
+</details>
+
+<details class="faq-item">
+  <summary>Can I export candidate data?</summary>
+  <div class="faq-a"><p>Yes. Campaign results can be exported as CSV files. The REST API also provides programmatic access to all candidate data. Analytics reports can be exported as PDF.</p></div>
+</details>
+
+<!-- ============================================ -->
+<!-- CONTACT -->
+<!-- ============================================ -->
+<h2 id="contact-support">Contact Support</h2>
+<div class="card card-blue">
+  <h4>Need Help?</h4>
+  <p>If you encounter issues not covered in this documentation:</p>
+  <ul>
+    <li><strong>Raise a Support Ticket</strong> &mdash; Visit <a href="https://diploy.ticksy.com" target="_blank" rel="noopener">diploy.ticksy.com</a> to submit a ticket for technical support. Our team will respond within 24 hours.</li>
+    <li>Check the server logs for detailed error messages (<code>bash scripts/production.sh logs</code> in production).</li>
+    <li>Visit the Admin Panel &rarr; Settings to test integration connections.</li>
+    <li>Use the in-app feedback form (available from the user menu) to report bugs or request features.</li>
+    <li>For platform licensing and purchase support, visit <a href="https://codecanyon.net" target="_blank" rel="noopener">CodeCanyon</a>.</li>
+  </ul>
+</div>
+
+<div style="text-align:center;padding:40px 0 0;color:var(--text-tertiary);font-size:13px">
+  <p>AgentHR v4.1.0 &mdash; AI-Powered HR Hiring Platform</p>
+  <p>&copy; 2025 Diploy &mdash; Bisht Technologies Private Limited</p>
+</div>
+
+</main>
+
+<button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">&uarr;</button>
+
+<script>
+function toggleSidebar(){
+  document.querySelector('.sidebar').classList.toggle('open');
+  document.querySelector('.sidebar-overlay').classList.toggle('open');
+}
+document.querySelectorAll('.sidebar .nav-link').forEach(function(link){
+  link.addEventListener('click',function(){
+    document.querySelector('.sidebar').classList.remove('open');
+    document.querySelector('.sidebar-overlay').classList.remove('open');
+  });
+});
+window.addEventListener('scroll',function(){
+  var btn=document.querySelector('.back-top');
+  if(window.scrollY>400)btn.classList.add('visible');
+  else btn.classList.remove('visible');
+});
+</script>
+</body>
+</html>

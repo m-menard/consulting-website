@@ -1,0 +1,51 @@
+{
+  "name": "@agenthr/sip-engine-plugin",
+  "version": "1.0.0",
+  "description": "SIP telephony integration supporting ElevenLabs SIP (multi-provider) and OpenAI SIP (incoming calls). Enables customers to use their own SIP trunks for AI-powered voice calls.",
+  "main": "index.js",
+  "types": "index.ts",
+  "author": "AgentHR",
+  "license": "Commercial",
+  "homepage": "https://agenthr.io/plugins/sip-engine",
+  "keywords": [
+    "sip",
+    "voip",
+    "telephony",
+    "elevenlabs",
+    "openai",
+    "voice-ai",
+    "conversational-ai",
+    "twilio",
+    "plivo",
+    "telnyx"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "peerDependencies": {
+    "express": "^4.18.0",
+    "ws": "^8.0.0",
+    "drizzle-orm": "^0.29.0"
+  },
+  "peerDependenciesMeta": {
+    "express": {
+      "optional": false
+    },
+    "ws": {
+      "optional": false
+    },
+    "drizzle-orm": {
+      "optional": false
+    }
+  },
+  "scripts": {
+    "build": "esbuild frontend/index.tsx --bundle --outfile=dist/bundle.js --format=iife --global-name=__plugin_sip_engine__ --external:react --external:react-dom --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agenthr/sip-engine-plugin"
+  },
+  "bugs": {
+    "url": "https://github.com/agenthr/sip-engine-plugin/issues"
+  }
+}
