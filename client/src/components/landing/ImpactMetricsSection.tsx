@@ -3,24 +3,24 @@ import { useBranding } from "@/components/BrandingProvider";
 
 const metrics = [
   {
-    value: "10M+",
-    label: "Candidate Screenings",
-    description: "CVs processed and scored by AI across all clients",
+    value: "50+",
+    label: "Production Deployments",
+    description: "AI systems launched across operations, support, and revenue workflows",
   },
   {
-    value: "90%",
-    label: "Faster Hiring Cycle",
-    description: "Reduction in time-to-hire with automated screening",
+    value: "35%",
+    label: "Cycle Time Reduction",
+    description: "Average reduction in manual process time after AI automation rollout",
   },
   {
-    value: "75%",
-    label: "Engagement Rate",
-    description: "Candidate response rate through AI voice interviews",
+    value: "99.9%",
+    label: "Workflow Reliability",
+    description: "Production-grade system availability with monitoring and guardrails",
   },
   {
-    value: "15%",
-    label: "Productivity Jump",
-    description: "First month productivity improvement for hired candidates",
+    value: "3x",
+    label: "Delivery Velocity",
+    description: "Faster time from AI concept to measurable business impact",
   },
 ];
 
@@ -44,10 +44,10 @@ export function ImpactMetricsSection() {
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-4"
             data-testid="text-impact-title"
           >
-            We make impact.
+            AI impact you can measure.
           </h2>
           <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
-            {branding.app_name} transforms how companies hire — delivering measurable results at every stage of the recruitment pipeline.
+            {branding.app_name} helps teams move from AI ideas to production systems with measurable outcomes in cost, speed, and decision quality.
           </p>
         </motion.div>
 

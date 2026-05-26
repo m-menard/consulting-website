@@ -14,35 +14,35 @@ export function FAQSection() {
   const faqs = [
     {
       question: `What is ${appName} and how does it work?`,
-      answer: `${appName} is an AI-powered HR hiring platform that automates candidate screening and interviews. Upload CVs in bulk, let AI score and rank candidates based on job requirements, then conduct automated voice interviews — all from one dashboard.`,
+      answer: `${appName} is an AI consulting and delivery partner focused on production systems. We identify high-impact use cases, design the architecture, implement integrations, and deploy AI workflows tied to business KPIs.`,
     },
     {
-      question: "How does AI CV screening work?",
-      answer: "Our AI analyzes uploaded CVs against your specific job requirements, evaluating experience, skills, education, and qualifications. Each candidate receives a score from 0-100 with detailed breakdowns, helping you instantly identify top talent from hundreds of applications.",
+      question: "What kinds of AI solutions do you build?",
+      answer: "We build workflow automations, internal copilots, decision-support systems, forecasting models, and retrieval-powered assistants. Each solution is scoped around a measurable business outcome such as cycle-time reduction, cost savings, or revenue uplift.",
     },
     {
-      question: "What happens during an AI voice interview?",
-      answer: "The AI interviewer calls candidates directly, conducts a natural conversation tailored to the job role, asks relevant screening questions, and evaluates responses in real-time. After the interview, you get a detailed transcript, scoring, and recommendation.",
+      question: "How do you choose the right use case first?",
+      answer: "We run a short discovery process to map workflows, data readiness, operational constraints, and ROI potential. Then we prioritize opportunities by impact, feasibility, and deployment risk before implementation starts.",
     },
     {
-      question: "Can I customize the screening criteria for different jobs?",
-      answer: "Absolutely. Each Hiring Agent can be configured with specific job requirements, preferred qualifications, screening questions, and scoring criteria. You can create different agents for different roles with unique evaluation frameworks.",
+      question: "Can you work with our existing tools and data stack?",
+      answer: "Yes. We integrate with your current systems via APIs, webhooks, and data pipelines. We design solutions to fit your stack rather than forcing tool migrations.",
     },
     {
-      question: "How many CVs can I upload at once?",
-      answer: "You can upload CVs in bulk via ZIP files containing hundreds of resumes. The AI processes them in parallel, scoring and ranking all candidates against your job requirements within minutes rather than days.",
+      question: "Do you provide strategy only, or implementation too?",
+      answer: "Both. We can support strategy and architecture, but our core model is hands-on delivery. We build, deploy, and iterate in production with your team.",
     },
     {
-      question: "Is candidate data secure and GDPR compliant?",
-      answer: "Yes. All candidate data is encrypted at rest and in transit. We follow GDPR guidelines with data retention policies, candidate consent management, and the ability to delete candidate records on request. Your data is never shared with third parties.",
+      question: "How do you handle security and compliance requirements?",
+      answer: "Security is built into design and deployment: access controls, encrypted data handling, auditability, and environment-aware architecture. We align implementation with your compliance and governance standards.",
     },
     {
-      question: "Can I integrate with my existing ATS or HRIS?",
-      answer: "Yes. We offer webhooks, REST API access, and direct integrations with popular tools. You can push candidate data, interview results, and screening scores to your existing HR systems automatically.",
+      question: "How long does a typical engagement take?",
+      answer: "Validation engagements can be completed in a few weeks, while larger production builds typically run in phases over one to three months depending on scope and integrations.",
     },
     {
-      question: "What languages does the AI interviewer support?",
-      answer: "Our AI voice interviewer supports interviews in 50+ languages including English, Spanish, French, German, Hindi, Arabic, Portuguese, Mandarin, and many more — enabling truly global hiring campaigns.",
+      question: "How do we measure success after launch?",
+      answer: "We define clear baseline metrics upfront and track operational impact post-launch. Success is measured with business outcomes such as reduced manual effort, faster turnaround times, improved service quality, and revenue impact.",
     },
   ];
 
@@ -66,7 +66,7 @@ export function FAQSection() {
             Frequently Asked Questions
           </h2>
           <p className="text-base sm:text-lg text-slate-600">
-            Everything you need to know about our AI hiring platform
+            Everything you need to know about our AI consulting and delivery approach
           </p>
         </motion.div>
 

@@ -2,11 +2,13 @@ import { SEOHead } from "@/components/landing/SEOHead";
 import { Navbar } from "@/components/landing/Navbar";
 import { HeroSection } from "@/components/landing/HeroSection";
 import { ImpactMetricsSection } from "@/components/landing/ImpactMetricsSection";
+import { ServicesSection } from "@/components/landing/ServicesSection";
 import { FeatureSection } from "@/components/landing/FeatureSection";
-import { UseCasesSection } from "@/components/landing/UseCasesSection";
+import { HowItWorks } from "@/components/landing/HowItWorks";
+import { CaseStudiesSection } from "@/components/landing/CaseStudiesSection";
 import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
 import { IntegrationsGrid } from "@/components/landing/IntegrationsGrid";
-import { PricingSection } from "@/components/landing/PricingSection";
+import { ServicePackagesSection } from "@/components/landing/ServicePackagesSection";
 import { ContactSection } from "@/components/landing/ContactSection";
 import { FAQSection } from "@/components/landing/FAQSection";
 import { CTASection } from "@/components/landing/CTASection";
@@ -19,20 +21,20 @@ export default function LandingPage() {
   const { data: seoSettings } = useSeoSettings();
 
   const defaultKeywords = [
-    "AI hiring platform",
-    "automated interviews",
-    "CV screening",
-    "AI recruitment",
-    "candidate pipeline",
-    "voice AI interviews",
-    "bulk resume upload",
-    "HR automation",
-    "AI candidate scoring",
-    "hiring workflow"
+    "AI consulting company",
+    "production AI systems",
+    "workflow automation",
+    "AI agents",
+    "RAG implementation",
+    "applied machine learning",
+    "AI infrastructure",
+    "enterprise AI deployment",
+    "AI strategy and execution",
+    "business process automation"
   ];
 
-  const seoTitle = seoSettings?.defaultTitle || "AI-Powered HR Hiring Platform";
-  const seoDescription = seoSettings?.defaultDescription || branding.app_tagline || "Transform your hiring with AI-powered screening and voice interviews. Upload CVs in bulk, score candidates automatically, and conduct AI phone interviews 24/7.";
+  const seoTitle = seoSettings?.defaultTitle || "AI Consulting for Production Systems";
+  const seoDescription = seoSettings?.defaultDescription || branding.app_tagline || "Design, build, and deploy production-grade AI systems that reduce cost, increase speed, and unlock measurable business outcomes.";
   const seoKeywords = (seoSettings?.defaultKeywords && seoSettings.defaultKeywords.length > 0) 
     ? seoSettings.defaultKeywords 
     : defaultKeywords;
@@ -67,12 +69,20 @@ export default function LandingPage() {
           <ImpactMetricsSection />
         </section>
 
+        <section id="services">
+          <ServicesSection />
+        </section>
+
         <section id="features">
           <FeatureSection />
         </section>
 
+        <section id="process">
+          <HowItWorks />
+        </section>
+
         <section id="use-cases">
-          <UseCasesSection />
+          <CaseStudiesSection />
         </section>
 
         <section id="testimonials">
@@ -84,7 +94,7 @@ export default function LandingPage() {
         </section>
 
         <section id="pricing">
-          <PricingSection />
+          <ServicePackagesSection />
         </section>
 
         <section id="contact">

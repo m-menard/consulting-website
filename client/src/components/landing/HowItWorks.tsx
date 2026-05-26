@@ -15,29 +15,36 @@
  * ============================================================
  */
 import { Card } from "@/components/ui/card";
-import { Brain, Zap, BarChart3 } from "lucide-react";
+import { Search, Code2, Link2, LineChart } from "lucide-react";
 import { motion } from "framer-motion";
 
 const steps = [
   {
     number: "01",
-    title: "Build",
-    description: "Utilize our intuitive agent builder to create custom voice AI callers effortlessly with professional templates.",
-    icon: Brain,
+    title: "Smart Analysis",
+    description: "We assess your workflows, data readiness, and bottlenecks to identify the highest-impact AI opportunities first.",
+    icon: Search,
     color: "from-slate-900 to-slate-800 dark:from-slate-100 dark:to-slate-200"
   },
   {
     number: "02",
-    title: "Deploy",
-    description: "Easily deploy your agents for AI phone calls, campaigns, and automated outreach in just one click.",
-    icon: Zap,
+    title: "AI Development",
+    description: "Our team builds tailored automation systems, agents, and intelligence layers designed for your operations.",
+    icon: Code2,
     color: "from-slate-900 to-slate-800 dark:from-slate-100 dark:to-slate-200"
   },
   {
     number: "03",
-    title: "Monitor",
-    description: "Track success rates, call metrics, and user sentiment through comprehensive real-time analytics dashboards.",
-    icon: BarChart3,
+    title: "Seamless Integration",
+    description: "We integrate solutions with your existing stack and processes so adoption is smooth and disruption stays minimal.",
+    icon: Link2,
+    color: "from-slate-900 to-slate-800 dark:from-slate-100 dark:to-slate-200"
+  },
+  {
+    number: "04",
+    title: "Continuous Optimization",
+    description: "After launch, we monitor, evaluate, and improve system performance to maximize long-term business outcomes.",
+    icon: LineChart,
     color: "from-slate-900 to-slate-800 dark:from-slate-100 dark:to-slate-200"
   }
 ];
@@ -59,14 +66,14 @@ export function HowItWorks() {
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold"
             data-testid="heading-how-it-works"
           >
-            How It Works
+            Our Process
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-muted-foreground">
-            Get started in three simple steps
+            Our simple, smart, and scalable approach for production AI delivery
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-7xl mx-auto">
           {steps.map((step, index) => (
             <motion.div
               key={index}

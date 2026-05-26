@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { Check, ChevronDown, Phone } from "lucide-react";
+import { Brain, Briefcase, Check, ChevronDown, User, Workflow } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "wouter";
@@ -71,36 +71,36 @@ const TrustBadge = ({ text }: { text: string }) => (
   </div>
 );
 
-const candidateCardData = [
+const architectureItems = [
   {
-    typeKey: "landing.hero.cards.assessmentFor",
-    roleKey: "landing.hero.cards.salesAssociate",
-    image: "/images/hero/sales_associate.png",
+    titleKey: "landing.hero.architecture.items.userInput.title",
+    descriptionKey: "landing.hero.architecture.items.userInput.description",
+    icon: <User className="h-5 w-5 text-white" />,
   },
   {
-    typeKey: "landing.hero.cards.trainingFor",
-    roleKey: "landing.hero.cards.server",
-    image: "/images/hero/server.png",
+    titleKey: "landing.hero.architecture.items.orchestration.title",
+    descriptionKey: "landing.hero.architecture.items.orchestration.description",
+    icon: <Workflow className="h-5 w-5 text-white" />,
   },
   {
-    typeKey: "landing.hero.cards.screeningFor",
-    roleKey: "landing.hero.cards.practicalNurse",
-    image: "/images/hero/nurse.png",
+    titleKey: "landing.hero.architecture.items.businessOutput.title",
+    descriptionKey: "landing.hero.architecture.items.businessOutput.description",
+    icon: <Briefcase className="h-5 w-5 text-white" />,
   },
   {
-    typeKey: "landing.hero.cards.screeningFor",
-    roleKey: "landing.hero.cards.retailSales",
-    image: "/images/hero/retail_sales.png",
+    titleKey: "landing.hero.architecture.items.intelligenceLayer.title",
+    descriptionKey: "landing.hero.architecture.items.intelligenceLayer.description",
+    icon: <Brain className="h-5 w-5 text-white" />,
   },
 ];
 
 const companyLogos = [
-  { name: "RE MAX", className: "text-lg font-bold tracking-tight" },
-  { name: "Claro", className: "text-xl font-semibold" },
-  { name: "TOMORROWLAND", className: "text-sm font-light tracking-widest" },
-  { name: "LIMITLESS", className: "text-base font-medium tracking-wide" },
-  { name: "segware", className: "text-lg font-semibold" },
-  { name: "wakefit", className: "text-lg font-medium italic" },
+  { name: "Linear", className: "text-lg font-bold tracking-tight" },
+  { name: "Triple Whale", className: "text-xl font-semibold" },
+  { name: "Simple Practice", className: "text-sm font-light tracking-widest" },
+  { name: "Avesha", className: "text-base font-medium tracking-wide" },
+  { name: "Machinify", className: "text-lg font-semibold" },
+  { name: "TomoCredit", className: "text-lg font-medium italic" },
   { name: "AVENTIS", className: "text-base font-semibold tracking-wide" },
 ];
 
@@ -212,8 +212,8 @@ export function HeroSection() {
               variants={itemVariants}
               className="flex flex-wrap justify-center gap-3 pt-2"
             >
-              <StatsBadge value="10X" label={t('landing.hero.statsFasterScreening')} />
-              <StatsBadge value="85%" label={t('landing.hero.statsTimeSaved')} />
+              <StatsBadge value="3X" label={t('landing.hero.statsFasterScreening')} />
+              <StatsBadge value="40%" label={t('landing.hero.statsTimeSaved')} />
             </motion.div>
 
             <motion.div
@@ -243,43 +243,51 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="relative bg-gradient-to-b from-[#EFF5FF] via-[#C5DBFA] to-[#0B2D68] pt-4 pb-20">
+      <div className="relative bg-gradient-to-b from-[#EFF5FF] via-[#C5DBFA] to-[#0B2D68] pt-3 sm:pt-4 pb-14 sm:pb-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+            className="mx-auto max-w-5xl"
           >
-            {candidateCardData.map((card, i) => {
-              const cardType = t(card.typeKey);
-              const cardRole = t(card.roleKey);
-              return (
-              <motion.div
-                key={card.roleKey}
-                custom={i}
-                variants={cardVariants}
-                className="relative rounded-2xl overflow-hidden shadow-xl group cursor-default aspect-[3/4]"
-                data-testid={`hero-card-${cardRole.toLowerCase().replace(/\s+/g, "-")}`}
-              >
-                <img
-                  src={card.image}
-                  alt={`${cardType} ${cardRole}`}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  loading="eager"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-[#0B2D68]/60 via-transparent to-[#0B2D68]/30" />
-                <div className="absolute top-0 left-0 right-0 p-4 md:p-5">
-                  <p className="text-white/80 text-xs md:text-sm font-medium">{cardType}</p>
-                  <p className="text-white text-base md:text-lg font-bold leading-tight">{cardRole}</p>
-                </div>
-                <div className="absolute bottom-3 left-3 md:bottom-4 md:left-4">
-                  <div className="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
-                    <Phone className="h-4 w-4 md:h-5 md:w-5 text-white" />
-                  </div>
-                </div>
-              </motion.div>
-              );
-            })}
+            <motion.div
+              variants={cardVariants}
+              custom={0}
+              className="rounded-2xl sm:rounded-3xl border border-white/20 bg-[#0B2D68]/50 p-4 sm:p-5 md:p-8 shadow-2xl backdrop-blur-sm"
+              data-testid="hero-architecture-panel"
+            >
+              <div className="mb-5 sm:mb-8 text-center">
+                <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-3 sm:px-4 py-1 text-[10px] sm:text-xs font-medium uppercase tracking-wide text-white/80">
+                  {t("landing.hero.architecture.badge")}
+                </span>
+                <h3 className="mt-3 sm:mt-4 text-xl sm:text-2xl md:text-4xl font-bold text-white leading-tight">
+                  {t("landing.hero.architecture.title")}
+                </h3>
+                <p className="mx-auto mt-3 sm:mt-4 max-w-3xl text-xs sm:text-sm md:text-lg leading-relaxed text-blue-100/90">
+                  {t("landing.hero.architecture.description")}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2">
+                {architectureItems.map((item, i) => (
+                  <motion.div
+                    key={item.titleKey}
+                    custom={i}
+                    variants={cardVariants}
+                    className="rounded-xl sm:rounded-2xl border border-white/15 bg-white/5 p-3 sm:p-4 md:p-5 text-left"
+                    data-testid={`hero-architecture-item-${i}`}
+                  >
+                    <div className="mb-1.5 sm:mb-2 flex items-center gap-2">
+                      <span className="inline-flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg bg-white/10">
+                        {item.icon}
+                      </span>
+                      <p className="text-base sm:text-lg font-semibold text-white">{t(item.titleKey)}</p>
+                    </div>
+                    <p className="text-xs sm:text-sm text-blue-100/85">{t(item.descriptionKey)}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
 
@@ -287,7 +295,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.8, duration: 0.6 }}
-          className="flex justify-center mt-10"
+          className="flex justify-center mt-6 sm:mt-10"
         >
           <button
             onClick={handleScrollDown}

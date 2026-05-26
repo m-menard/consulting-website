@@ -226,9 +226,134 @@
   },
   "landing": {
     "features": "Features",
+    "services": {
+      "badge": "SERVICES",
+      "title": "What We Actually Build",
+      "subtitle": "Four core service pillars to move you from AI ideas to reliable production outcomes.",
+      "stats": {
+        "deliveryLabel": "Typical Delivery",
+        "deliveryValue": "2-8 weeks per milestone",
+        "impactLabel": "Target Outcomes",
+        "impactValue": "Cost, speed, and quality gains",
+        "modelLabel": "Engagement Model",
+        "modelValue": "Strategy + implementation"
+      },
+      "cards": {
+        "workflowAutomation": {
+          "title": "Workflow Automation",
+          "description": "Replace repetitive operational work with reliable AI workflows across ops, finance, GTM, and support.",
+          "badge": "Operations",
+          "bestFor": "Teams with high manual load and fragmented handoffs",
+          "outcomes": [
+            "Automated multi-step workflows with approvals and guardrails",
+            "Lower cycle times for repetitive operational tasks",
+            "Clear ownership and SLA tracking across teams"
+          ]
+        },
+        "aiAgents": {
+          "title": "AI Agents",
+          "description": "Build production-grade copilots and autonomous agents that can retrieve context, take action, and escalate safely.",
+          "badge": "Agents",
+          "bestFor": "Customer-facing and internal support workflows",
+          "outcomes": [
+            "Role-specific copilots connected to your knowledge and tools",
+            "Action execution with human-in-the-loop escalation",
+            "Audit-ready logs for quality and compliance reviews"
+          ]
+        },
+        "appliedML": {
+          "title": "Applied ML",
+          "description": "Deploy forecasting, anomaly detection, and scoring systems tied directly to measurable business outcomes.",
+          "badge": "Intelligence",
+          "bestFor": "Planning, risk, and prioritization decisions at scale",
+          "outcomes": [
+            "Forecasting and scoring models aligned to business KPIs",
+            "Anomaly detection for early risk and issue identification",
+            "Decision-support outputs embedded in daily workflows"
+          ]
+        },
+        "aiInfrastructure": {
+          "title": "AI Infrastructure",
+          "description": "Implement data pipelines, retrieval architecture, evaluation loops, and observability that keep AI stable in production.",
+          "badge": "Platform",
+          "bestFor": "Teams moving from prototype to reliable production",
+          "outcomes": [
+            "Data and retrieval pipelines built for reliability and scale",
+            "Evaluation loops to continuously improve model quality",
+            "Observability for latency, cost, and failure monitoring"
+          ]
+        }
+      }
+    },
+    "caseStudies": {
+      "badge": "CASE STUDIES",
+      "impactLabel": "Impact",
+      "title": "See How AI Automation Transforms Businesses",
+      "subtitle": "See how AI automation streamlines operations, boosts productivity, and drives growth.",
+      "items": {
+        "machinify": {
+          "title": "Operationalizing complex payment integrity models",
+          "description": "Machinify needed to operationalize complex payment integrity models for non-technical auditors. We delivered a visual AI studio that surfaces model reasoning, supports review workflows, and enables continuous improvement.",
+          "impact1": "3-day model deployment cycle",
+          "impact2": "40% higher audit throughput"
+        },
+        "tripleWhale": {
+          "title": "Autonomous RL agents for paid media optimization",
+          "description": "Triple Whale wanted to move beyond dashboards into fully autonomous growth execution. We built reinforcement-learning agents that optimize bids, budgets, and creatives continuously without sacrificing financial safety.",
+          "impact1": "15-20% ROAS lift in 30 days",
+          "impact2": "$450K incremental revenue generated"
+        },
+        "tomoCredit": {
+          "title": "Real-time underwriting without legacy credit dependence",
+          "description": "TomoCredit needed to underwrite responsibly without relying on legacy credit scores. We engineered a real-time cash-flow intelligence system that evaluates financial behavior directly from bank data.",
+          "impact1": "Sub 2 min approvals",
+          "impact2": "$100M debt facility support"
+        }
+      }
+    },
+    "servicePackages": {
+      "badge": "SERVICE PACKAGES",
+      "title": "Transparent pricing for AI delivery",
+      "subtitle": "We keep pricing straightforward so clients know what to expect.",
+      "bestForLabel": "Best For",
+      "popularLabel": "Most Common",
+      "finalNote": "Final pricing depends on scope, integrations, data readiness, deployment environment, and timeline.",
+      "items": {
+        "mvp": {
+          "name": "Rapid MVP",
+          "price": "$30K - $50K",
+          "timeline": "2-weeks engagement for validation",
+          "features": [
+            "POCs",
+            "Agent MVPs",
+            "Workflow tests"
+          ]
+        },
+        "projectDelivery": {
+          "name": "Project Delivery",
+          "price": "$50K - $100K",
+          "timeline": "~1 month delivery with revisions included",
+          "features": [
+            "Production systems",
+            "RAG / Copilots",
+            "Internal automation"
+          ]
+        },
+        "ongoingSupport": {
+          "name": "Ongoing Support",
+          "price": "Custom",
+          "timeline": "Flexible retainer for continued work",
+          "features": [
+            "Maintenance",
+            "Optimization",
+            "Advisory"
+          ]
+        }
+      }
+    },
     "useCases": {
-      "title": "Built for Every Industry",
-      "subtitle": "From tech startups to healthcare giants, our AI hiring platform adapts to your recruitment needs.",
+      "title": "Built for High-Impact Teams",
+      "subtitle": "From SaaS to finance and healthcare, we design AI systems around your real operations and KPIs.",
       "labels": {
         "useCase": "Use Case",
         "industry": "Industry",
@@ -237,46 +362,46 @@
       },
       "items": {
         "techStartups": {
-          "title": "Tech Startups",
-          "description": "Screen 500+ engineering resumes per role and auto-schedule AI interviews with top matches.",
+          "title": "SaaS & Product Teams",
+          "description": "Deploy AI copilots for support and success to resolve tickets faster and reduce escalations.",
           "industry": "Technology",
           "language": "English",
-          "function": "Engineering Hiring"
+          "function": "Service Automation"
         },
         "universities": {
-          "title": "Universities",
-          "description": "Manage campus recruitment drives with bulk CV processing and instant candidate ranking.",
+          "title": "Education Networks",
+          "description": "Automate student support, admissions triage, and knowledge routing across departments.",
           "industry": "Education",
           "language": "Multi-language",
-          "function": "Campus Recruitment"
+          "function": "Operations Automation"
         },
         "automotive": {
-          "title": "Automotive",
-          "description": "Hire skilled technicians and factory workers at scale with AI-scored practical assessments.",
+          "title": "Manufacturing Ops",
+          "description": "Use forecasting and anomaly detection to improve planning and reduce production risk.",
           "industry": "Manufacturing",
-          "language": "Portuguese",
-          "function": "Blue-collar Hiring"
+          "language": "English / Portuguese",
+          "function": "Predictive Intelligence"
         },
         "bpo": {
-          "title": "BPO & Call Centers",
-          "description": "Mass-hire customer service reps with AI voice interviews testing communication skills.",
+          "title": "BPO & Service Centers",
+          "description": "Combine voice agents and workflow orchestration to handle high-volume customer operations.",
           "industry": "BPO",
           "language": "Hindi / English",
-          "function": "Volume Hiring"
+          "function": "Agentic Operations"
         },
         "retail": {
-          "title": "Retail Chains",
-          "description": "Seasonal hiring made easy. Screen and interview hundreds of store associates in days.",
+          "title": "Retail & Commerce",
+          "description": "Optimize inventory, campaign execution, and support workflows with production AI systems.",
           "industry": "Retail",
           "language": "English",
-          "function": "Seasonal Recruitment"
+          "function": "Revenue Operations"
         },
         "healthcare": {
-          "title": "Healthcare",
-          "description": "Verify medical credentials and conduct structured interviews for clinical positions.",
+          "title": "Healthcare Systems",
+          "description": "Deploy secure AI workflows for intake, coding support, and operational decision-making.",
           "industry": "Healthcare",
-          "language": "German",
-          "function": "Clinical Hiring"
+          "language": "English / German",
+          "function": "Clinical Operations"
         }
       }
     },
@@ -284,7 +409,7 @@
       "title": "Simple,",
       "titleHighlight": "Transparent",
       "titleEnd": "Pricing",
-      "description": "Start free, upgrade when you're ready",
+      "description": "Clear engagement models for every stage of AI delivery",
       "monthly": "Monthly",
       "yearly": "Yearly",
       "save20": "Save 20%",
@@ -296,18 +421,18 @@
       "startFreeTrial": "Start Free Trial",
       "guarantee": "All plans include 14-day money-back guarantee. No credit card required for free plan.",
       "features": {
-        "aiAgent": "{{count}} Hiring Agent",
-        "aiAgents": "{{count}} Hiring Agents",
-        "unlimitedAgents": "Unlimited Hiring Agents",
-        "campaign": "Interview Campaign",
-        "campaigns": "{{count}} Interview Campaigns",
-        "unlimitedCampaigns": "Unlimited Interview Campaigns",
-        "maxContacts": "Max {{count}} Candidates",
-        "contactsPerCampaign": "{{count}} Candidates",
-        "unlimitedContacts": "Unlimited Candidates",
-        "flowAutomation": "{{count}} Interview Flow",
-        "flowAutomations": "{{count}} Interview Flows",
-        "unlimitedFlows": "Unlimited Interview Flows",
+        "aiAgent": "{{count}} AI Agent",
+        "aiAgents": "{{count}} AI Agents",
+        "unlimitedAgents": "Unlimited AI Agents",
+        "campaign": "Automation Workflow",
+        "campaigns": "{{count}} Automation Workflows",
+        "unlimitedCampaigns": "Unlimited Automation Workflows",
+        "maxContacts": "Max {{count}} Records",
+        "contactsPerCampaign": "{{count}} Records",
+        "unlimitedContacts": "Unlimited Records",
+        "flowAutomation": "{{count}} AI Flow",
+        "flowAutomations": "{{count}} AI Flows",
+        "unlimitedFlows": "Unlimited AI Flows",
         "knowledgeBase": "Knowledge Base",
         "knowledgeBases": "{{count}} Knowledge Bases",
         "unlimitedKnowledgeBases": "Unlimited Knowledge Bases",
@@ -317,41 +442,41 @@
         "phoneNumber": "Phone Number",
         "phoneNumbers": "{{count}} Phone Numbers",
         "unlimitedPhoneNumbers": "Unlimited Phone Numbers",
-        "purchaseNumbers": "Purchase own phone numbers",
-        "systemPhone": "System-assigned phone number",
+        "purchaseNumbers": "Bring your own communication channels",
+        "systemPhone": "System-assigned communication channel",
         "freeCredits": "{{count}} free credits",
-        "creditCalling": "Credit-based interviewing",
+        "creditCalling": "Usage-based execution",
         "prioritySupport": "Priority support",
         "chooseLlm": "Choose your LLM model",
         "advancedAnalytics": "Advanced analytics",
-        "unlimitedHiringAgents": "Unlimited Hiring Agents",
-        "hiringAgent": "Hiring Agent",
-        "unlimitedCandidates": "Unlimited Candidates",
+        "unlimitedHiringAgents": "Unlimited AI Agents",
+        "hiringAgent": "AI Agent",
+        "unlimitedCandidates": "Unlimited Data Records",
         "ownPhoneNumbers": "Own phone numbers",
         "systemPhoneNumber": "System-assigned phone number",
         "chooseLLM": "Choose your LLM",
-        "flow": "Interview Flow",
-        "unlimitedWidgets": "Unlimited Hiring Widgets",
-        "widget": "Hiring Widget",
-        "interviewCredits": "Interview Credits",
+        "flow": "AI Flow",
+        "unlimitedWidgets": "Unlimited Embedded Widgets",
+        "widget": "Embedded Widget",
+        "interviewCredits": "Usage Credits",
         "sipTrunkAccess": "SIP Trunk Access",
         "restApiAccess": "REST API Access"
       }
     },
     "customers": "Customers",
-    "poweredBy": "Powered by ElevenLabs & Twilio AI",
-    "heroTitle1": "Supercharge your",
-    "heroTitle2": "Hiring Process",
-    "heroTitle3": "with AI Hiring Agents",
-    "heroSubtitle": "Discover the new way to screen CVs, conduct AI interviews, and hire top talent at scale.",
+    "poweredBy": "Powered by modern AI and cloud infrastructure",
+    "heroTitle1": "Build",
+    "heroTitle2": "Production AI",
+    "heroTitle3": "Systems That Ship",
+    "heroSubtitle": "Design, build, and deploy AI systems that reduce cost, increase speed, and unlock revenue.",
     "tryForFree": "Try For Free",
     "watchDemo": "Watch Demo",
     "noCreditCard": "No credit card required",
     "freePlanForever": "Free plan forever",
     "setupMinutes": "Setup in 5 minutes",
     "aiTechnology": "AI-Powered Technology",
-    "builtForFuture": "Built for the Future of Hiring",
-    "experienceTech": "Experience cutting-edge AI technology that transforms how companies hire talent",
+    "builtForFuture": "Built for the Future of Intelligent Operations",
+    "experienceTech": "Engineer reliable AI systems that improve how your business runs every day",
     "advancedAI": "Advanced AI Intelligence",
     "advancedAIDesc": "Natural language understanding powered by state-of-the-art language models",
     "humanLikeVoices": "Human-Like Voices",
@@ -361,37 +486,37 @@
     "howItWorks": "How It Works",
     "getStartedSteps": "Get started in three simple steps",
     "build": "Build",
-    "buildDesc": "Utilize our intuitive agent builder to create custom hiring agents effortlessly with professional templates.",
+    "buildDesc": "Map your current process, data constraints, and success metrics into a deployable AI system design.",
     "deploy": "Deploy",
-    "deployDesc": "Easily deploy your hiring agents for candidate screening, interviews, and automated outreach in just one click.",
+    "deployDesc": "Launch production-grade workflows and agents across your stack with observability and guardrails built in.",
     "monitor": "Monitor",
-    "monitorDesc": "Track success rates, hiring metrics, and candidate progress through comprehensive real-time analytics dashboards.",
-    "powerfulFeatures": "Powerful AI Hiring Features",
-    "everythingYouNeed": "Everything you need to screen, interview, and hire top candidates",
-    "autoSyncKnowledge": "Auto-Sync Knowledge Base",
-    "autoSyncKnowledgeDesc": "Your hiring agents stay up-to-date effortlessly by syncing directly with your company's job requirements. No manual updates required.",
-    "callTransfer": "Seamless Handoff to Recruiters",
-    "callTransferDesc": "Easily set up warm transfers to your hiring team with candidate context so recruiters are always prepared.",
-    "easyAppointment": "Easy Interview Scheduling",
-    "easyAppointmentDesc": "Let your AI hiring agents schedule interviews in seconds with simple, natural language.",
-    "realTimeAnalytics": "Real-time Analytics",
-    "realTimeAnalyticsDesc": "Track hiring metrics, screening success rates, and candidate pipeline through comprehensive dashboards.",
-    "naturalVoice": "Natural Voice Interviews",
-    "naturalVoiceDesc": "Human-like AI voices powered by ElevenLabs deliver seamless, natural interview conversations that candidates appreciate.",
-    "intelligentLead": "Intelligent Candidate Scoring",
-    "intelligentLeadDesc": "Automatically score and rank candidates based on CV analysis, interview performance, and job fit assessment.",
-    "transformInteraction": "Transform Your Entire Hiring Process",
-    "discoverUseCases": "Discover how AI-powered hiring transforms recruitment across industries",
-    "receptionist": "CV Screening",
-    "receptionistDesc": "Upload CVs in bulk and let AI score and rank candidates by job fit",
-    "appointmentSetter": "Interview Scheduling",
-    "appointmentSetterDesc": "Schedule AI voice interviews with shortlisted candidates automatically",
-    "leadQualification": "Candidate Scoring",
-    "leadQualificationDesc": "Score and rank candidates based on experience, skills, and job requirements",
-    "survey": "Candidate Feedback",
-    "surveyDesc": "Collect post-interview feedback and insights at scale",
-    "customerService": "Global Hiring",
-    "customerServiceDesc": "Conduct AI interviews in 50+ languages across 100+ countries",
+    "monitorDesc": "Continuously measure quality, latency, and business impact to improve system performance over time.",
+    "powerfulFeatures": "Production AI Capabilities",
+    "everythingYouNeed": "Everything needed to build AI systems that perform in real-world operations",
+    "autoSyncKnowledge": "Live Knowledge Retrieval",
+    "autoSyncKnowledgeDesc": "Keep assistants and agents aligned with current docs, policies, and operational data sources.",
+    "callTransfer": "Human-in-the-Loop Handoffs",
+    "callTransferDesc": "Route complex cases to the right team with full context and action history attached.",
+    "easyAppointment": "Workflow Orchestration",
+    "easyAppointmentDesc": "Trigger approvals, notifications, and downstream actions from a single AI-powered flow.",
+    "realTimeAnalytics": "Real-time AI Observability",
+    "realTimeAnalyticsDesc": "Monitor quality, response latency, cost, and business outcomes in one place.",
+    "naturalVoice": "Natural Voice Interfaces",
+    "naturalVoiceDesc": "Deliver high-quality voice experiences for customer support and operational workflows.",
+    "intelligentLead": "Decision Intelligence",
+    "intelligentLeadDesc": "Apply scoring, forecasting, and anomaly detection to prioritize high-impact actions.",
+    "transformInteraction": "Transform Core Business Operations",
+    "discoverUseCases": "See how production AI systems create measurable results across industries",
+    "receptionist": "Support Automation",
+    "receptionistDesc": "Resolve repetitive tickets with AI copilots connected to your internal knowledge and tools",
+    "appointmentSetter": "Workflow Automation",
+    "appointmentSetterDesc": "Automate approvals, follow-ups, and cross-team handoffs across operations",
+    "leadQualification": "Lead Intelligence",
+    "leadQualificationDesc": "Rank inbound leads and opportunities using AI-driven fit and intent signals",
+    "survey": "Operational Insights",
+    "surveyDesc": "Capture and summarize customer and team feedback to improve decisions faster",
+    "customerService": "Global AI Operations",
+    "customerServiceDesc": "Run multilingual AI workflows across markets, teams, and communication channels",
     "navbar": {
       "features": "Features",
       "useCases": "Use Cases",
@@ -403,40 +528,63 @@
       "language": "Language"
     },
     "hero": {
-      "badge": "AI-POWERED HR HIRING PLATFORM",
-      "headline": "AI-Powered HR",
+      "badge": "AI CONSULTING FOR PRODUCTION SYSTEMS",
+      "headline": "Production AI",
       "rotatingWords": {
-        "sales": "Screening",
-        "support": "Interviews",
-        "outreach": "Recruiting",
-        "appointments": "Hiring",
-        "screening": "Screening",
-        "interviewing": "Interviewing",
-        "hiring": "Hiring",
-        "onboarding": "Onboarding"
+        "sales": "Automation",
+        "support": "Agents",
+        "outreach": "Forecasting",
+        "appointments": "Infrastructure",
+        "screening": "Automation",
+        "interviewing": "Agents",
+        "hiring": "Forecasting",
+        "onboarding": "Infrastructure"
       },
-      "subheadline": "Screen CVs in bulk, conduct AI voice interviews, and hire the best candidates — all automated, 24/7.",
+      "subheadline": "We architect, build, and deploy AI systems tied to measurable business outcomes.",
       "humanLike": "Human-like",
       "statsProductivity": "Productivity",
       "statsScalability": "Scalability",
       "getStarted": "GET STARTED",
       "freeTrial": "14-day Free Trial",
       "freeCredit": "Free $10 Credit",
-      "subheadlinePart1": "Upload CVs in bulk, let",
-      "subheadlineBold": "AI screen and score candidates",
-      "subheadlinePart2": ", then conduct automated voice interviews. Hire smarter, faster, 24/7.",
-      "statsFasterScreening": "Faster Screening",
-      "statsTimeSaved": "Time Saved",
-      "trustFreeTrial": "Free trial included",
-      "trustNoCreditCard": "No credit card required",
+      "subheadlinePart1": "We design, build, and deploy production-grade AI systems",
+      "subheadlineBold": "that drive real business outcomes - ",
+      "subheadlinePart2": "not prototypes that die after the demo.",
+      "statsFasterScreening": "Faster Delivery",
+      "statsTimeSaved": "Manual Work Reduced",
+      "trustFreeTrial": "Strategy call available",
+      "trustNoCreditCard": "No obligation engagement",
       "cards": {
-        "assessmentFor": "Assessment for",
-        "trainingFor": "Training for",
-        "screeningFor": "Screening for",
-        "salesAssociate": "Sales Associate",
-        "server": "Server",
-        "practicalNurse": "Practical Nurse",
-        "retailSales": "Retail Sales"
+        "assessmentFor": "Automation for",
+        "trainingFor": "Copilot for",
+        "screeningFor": "Intelligence for",
+        "salesAssociate": "Sales Ops",
+        "server": "Customer Support",
+        "practicalNurse": "Finance Ops",
+        "retailSales": "Revenue Teams"
+      },
+      "architecture": {
+        "badge": "System Overview",
+        "title": "Live Production Architecture",
+        "description": "We design production-ready AI systems that are reliable, scalable, and built for real-world performance. Our architecture connects data pipelines, model inference, and orchestration into a seamless, fault-tolerant system.",
+        "items": {
+          "userInput": {
+            "title": "User Input",
+            "description": "API · UI · Internal Workflow"
+          },
+          "orchestration": {
+            "title": "Orchestration",
+            "description": "Rules · Agents · Routing"
+          },
+          "businessOutput": {
+            "title": "Business Output",
+            "description": "Savings · Speed · Revenue"
+          },
+          "intelligenceLayer": {
+            "title": "Intelligence Layer",
+            "description": "LLMs · RAG · Forecasting · Evaluation"
+          }
+        }
       }
     },
     "footer": {
@@ -463,36 +611,36 @@
       "allRightsReserved": "All rights reserved."
     },
     "featureSection": {
-      "title": "Hire Smarter with AI at Every Step",
+      "title": "AI Systems Built for Real Operations",
       "capabilities": {
-        "bookMeetings": "Schedule Interviews",
-        "conductInterviews": "Conduct AI Interviews",
-        "coldCallProspects": "Screen Candidates",
-        "offerSupport": "Assess Skills",
-        "screenResumes": "Screen Resumes",
-        "scoreCandidates": "Score Candidates",
-        "trackPipeline": "Track Pipeline"
+        "bookMeetings": "Orchestrate Workflows",
+        "conductInterviews": "Deploy AI Agents",
+        "coldCallProspects": "Automate Operations",
+        "offerSupport": "Support Decisions",
+        "screenResumes": "Operational Intelligence",
+        "scoreCandidates": "Forecast and Score",
+        "trackPipeline": "Measure Outcomes"
       },
       "feature1": {
-        "title": "AI-Powered CV Screening",
-        "description": "Upload hundreds of CVs at once. Our AI reads, analyzes, and scores every resume against your job requirements in minutes.",
-        "bullet1": "Bulk ZIP upload with instant extraction",
-        "bullet2": "AI scores for skills, experience, and education match",
-        "bullet3": "Auto-shortlist candidates above your threshold"
+        "title": "Workflow Automation Design",
+        "description": "Replace repetitive manual tasks with robust AI-assisted workflows integrated across your tools and teams.",
+        "bullet1": "Map process bottlenecks and high-friction manual work",
+        "bullet2": "Design trigger-based automations with safeguards",
+        "bullet3": "Deploy end-to-end workflows with clear ownership"
       },
       "feature2": {
-        "title": "Automated Voice Interviews",
-        "description": "Let AI conduct structured phone interviews with shortlisted candidates. Natural voice conversations powered by ElevenLabs and OpenAI.",
-        "bullet1": "AI interviewer asks job-specific questions",
-        "bullet2": "Automatic scoring and transcript generation"
+        "title": "Custom AI Agents and Copilots",
+        "description": "Build internal and customer-facing AI agents that retrieve context, execute actions, and escalate when needed.",
+        "bullet1": "Role-specific assistants with retrieval and tool use",
+        "bullet2": "Human handoff and audit-ready conversation history"
       },
       "feature3": {
-        "title": "Dynamic Hiring Pipeline",
-        "description": "Track every candidate through customizable stages from upload to hire. See your entire hiring funnel at a glance.",
-        "bullet1": "Job-wise pipeline tables with drag-and-drop",
-        "bullet2": "Real-time stage progression tracking",
-        "bullet3": "Embeddable job widget for direct applications",
-        "bullet4": "Complete interview history and AI insights"
+        "title": "Data and AI Infrastructure",
+        "description": "Implement the pipelines, retrieval layers, evaluations, and observability needed to run AI reliably in production.",
+        "bullet1": "Production-ready data pipelines and orchestration",
+        "bullet2": "Retrieval architecture tuned for accuracy and speed",
+        "bullet3": "Evaluation loops tied to business metrics",
+        "bullet4": "Monitoring for latency, quality, and cost control"
       },
       "mockup": {
         "language": "English (Singapore)",
@@ -505,43 +653,43 @@
         "outboundCall": "Outbound Call",
         "startDate": "Start: 1/05/24",
         "endDate": "End: 20/05/24",
-        "selectList": "Select Candidates",
-        "collectContactDetails": "Collect Candidate Details",
-        "bookAppointments": "Schedule Interviews",
-        "qualifyLeads": "Screen Candidates",
+        "selectList": "Select Data Source",
+        "collectContactDetails": "Collect Required Inputs",
+        "bookAppointments": "Run Automation",
+        "qualifyLeads": "Score Opportunities",
         "filesUploaded": "3 files uploaded",
-        "autoShortlisted": "2 candidates auto-shortlisted",
+        "autoShortlisted": "2 workflows auto-launched",
         "inProgress": "In progress",
-        "aiQuestion": "Tell me about your experience with React and TypeScript.",
-        "candidateAnswer": "I have 5 years of experience building...",
+        "aiQuestion": "Summarize the account risk signals and recommend next action.",
+        "candidateAnswer": "Detected elevated churn risk from usage decline and delayed renewals...",
         "duration": "Duration: 12:34",
         "score": "Score: 88/100",
-        "hiringPipeline": "Hiring Pipeline",
-        "seniorDeveloper": "Senior Developer Role",
-        "applied": "Applied",
+        "hiringPipeline": "Operations Pipeline",
+        "seniorDeveloper": "Revenue Workflow",
+        "applied": "Captured",
         "screened": "Screened",
-        "interviewed": "Interviewed",
-        "offered": "Offered",
-        "interviewsScheduled": "3 interviews scheduled today"
+        "interviewed": "Actioned",
+        "offered": "Completed",
+        "interviewsScheduled": "3 automations completed today"
       },
       "getStarted": "GET STARTED",
-      "freeTrial": "14-day Free Trial",
-      "freeCredit": "Free $10 Credit"
+      "freeTrial": "Book a Strategy Call",
+      "freeCredit": "Get a delivery roadmap"
     },
     "actionCards": {
       "title": "Automate Tasks & Actions",
-      "description": "Configure AI Hiring Agents to automate a variety of tasks and actions, like:",
+      "description": "Configure AI agents and workflows to automate high-value operations, like:",
       "cards": {
-        "sms": "Send SMS notifications to candidates during interviews",
-        "transfer": "Transfer interviews to a live HR representative",
-        "webhooks": "Collect candidate data & automate actions using Zapier and Webhooks",
-        "email": "Send emails effortlessly during or after an interview",
-        "whatsapp": "Send WhatsApp messages to candidates during interviews",
-        "appointments": "Schedule follow-up interviews and send calendar invites"
+        "sms": "Send customer updates and alerts across channels",
+        "transfer": "Escalate complex cases to specialists with full context",
+        "webhooks": "Trigger downstream actions with webhooks and automation tools",
+        "email": "Generate and send operational emails automatically",
+        "whatsapp": "Run conversational workflows through WhatsApp",
+        "appointments": "Schedule meetings, follow-ups, and tasks automatically"
       },
       "getStarted": "GET STARTED",
-      "freeTrial": "14-day Free Trial",
-      "freeCredit": "Free $10 Credit"
+      "freeTrial": "Book a Strategy Call",
+      "freeCredit": "Get a delivery roadmap"
     },
     "technology": {
       "badge": "Exceptional Technology",
@@ -680,109 +828,109 @@
       }
     },
     "testimonials": {
-      "title": "What our customers are saying",
-      "subtitle": "Join thousands of hiring teams using {{appName}} to transform their recruitment process",
+      "title": "What our clients are saying",
+      "subtitle": "Teams partner with {{appName}} to turn AI ideas into production outcomes",
       "at": "at",
       "quotes": {
         "jennifer": {
-          "quote": "{{appName}} has revolutionized our hiring process. Screening hundreds of CVs manually used to take days.",
-          "highlight": "Now AI screens and ranks candidates in minutes with incredible accuracy.",
+          "quote": "{{appName}} helped us move from pilot demos to a production support copilot in six weeks.",
+          "highlight": "Ticket resolution time dropped immediately while quality stayed high.",
           "author": "Jennifer Kim",
-          "role": "VP of Talent Acquisition",
+          "role": "VP of Operations",
           "company": "TechScale Inc"
         },
         "lisa": {
-          "quote": "Our HR team needed automation for high-volume hiring. {{appName}} understands our recruitment needs perfectly.",
-          "highlight": "Consistent, professional candidate screening every time.",
+          "quote": "We had fragmented processes across teams and no clear AI architecture.",
+          "highlight": "{{appName}} unified our workflows and shipped a reliable system end-to-end.",
           "author": "Lisa Rodriguez",
-          "role": "HR Director",
+          "role": "Director of Digital Transformation",
           "company": "Global Staffing Co"
         },
         "mike": {
-          "quote": "As an HR leader, {{appName}} saves me from manually reviewing thousands of applications.",
-          "highlight": "AI interviews deliver quality assessments, from screening to shortlisting!",
+          "quote": "The team translated our business constraints into practical AI workflows quickly.",
+          "highlight": "We now run with clear metrics, observability, and measurable ROI.",
           "author": "Mike Johnson",
-          "role": "Head of Recruitment",
+          "role": "Head of Data and AI",
           "company": "FastHire Solutions"
         },
         "robert": {
-          "quote": "Our talent team needed help handling seasonal hiring surges. {{appName}} solved this completely.",
-          "highlight": "Perfect candidate assessments at massive scale.",
+          "quote": "Execution quality stood out from day one. This was not another strategy-only engagement.",
+          "highlight": "They delivered working systems our operators use every day.",
           "author": "Robert Garcia",
-          "role": "Talent Operations Manager",
+          "role": "Operations Manager",
           "company": "RetailPro"
         },
         "tom": {
-          "quote": "Enterprise hiring requires consistent evaluation, and {{appName}} delivers every time. No more interviewer bias.",
-          "highlight": "Fair, data-driven hiring decisions across all roles.",
+          "quote": "Our revenue team needed better forecasting and prioritization across accounts.",
+          "highlight": "The AI scoring layer improved focus and conversion in under a month.",
           "author": "Tom Williams",
-          "role": "CHRO",
+          "role": "Chief Revenue Officer",
           "company": "InnovateTech Pro"
         },
         "amanda": {
-          "quote": "Candidate applications come in various formats, but we need consistent evaluations. {{appName}}'s AI screening is simply the best.",
-          "highlight": "Maintains hiring quality while processing thousands of candidates.",
+          "quote": "Their team balanced speed with governance and security requirements from our legal team.",
+          "highlight": "We launched confidently without compromising compliance.",
           "author": "Amanda Thompson",
-          "role": "People Operations Lead",
+          "role": "Program Lead, AI Initiatives",
           "company": "ScaleUp Ltd"
         },
         "james": {
-          "quote": "{{appName}} works perfectly across all our hiring workflows. Essential for modern talent acquisition.",
-          "highlight": "ROI paid for itself in the first month of hiring.",
+          "quote": "{{appName}} became an extension of our product and engineering teams.",
+          "highlight": "Roadmaps were clear, and delivery stayed tightly aligned to outcomes.",
           "author": "James Patterson",
-          "role": "Recruitment Manager",
+          "role": "VP Product",
           "company": "TalentForce Agency"
         },
         "maria": {
-          "quote": "Our recruitment team needed AI to handle high-volume screening. {{appName}} solved this completely.",
-          "highlight": "Reduced our time-to-hire by 80%.",
+          "quote": "We wanted practical automation across finance operations, not isolated AI experiments.",
+          "highlight": "Within weeks, repetitive approval and reconciliation work was automated.",
           "author": "Maria Gonzalez",
-          "role": "HR Manager",
+          "role": "Finance Operations Lead",
           "company": "GlobalHire Co"
         },
         "rachel": {
-          "quote": "Setting up AI interviews for different roles is incredibly easy. {{appName}} makes this effortless for our team.",
-          "highlight": "From job posting to AI screening in minutes, not days.",
+          "quote": "They helped us prioritize the right use cases before writing a line of production code.",
+          "highlight": "That focus saved months of unnecessary work.",
           "author": "Rachel Green",
-          "role": "Talent Acquisition Lead",
+          "role": "Chief of Staff",
           "company": "GrowthHire"
         },
         "carlos": {
-          "quote": "Consistent candidate evaluation across all departments is critical. {{appName}} makes this effortless for our team.",
-          "highlight": "Professional screening quality for every role.",
+          "quote": "The handoff from strategy to implementation was seamless.",
+          "highlight": "Every milestone tied directly to operational KPIs.",
           "author": "Carlos Rivera",
-          "role": "Director of HR",
+          "role": "Director of Operations",
           "company": "TalentFirst Agency"
         },
         "sarah": {
-          "quote": "As an HR director, I'm always looking for ways to improve hiring quality. {{appName}} delivers perfectly.",
-          "highlight": "Our hiring efficiency has increased dramatically.",
+          "quote": "Our internal teams were stretched thin and needed leverage fast.",
+          "highlight": "{{appName}} delivered AI systems that removed bottlenecks across functions.",
           "author": "Sarah Martinez",
-          "role": "VP Human Resources",
+          "role": "VP Strategy",
           "company": "PeopleFirst Inc"
         },
         "david": {
-          "quote": "{{appName}} has saved our team 10+ hours per week on candidate screening. Essential for any growing company.",
-          "highlight": "Accelerated our entire hiring pipeline.",
+          "quote": "This is one of the few partners that consistently ships production-quality AI work.",
+          "highlight": "The systems are stable, useful, and measurable.",
           "author": "David Chen",
-          "role": "Head of People Operations",
+          "role": "Head of Engineering",
           "company": "ScaleUp Ventures"
         }
       }
     },
     "integrations": {
       "title": "Integrations",
-      "description": "Connect to your favorite tools and upgrade your {{appName}} experience."
+      "description": "Connect your existing stack and make {{appName}} a seamless extension of your operations."
     },
     "contact": {
       "badge": "Get in Touch",
-      "title": "Ready to Transform Your Hiring?",
-      "description": "Have questions about {{appName}}? Want a personalized demo? Our team is here to help you automate your recruitment process.",
+      "title": "Ready to Build AI That Ships?",
+      "description": "Tell us your business goals, constraints, and timeline. We'll map a practical AI roadmap tailored to your team.",
       "emailLabel": "Email us at",
       "trustResponseTime": "We respond within 24 hours",
-      "trustCustomerCount": "Trusted by 2,500+ businesses worldwide",
-      "trustConsultation": "Free consultation & personalized demo",
-      "trustNoCommitment": "No commitment required",
+      "trustCustomerCount": "Trusted by fast-moving product and operations teams",
+      "trustConsultation": "Free strategy call and architecture review",
+      "trustNoCommitment": "No obligation, clear next steps",
       "form": {
         "nameLabel": "Name *",
         "namePlaceholder": "Your full name",
@@ -791,7 +939,7 @@
         "companyLabel": "Company",
         "companyPlaceholder": "Your company name (optional)",
         "messageLabel": "Message *",
-        "messagePlaceholder": "Tell us about your needs...",
+        "messagePlaceholder": "Tell us what you want to improve with AI...",
         "submit": "Send Message",
         "sending": "Sending...",
         "privacyNotice": "Your data is secure. We never share your information."
@@ -809,10 +957,10 @@
       }
     },
     "cta": {
-      "title": "Ready to Transform Your Hiring Process?",
-      "description": "Join thousands of hiring teams using AI to screen candidates, conduct interviews, and hire top talent faster",
-      "button": "Get Started for Free",
-      "trustMessage": "No credit card required • Setup in 5 minutes • Free forever plan"
+      "title": "Build AI systems that change the business",
+      "description": "Work with a senior team to design and deploy production AI for operations, revenue, and decision support",
+      "button": "Book a Strategy Call",
+      "trustMessage": "ROI-focused delivery • Senior operators and engineers • Built for production"
     },
     "featuresPage": {
       "seo": {
