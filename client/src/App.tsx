@@ -63,6 +63,7 @@ import TransactionHistory from "@/pages/TransactionHistory";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
 import Contact from "@/pages/Contact";
+import IntakePage from "@/pages/IntakePage";
 import LoginPage from "@/pages/LoginPage";
 import TeamMemberLogin from "@/pages/TeamMemberLogin";
 import AdminTeamLogin from "@/pages/AdminTeamLogin";
@@ -138,6 +139,7 @@ function PublicRouter() {
         <Route path="/use-cases" component={UseCasesPage} />
         <Route path="/integrations" component={IntegrationsPage} />
         <Route path="/contact" component={Contact} />
+        <Route path="/intake" component={IntakePage} />
         <Route path="/blog/:slug" component={BlogPost} />
         <Route path="/blog" component={Blog} />
         <Route path="/privacy" component={PrivacyPolicy} />

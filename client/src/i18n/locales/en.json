@@ -1546,6 +1546,81 @@
         "contactSupport": "Raise a Support Ticket"
       }
     },
+    "intakePage": {
+      "seoTitle": "Client Intake Form | {{appName}}",
+      "badge": "AI Engineering | Applied ML | Automation",
+      "title": "Client Intake Form - {{appName}}",
+      "intro": "We partner with companies to design and deploy scalable AI systems that replace manual workflows and unlock new growth. Please complete this form so we can assess your needs and prepare for a focused strategy discussion.",
+      "sections": {
+        "contact": "Section 1: Contact Information",
+        "business": "Section 2: Business Overview",
+        "problem": "Section 3: Problem",
+        "aiGoals": "Section 4: AI Goals",
+        "projectDetails": "Section 5: Project Details"
+      },
+      "form": {
+        "labels": {
+          "name": "Name",
+          "email": "Email",
+          "phone": "Phone",
+          "linkedinUrl": "Linkedin URL",
+          "companyDescription": "What does your company do?",
+          "industry": "Industry",
+          "companySize": "Company Size",
+          "mainProblem": "What is the main problem you want to solve?",
+          "obstacles": "What is currently slowing you down?",
+          "aiGoals": "What do you want to build or improve?",
+          "idealOutcome": "Describe your ideal outcome:",
+          "budget": "Budget:",
+          "timeline": "Timeline:"
+        },
+        "hints": {
+          "companyDescription": "(Briefly describe your product or service)"
+        },
+        "placeholders": {
+          "name": "Jane Smith",
+          "email": "jane@gmail.com",
+          "phone": "(312) 447-9737",
+          "linkedinUrl": "linkedin.com/in/",
+          "companyDescription": "Ex: My company is ...",
+          "industry": ""
+        },
+        "options": {
+          "companySize": {
+            "1-10": "1 - 10",
+            "11-50": "11 - 50",
+            "51-200": "51 - 200",
+            "200+": "200 +"
+          },
+          "aiGoals": {
+            "automate_workflows": "Automate Workflows",
+            "ai_chatbot": "AI Chatbot / Assistant",
+            "ai_agents": "AI Agents",
+            "internal_tools": "Internal Tools",
+            "not_sure": "Not Sure"
+          },
+          "budget": {
+            "under_5k": "<$5k",
+            "5k_20k": "$5k - $20k",
+            "20k_50k": "$20k - $50k",
+            "50k_plus": "$50k +"
+          },
+          "timeline": {
+            "asap": "ASAP",
+            "1_3_months": "1 - 3 months",
+            "3_6_months": "3 - 6 months",
+            "flexible": "Flexible"
+          }
+        },
+        "submit": "Submit",
+        "submitting": "Submitting...",
+        "privacyNotice": "Your information is kept confidential and used only to prepare for our discussion.",
+        "successTitle": "Form submitted successfully!",
+        "successDescription": "Thank you. We'll review your responses and be in touch soon.",
+        "errorTitle": "Failed to submit form",
+        "errorDescription": "Please try again later."
+      }
+    },
     "blog": {
       "title": "Resources & Insights",
       "subtitle": "Stay ahead with the latest AI hiring strategies, best practices, and industry insights.",

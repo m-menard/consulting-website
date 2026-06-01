@@ -16,6 +16,7 @@ const routeThemeMap: Record<string, "dark" | "light"> = {
   "/integrations": "light",
   "/blog": "light",
   "/contact": "light",
+  "/intake": "light",
 };
 
 export function Navbar() {

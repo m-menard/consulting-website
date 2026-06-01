@@ -1080,6 +1080,208 @@ ${allUrls.map(u => {
   });
 
   // ============================================
+  // CLIENT INTAKE FORM ROUTE
+  // ============================================
+
+  router.post("/api/intake", async (req: Request, res: Response) => {
+    try {
+      const { z } = await import('zod');
+
+      const companySizes = ["1-10", "11-50", "51-200", "200+"] as const;
+      const aiGoals = [
+        "automate_workflows",
+        "ai_chatbot",
+        "ai_agents",
+        "internal_tools",
+        "not_sure",
+      ] as const;
+      const budgets = ["under_5k", "5k_20k", "20k_50k", "50k_plus"] as const;
+      const timelines = ["asap", "1_3_months", "3_6_months", "flexible"] as const;
+
+      const aiGoalLabels: Record<(typeof aiGoals)[number], string> = {
+        automate_workflows: "Automate Workflows",
+        ai_chatbot: "AI Chatbot / Assistant",
+        ai_agents: "AI Agents",
+        internal_tools: "Internal Tools",
+        not_sure: "Not Sure",
+      };
+      const budgetLabels: Record<(typeof budgets)[number], string> = {
+        under_5k: "<$5k",
+        "5k_20k": "$5k - $20k",
+        "20k_50k": "$20k - $50k",
+        "50k_plus": "$50k +",
+      };
+      const timelineLabels: Record<(typeof timelines)[number], string> = {
+        asap: "ASAP",
+        "1_3_months": "1 - 3 months",
+        "3_6_months": "3 - 6 months",
+        flexible: "Flexible",
+      };
+
+      const intakeSchema = z.object({
+        name: z.string().min(2, "Name must be at least 2 characters"),
+        email: z.string().email("Invalid email address"),
+        phone: z.string().optional(),
+        linkedinUrl: z.string().optional(),
+        companyDescription: z.string().optional(),
+        industry: z.string().min(1, "Industry is required"),
+        companySize: z.enum(companySizes).optional(),
+        mainProblem: z.string().min(1, "Please describe the main problem"),
+        obstacles: z.string().min(1, "Please describe what is slowing you down"),
+        aiGoals: z.array(z.enum(aiGoals)).min(1, "Select at least one AI goal"),
+        idealOutcome: z.string().optional(),
+        budget: z.enum(budgets).optional(),
+        timeline: z.enum(timelines).optional(),
+      });
+
+      const validationResult = intakeSchema.safeParse(req.body);
+      if (!validationResult.success) {
+        return res.status(400).json({
+          error: validationResult.error.errors[0]?.message || "Invalid form data",
+        });
+      }
+
+      const data = validationResult.data;
+
+      const adminEmailSetting = await storage.getGlobalSetting('admin_email');
+      const smtpFromEmail = await storage.getGlobalSetting('smtp_from_email');
+      const adminEmail =
+        (adminEmailSetting?.value as string) ||
+        (smtpFromEmail?.value as string) ||
+        process.env.SMTP_USER;
+
+      const appNameSetting = await storage.getGlobalSetting('app_name');
+      const appName = (appNameSetting?.value as string) || '';
+
+      if (!adminEmail) {
+        console.error('No admin email configured for intake form');
+        return res.status(500).json({
+          error: "Intake form not configured. Please try again later.",
+        });
+      }
+
+      if (!emailService.isEnabled()) {
+        console.error('Email service is not configured');
+        return res.status(500).json({
+          error: "Email service not configured. Please contact the administrator.",
+        });
+      }
+
+      const fieldBlock = (label: string, value: string) => `
+        <div class="field">
+          <div class="label">${label}</div>
+          <div class="value">${value}</div>
+        </div>`;
+
+      const optionalField = (label: string, value?: string | null) =>
+        value?.trim() ? fieldBlock(label, value) : "";
+
+      const htmlContent = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <style>
+            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background: linear-gradient(135deg, #176BD0, #0d4a8f); color: white; padding: 24px; border-radius: 8px 8px 0 0; }
+            .content { background: #f9fafb; padding: 24px; border: 1px solid #e5e7eb; }
+            .section-title { font-size: 14px; font-weight: 700; color: #374151; margin: 20px 0 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+            .field { margin-bottom: 16px; }
+            .label { font-weight: 600; color: #6b7280; font-size: 12px; text-transform: uppercase; }
+            .value { margin-top: 4px; font-size: 15px; white-space: pre-wrap; }
+            .footer { text-align: center; padding: 16px; font-size: 12px; color: #9ca3af; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h2 style="margin: 0;">${appName} - New Client Intake</h2>
+            </div>
+            <div class="content">
+              <div class="section-title">Contact Information</div>
+              ${fieldBlock("Name", data.name)}
+              ${fieldBlock("Email", `<a href="mailto:${data.email}">${data.email}</a>`)}
+              ${optionalField("Phone", data.phone)}
+              ${optionalField("LinkedIn URL", data.linkedinUrl)}
+
+              <div class="section-title">Business Overview</div>
+              ${optionalField("Company Description", data.companyDescription)}
+              ${fieldBlock("Industry", data.industry)}
+              ${data.companySize ? fieldBlock("Company Size", data.companySize) : ""}
+
+              <div class="section-title">Problem</div>
+              ${fieldBlock("Main Problem", data.mainProblem)}
+              ${fieldBlock("Obstacles", data.obstacles)}
+
+              <div class="section-title">AI Goals</div>
+              ${fieldBlock(
+                "What to build or improve",
+                data.aiGoals.map((g) => aiGoalLabels[g]).join(", ")
+              )}
+              ${optionalField("Ideal Outcome", data.idealOutcome)}
+
+              <div class="section-title">Project Details</div>
+              ${data.budget ? fieldBlock("Budget", budgetLabels[data.budget]) : ""}
+              ${data.timeline ? fieldBlock("Timeline", timelineLabels[data.timeline]) : ""}
+            </div>
+            <div class="footer">
+              Sent from ${appName} Client Intake Form
+            </div>
+          </div>
+        </body>
+        </html>
+      `;
+
+      const textContent = [
+        `New client intake from ${data.name} (${data.email})`,
+        "",
+        "=== Contact ===",
+        `Name: ${data.name}`,
+        `Email: ${data.email}`,
+        data.phone ? `Phone: ${data.phone}` : "",
+        data.linkedinUrl ? `LinkedIn: ${data.linkedinUrl}` : "",
+        "",
+        "=== Business ===",
+        data.companyDescription ? `Company: ${data.companyDescription}` : "",
+        `Industry: ${data.industry}`,
+        data.companySize ? `Size: ${data.companySize}` : "",
+        "",
+        "=== Problem ===",
+        `Main problem: ${data.mainProblem}`,
+        `Obstacles: ${data.obstacles}`,
+        "",
+        "=== AI Goals ===",
+        `Goals: ${data.aiGoals.map((g) => aiGoalLabels[g]).join(", ")}`,
+        data.idealOutcome ? `Ideal outcome: ${data.idealOutcome}` : "",
+        "",
+        "=== Project ===",
+        data.budget ? `Budget: ${budgetLabels[data.budget]}` : "",
+        data.timeline ? `Timeline: ${timelineLabels[data.timeline]}` : "",
+      ]
+        .filter(Boolean)
+        .join("\n");
+
+      const subject = `[${appName}] Client Intake: ${data.name}`;
+      const result = await emailService.sendEmail(adminEmail, subject, htmlContent, undefined, {
+        replyTo: data.email,
+        text: textContent,
+      });
+
+      if (!result.success) {
+        console.error(`Intake form email failed: ${result.error}`);
+        return res.status(500).json({ error: "Failed to submit form. Please try again later." });
+      }
+
+      console.log(`✉️ [Intake] Form submission sent to ${adminEmail} from ${data.email}`);
+      res.json({ success: true, message: "Thank you! We'll be in touch soon." });
+    } catch (error: any) {
+      console.error('Intake form error:', error);
+      res.status(500).json({ error: "Failed to submit form. Please try again later." });
+    }
+  });
+
+  // ============================================
   // TWILIO COUNTRIES ROUTE
   // ============================================
 

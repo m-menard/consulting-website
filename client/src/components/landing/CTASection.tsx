@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useLocation } from "wouter";
+import { Link } from "wouter";
 import { useTranslation } from "react-i18next";
 
 const containerVariants = {
@@ -28,13 +28,8 @@ const itemVariants = {
 };
 
 export function CTASection() {
-  const [, setLocation] = useLocation();
   const shouldReduceMotion = useReducedMotion();
   const { t } = useTranslation();
-
-  const handleNavigate = () => {
-    setLocation("/login");
-  };
 
   return (
     <section
@@ -77,15 +72,16 @@ export function CTASection() {
             variants={shouldReduceMotion ? {} : itemVariants}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
           >
-            <Button
-              size="lg"
-              className="h-14 px-8 text-lg bg-white text-[#176BD0] font-semibold border-0 shadow-lg group"
-              onClick={handleNavigate}
-              data-testid="button-cta-get-started"
-            >
-              {t('landing.cta.button')}
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
-            </Button>
+            <Link href="/intake">
+              <Button
+                size="lg"
+                className="h-14 px-8 text-lg bg-white text-[#176BD0] font-semibold border-0 shadow-lg group"
+                data-testid="button-cta-get-started"
+              >
+                {t('landing.cta.button')}
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
+              </Button>
+            </Link>
           </motion.div>
 
           <motion.p

@@ -210,26 +210,28 @@ const FeatureCard = ({ title, description, bullets, mockup, imagePosition }: Fea
                 ))}
               </ul>
 
-              <div className="space-y-4">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link href="/intake">
+                  <Button
+                    className="bg-[#176BD0] hover:bg-[#1259B0] text-white rounded-lg px-6 w-full sm:w-auto"
+                    data-testid={`button-feature-strategy-call-${title.toLowerCase().replace(/\s+/g, "-")}`}
+                  >
+                    {t('landing.featureSection.freeTrial')}
+                  </Button>
+                </Link>
                 <Link href="/login">
-                  <Button 
+                  <Button
                     variant="outline"
-                    className="border-2 border-[#176BD0] text-[#176BD0] rounded-lg px-6"
+                    className="border-2 border-[#176BD0] text-[#176BD0] rounded-lg px-6 w-full sm:w-auto"
                     data-testid={`button-feature-cta-${title.toLowerCase().replace(/\s+/g, "-")}`}
                   >
                     {t('landing.featureSection.getStarted')}
                   </Button>
                 </Link>
-                <div className="flex items-center gap-4 flex-wrap text-sm text-slate-500">
-                  <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-[#176BD0]" />
-                    <span>{t('landing.featureSection.freeTrial')}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-[#176BD0]" />
-                    <span>{t('landing.featureSection.freeCredit')}</span>
-                  </div>
-                </div>
+              </div>
+              <div className="flex items-center gap-2 mt-4 text-sm text-slate-500">
+                <Check className="h-4 w-4 text-[#176BD0]" />
+                <span>{t('landing.featureSection.freeCredit')}</span>
               </div>
             </div>
           </div>
