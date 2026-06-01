@@ -351,6 +351,25 @@
         }
       }
     },
+    "leadership": {
+      "badge": "OUR TEAM",
+      "title": "Leadership That Builds the Future",
+      "subtitle": "A team of visionaries, builders, and operators shaping the future of intelligent systems.",
+      "members": {
+        "ceo": {
+          "name": "Clarence Stephen",
+          "role": "Chief Executive Officer"
+        },
+        "cto": {
+          "name": "Jay Hamilton",
+          "role": "Chief Technology Officer"
+        },
+        "cpo": {
+          "name": "John Ly",
+          "role": "Chief People Officer"
+        }
+      }
+    },
     "useCases": {
       "title": "Built for High-Impact Teams",
       "subtitle": "From SaaS to finance and healthcare, we design AI systems around your real operations and KPIs.",
@@ -518,12 +537,12 @@
     "customerService": "Global AI Operations",
     "customerServiceDesc": "Run multilingual AI workflows across markets, teams, and communication channels",
     "navbar": {
-      "features": "Features",
-      "useCases": "Use Cases",
+      "home": "Home",
+      "services": "Services",
+      "process": "Process",
+      "caseStudies": "Case Studies",
       "pricing": "Pricing",
-      "integrations": "Integrations",
-      "blog": "Blog",
-      "contact": "Contact",
+      "ourTeam": "Our Team",
       "login": "LOGIN",
       "language": "Language"
     },

@@ -6,11 +6,9 @@ import { ServicesSection } from "@/components/landing/ServicesSection";
 import { FeatureSection } from "@/components/landing/FeatureSection";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { CaseStudiesSection } from "@/components/landing/CaseStudiesSection";
-import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
-import { IntegrationsGrid } from "@/components/landing/IntegrationsGrid";
 import { ServicePackagesSection } from "@/components/landing/ServicePackagesSection";
+import { LeadershipSection } from "@/components/landing/LeadershipSection";
 import { ContactSection } from "@/components/landing/ContactSection";
-import { FAQSection } from "@/components/landing/FAQSection";
 import { CTASection } from "@/components/landing/CTASection";
 import { Footer } from "@/components/landing/Footer";
 import { useBranding } from "@/components/BrandingProvider";
@@ -85,24 +83,16 @@ export default function LandingPage() {
           <CaseStudiesSection />
         </section>
 
-        <section id="testimonials">
-          <TestimonialsSection />
-        </section>
-
-        <section id="integrations">
-          <IntegrationsGrid />
-        </section>
-
         <section id="pricing">
           <ServicePackagesSection />
         </section>
 
-        <section id="contact">
-          <ContactSection />
+        <section id="leadership">
+          <LeadershipSection />
         </section>
 
-        <section id="faq">
-          <FAQSection />
+        <section id="contact">
+          <ContactSection />
         </section>
 
         <CTASection />

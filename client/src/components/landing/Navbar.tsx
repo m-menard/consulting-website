@@ -25,16 +25,17 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const previousOverflow = useRef<string>("");
+  const pendingSectionRef = useRef<string | null>(null);
   const { branding } = useBranding();
   const { t } = useTranslation();
 
   const navLinks = [
-    { href: "/features", label: t('landing.navbar.features') },
-    { href: "/use-cases", label: t('landing.navbar.useCases') },
-    { href: "/pricing", label: t('landing.navbar.pricing') },
-    { href: "/integrations", label: t('landing.navbar.integrations') },
-    { href: "/blog", label: t('landing.navbar.blog') },
-    { href: "/contact", label: t('landing.navbar.contact') },
+    { sectionId: "home", label: t('landing.navbar.home') },
+    { sectionId: "services", label: t('landing.navbar.services') },
+    { sectionId: "process", label: t('landing.navbar.process') },
+    { sectionId: "use-cases", label: t('landing.navbar.caseStudies') },
+    { sectionId: "pricing", label: t('landing.navbar.pricing') },
+    { sectionId: "leadership", label: t('landing.navbar.ourTeam') },
   ];
   
   const pageTheme = routeThemeMap[location] || "light";
@@ -122,21 +123,40 @@ export function Navbar() {
     return () => document.removeEventListener("keydown", handleEscape);
   }, []);
 
-  const handleNavClick = (href: string) => {
-    setIsMobileMenuOpen(false);
-    setLocation(href);
-  };
+  const scrollToSection = (sectionId: string) => {
+    if (sectionId === "home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
 
-  const handleSignIn = () => {
-    setIsMobileMenuOpen(false);
-    if (isAuthenticated) {
-      window.location.href = isAdmin ? "/admin" : "/app";
-    } else {
-      setLocation("/login");
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
-  const handleGetStarted = () => {
+  const handleNavClick = (sectionId: string) => {
+    setIsMobileMenuOpen(false);
+    if (location !== "/") {
+      pendingSectionRef.current = sectionId;
+      setLocation("/");
+      return;
+    }
+    scrollToSection(sectionId);
+  };
+
+  useEffect(() => {
+    if (location === "/" && pendingSectionRef.current) {
+      const sectionToScroll = pendingSectionRef.current;
+      pendingSectionRef.current = null;
+      const timeout = window.setTimeout(() => {
+        scrollToSection(sectionToScroll);
+      }, 80);
+      return () => window.clearTimeout(timeout);
+    }
+  }, [location]);
+
+  const handleSignIn = () => {
     setIsMobileMenuOpen(false);
     if (isAuthenticated) {
       window.location.href = isAdmin ? "/admin" : "/app";
@@ -182,8 +202,8 @@ export function Navbar() {
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <motion.a
-                key={link.href}
-                href={link.href}
+                key={link.sectionId}
+                href={`/#${link.sectionId}`}
                 className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
                   needsLightText 
                     ? "text-gray-400 hover:text-white hover:bg-white/5" 
@@ -194,7 +214,7 @@ export function Navbar() {
                 data-testid={`link-nav-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
                 onClick={(e) => {
                   e.preventDefault();
-                  handleNavClick(link.href);
+                  handleNavClick(link.sectionId);
                 }}
               >
                 {link.label}
@@ -275,13 +295,13 @@ export function Navbar() {
                   <div className="flex flex-col gap-1">
                     {navLinks.map((link) => (
                       <a
-                        key={link.href}
-                        href={link.href}
+                        key={link.sectionId}
+                        href={`/#${link.sectionId}`}
                         className="block text-base font-medium py-3 px-4 rounded-xl text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-all"
                         data-testid={`link-mobile-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
                         onClick={(e) => {
                           e.preventDefault();
-                          handleNavClick(link.href);
+                          handleNavClick(link.sectionId);
                         }}
                       >
                         {link.label}
