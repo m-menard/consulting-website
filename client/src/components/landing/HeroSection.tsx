@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { Brain, Briefcase, Check, ChevronDown, User, Workflow } from "lucide-react";
+import { Check, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "wouter";
@@ -75,22 +75,22 @@ const architectureItems = [
   {
     titleKey: "landing.hero.architecture.items.userInput.title",
     descriptionKey: "landing.hero.architecture.items.userInput.description",
-    icon: <User className="h-5 w-5 text-white" />,
+    image: "/images/architecture/user-input.png",
   },
   {
     titleKey: "landing.hero.architecture.items.orchestration.title",
     descriptionKey: "landing.hero.architecture.items.orchestration.description",
-    icon: <Workflow className="h-5 w-5 text-white" />,
+    image: "/images/architecture/orchestration.png",
   },
   {
     titleKey: "landing.hero.architecture.items.businessOutput.title",
     descriptionKey: "landing.hero.architecture.items.businessOutput.description",
-    icon: <Briefcase className="h-5 w-5 text-white" />,
+    image: "/images/architecture/business-output.png",
   },
   {
     titleKey: "landing.hero.architecture.items.intelligenceLayer.title",
     descriptionKey: "landing.hero.architecture.items.intelligenceLayer.description",
-    icon: <Brain className="h-5 w-5 text-white" />,
+    image: "/images/architecture/intelligence-layer.png",
   },
 ];
 
@@ -277,13 +277,20 @@ export function HeroSection() {
                     className="rounded-xl sm:rounded-2xl border border-white/15 bg-white/5 p-3 sm:p-4 md:p-5 text-left"
                     data-testid={`hero-architecture-item-${i}`}
                   >
-                    <div className="mb-1.5 sm:mb-2 flex items-center gap-2">
-                      <span className="inline-flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg bg-white/10">
-                        {item.icon}
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <span className="inline-flex h-20 w-20 sm:h-24 sm:w-24 items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-white/10 shrink-0">
+                        <img
+                          src={item.image}
+                          alt={t(item.titleKey)}
+                          className="h-full w-full object-cover"
+                          loading="lazy"
+                        />
                       </span>
-                      <p className="text-base sm:text-lg font-semibold text-white">{t(item.titleKey)}</p>
+                      <div className="min-w-0">
+                        <p className="text-base sm:text-lg font-semibold text-white">{t(item.titleKey)}</p>
+                        <p className="mt-1 text-xs sm:text-sm text-blue-100/85">{t(item.descriptionKey)}</p>
+                      </div>
                     </div>
-                    <p className="text-xs sm:text-sm text-blue-100/85">{t(item.descriptionKey)}</p>
                   </motion.div>
                 ))}
               </div>

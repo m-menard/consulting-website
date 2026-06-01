@@ -30,8 +30,8 @@ export default function LandingPage() {
     "AI strategy and execution",
     "business process automation"
   ];
-
-  const seoTitle = seoSettings?.defaultTitle || "AI Consulting for Production Systems";
+  // AI Consulting for Production Systems
+  const seoTitle = seoSettings?.defaultTitle || "AcceLLM - Engineering the Future of Intelligence";
   const seoDescription = seoSettings?.defaultDescription || branding.app_tagline || "Design, build, and deploy production-grade AI systems that reduce cost, increase speed, and unlock measurable business outcomes.";
   const seoKeywords = (seoSettings?.defaultKeywords && seoSettings.defaultKeywords.length > 0) 
     ? seoSettings.defaultKeywords 

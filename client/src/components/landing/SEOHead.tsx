@@ -239,8 +239,9 @@ export function SEOHead({
   structuredDataProduct
 }: SEOHeadProps): null {
   const { branding } = useBranding();
-  const effectiveSiteName = ogSiteName || branding.app_name || "AI Platform";
-  
+  // const effectiveSiteName = ogSiteName || branding.app_name || "AI Platform";
+  const effectiveSiteName = ogSiteName || branding.app_name;
+
   useEffect(() => {
     // Build the branding base title (what BrandingProvider sets)
     const brandingTitle = branding.app_tagline 

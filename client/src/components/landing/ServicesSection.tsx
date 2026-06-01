@@ -8,6 +8,7 @@ interface ServiceCardProps {
   description: string;
   bestFor: string;
   outcomes: string[];
+  image: string;
   icon: React.ReactNode;
   badge: string;
   gradient: string;
@@ -19,6 +20,7 @@ const ServiceCard = ({
   description,
   bestFor,
   outcomes,
+  image,
   icon,
   badge,
   gradient,
@@ -34,6 +36,17 @@ const ServiceCard = ({
   >
     <div className={`h-1.5 w-full ${gradient}`} />
     <div className="p-6">
+      <div className="mb-4 overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+        <img
+          src={image}
+          alt={title}
+          width={1448}
+          height={1086}
+          className="aspect-[4/3] w-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+          loading="lazy"
+        />
+      </div>
+
       <div className="mb-4 flex items-center justify-between">
         <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#EFF5FF] text-[#176BD0]">
           {icon}
@@ -78,6 +91,7 @@ export function ServicesSection() {
         t("landing.services.cards.workflowAutomation.outcomes.1"),
         t("landing.services.cards.workflowAutomation.outcomes.2"),
       ],
+      image: "/images/services/workflow-automation.png",
       badge: t("landing.services.cards.workflowAutomation.badge"),
       gradient: "bg-gradient-to-r from-sky-500 to-blue-600",
       icon: <Settings2 className="h-6 w-6" />,
@@ -91,6 +105,7 @@ export function ServicesSection() {
         t("landing.services.cards.aiAgents.outcomes.1"),
         t("landing.services.cards.aiAgents.outcomes.2"),
       ],
+      image: "/images/services/ai-agents.png",
       badge: t("landing.services.cards.aiAgents.badge"),
       gradient: "bg-gradient-to-r from-indigo-500 to-violet-600",
       icon: <Bot className="h-6 w-6" />,
@@ -104,6 +119,7 @@ export function ServicesSection() {
         t("landing.services.cards.appliedML.outcomes.1"),
         t("landing.services.cards.appliedML.outcomes.2"),
       ],
+      image: "/images/services/applied-ml.png",
       badge: t("landing.services.cards.appliedML.badge"),
       gradient: "bg-gradient-to-r from-emerald-500 to-teal-600",
       icon: <LineChart className="h-6 w-6" />,
@@ -117,6 +133,7 @@ export function ServicesSection() {
         t("landing.services.cards.aiInfrastructure.outcomes.1"),
         t("landing.services.cards.aiInfrastructure.outcomes.2"),
       ],
+      image: "/images/services/ai-infrastructure.png",
       badge: t("landing.services.cards.aiInfrastructure.badge"),
       gradient: "bg-gradient-to-r from-amber-500 to-orange-600",
       icon: <Server className="h-6 w-6" />,
@@ -176,6 +193,7 @@ export function ServicesSection() {
               description={service.description}
               bestFor={service.bestFor}
               outcomes={service.outcomes}
+              image={service.image}
               icon={service.icon}
               badge={service.badge}
               gradient={service.gradient}

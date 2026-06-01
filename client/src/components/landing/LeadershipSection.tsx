@@ -6,10 +6,11 @@ interface LeaderCardProps {
   name: string;
   role: string;
   image: string;
+  imageClassName?: string;
   index: number;
 }
 
-function LeaderCard({ name, role, image, index }: LeaderCardProps) {
+function LeaderCard({ name, role, image, imageClassName, index }: LeaderCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -23,7 +24,7 @@ function LeaderCard({ name, role, image, index }: LeaderCardProps) {
         <img
           src={image}
           alt={name}
-          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className={`h-full w-full object-cover transition-transform duration-300 ${imageClassName ?? "scale-100 group-hover:scale-105"}`}
           loading="lazy"
         />
       </div>
@@ -43,16 +44,19 @@ export function LeadershipSection() {
       name: t("landing.leadership.members.ceo.name"),
       role: t("landing.leadership.members.ceo.role"),
       image: "/images/team/ceo.png",
+      imageClassName: "scale-100 object-center group-hover:scale-105",
     },
     {
       name: t("landing.leadership.members.cto.name"),
       role: t("landing.leadership.members.cto.role"),
       image: "/images/team/cto.png",
+      imageClassName: "scale-[1.18] object-top group-hover:scale-[1.22]",
     },
     {
       name: t("landing.leadership.members.cpo.name"),
       role: t("landing.leadership.members.cpo.role"),
       image: "/images/team/cpo.png",
+      imageClassName: "scale-[1.16] object-top group-hover:scale-[1.2]",
     },
   ];
 
@@ -87,6 +91,7 @@ export function LeadershipSection() {
               name={leader.name}
               role={leader.role}
               image={leader.image}
+              imageClassName={leader.imageClassName}
               index={index}
             />
           ))}
