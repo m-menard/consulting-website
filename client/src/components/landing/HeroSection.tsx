@@ -169,7 +169,7 @@ export function HeroSection() {
     if (isAuthenticated) {
       return isAdmin ? "/admin" : "/app";
     }
-    return "/login";
+    return "/intake";
   };
 
   return (

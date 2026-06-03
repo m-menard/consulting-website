@@ -1,53 +1,5 @@
-'use strict';
-/**
- * ============================================================
- * © 2025 Diploy — a brand of Bisht Technologies Private Limited
- * Original Author: BTPL Engineering Team
- * Website: https://diploy.in
- * Contact: cs@diploy.in
- *
- * Distributed under the Envato / CodeCanyon License Agreement.
- * Licensed to the purchaser for use as defined by the
- * Envato Market (CodeCanyon) Regular or Extended License.
- *
- * You are NOT permitted to redistribute, resell, sublicense,
- * or share this source code, in whole or in part.
- * Respect the author's rights and Envato licensing terms.
- * ============================================================
- */
-import { useQuery } from "@tanstack/react-query";
-
-interface OrganizationSchema {
-  name?: string;
-  url?: string;
-  logo?: string;
-  description?: string;
-  contactPoint?: {
-    telephone?: string;
-    contactType?: string;
-    email?: string;
-  };
-  sameAs?: string[];
-}
-
-interface FaqItem {
-  question: string;
-  answer: string;
-}
-
-interface ProductSchema {
-  name?: string;
-  description?: string;
-  image?: string;
-  brand?: string;
-  sku?: string;
-  price?: string;
-  priceCurrency?: string;
-  availability?: 'InStock' | 'OutOfStock' | 'PreOrder' | 'Discontinued';
-  url?: string;
-  ratingValue?: string;
-  ratingCount?: string;
-}
+import { useMemo } from "react";
+import { siteSeo } from "@/config/site";
 
 export interface PublicSeoSettings {
   defaultTitle: string | null;
@@ -59,15 +11,33 @@ export interface PublicSeoSettings {
   facebookAppId: string | null;
   googleVerification: string | null;
   bingVerification: string | null;
-  structuredDataOrg: OrganizationSchema | null;
-  structuredDataFaq: FaqItem[] | null;
-  structuredDataProduct: ProductSchema | null;
+  structuredDataOrg: null;
+  structuredDataFaq: null;
+  structuredDataProduct: null;
 }
 
 export function useSeoSettings() {
-  return useQuery<PublicSeoSettings>({
-    queryKey: ["/api/public/seo"],
-    staleTime: 5 * 60 * 1000, // Cache for 5 minutes
-    refetchOnWindowFocus: false,
-  });
+  const data = useMemo<PublicSeoSettings>(
+    () => ({
+      defaultTitle: siteSeo.defaultTitle,
+      defaultDescription: siteSeo.defaultDescription,
+      defaultKeywords: siteSeo.defaultKeywords,
+      defaultOgImage: siteSeo.defaultOgImage,
+      canonicalBaseUrl: siteSeo.canonicalBaseUrl,
+      twitterHandle: siteSeo.twitterHandle,
+      facebookAppId: null,
+      googleVerification: siteSeo.googleVerification,
+      bingVerification: null,
+      structuredDataOrg: null,
+      structuredDataFaq: null,
+      structuredDataProduct: null,
+    }),
+    []
+  );
+
+  return {
+    data,
+    isLoading: false,
+    isError: false,
+  };
 }

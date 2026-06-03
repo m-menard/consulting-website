@@ -1,1 +1,0 @@
-ALTER TABLE "credit_packages" ADD COLUMN "is_popular" boolean DEFAULT false;

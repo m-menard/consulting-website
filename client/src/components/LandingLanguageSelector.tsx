@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useDynamicLanguages } from '@/contexts/dynamic-languages';
+import { languages } from '@/i18n';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -130,7 +130,6 @@ interface LandingLanguageSelectorProps {
 
 export function LandingLanguageSelector({ needsLightText = false, className }: LandingLanguageSelectorProps) {
   const { i18n } = useTranslation();
-  const { languages } = useDynamicLanguages();
   const currentLang = languages.find(l => l.code === i18n.language) || languages[0];
 
   const handleLanguageChange = (code: string) => {

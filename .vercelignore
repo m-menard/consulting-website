@@ -1,0 +1,14 @@
+# Not used for marketing deploy
+data/
+uploads/
+logs/
+secrets/
+kyc/
+exports/
+attached_assets/
+tmpdist/
+developer-guide.html
+INTERNAL-GUIDE.md
+*.tar.gz
+client/src/pages/Dashboard.tsx
+client/src/pages/AdminDashboard.tsx

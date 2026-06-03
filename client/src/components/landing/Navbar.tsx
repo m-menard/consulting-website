@@ -10,10 +10,7 @@ import { LandingLanguageSelector } from "@/components/LandingLanguageSelector";
 
 const routeThemeMap: Record<string, "dark" | "light"> = {
   "/": "light",
-  "/features": "light",
-  "/use-cases": "light", 
-  "/pricing": "light",
-  "/integrations": "light",
+  "/use-cases": "light",
   "/blog": "light",
   "/contact": "light",
   "/intake": "light",
@@ -161,7 +158,7 @@ export function Navbar() {
     if (isAuthenticated) {
       window.location.href = isAdmin ? "/admin" : "/app";
     } else {
-      setLocation("/login");
+      setLocation("/intake");
     }
   };
 

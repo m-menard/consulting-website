@@ -15,13 +15,14 @@ export function Footer() {
   const { toast } = useToast();
 
   const productLinks = [
-    { href: "/features", label: t('landing.footer.features'), isRoute: true },
+    { href: "/#services", label: t('landing.footer.features'), isRoute: false },
     { href: "/use-cases", label: t('landing.footer.useCases'), isRoute: true },
-    { href: "/pricing", label: t('landing.footer.pricing'), isRoute: true },
-    { href: "/integrations", label: t('landing.footer.integrations'), isRoute: true },
+    { href: "/#pricing", label: t('landing.footer.pricing'), isRoute: false },
+    { href: "/#leadership", label: t('landing.navbar.ourTeam'), isRoute: false },
   ];
 
   const resourceLinks = [
+    { href: "/intake", label: t('landing.hero.getStarted'), isRoute: true },
     { href: "/blog", label: t('landing.footer.blog'), isRoute: true },
     { href: "/contact", label: t('landing.footer.contact'), isRoute: true },
     { href: "/privacy", label: t('landing.footer.privacyPolicy'), isRoute: true },

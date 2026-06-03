@@ -219,15 +219,6 @@ const FeatureCard = ({ title, description, bullets, mockup, imagePosition }: Fea
                     {t('landing.featureSection.freeTrial')}
                   </Button>
                 </Link>
-                <Link href="/login">
-                  <Button
-                    variant="outline"
-                    className="border-2 border-[#176BD0] text-[#176BD0] rounded-lg px-6 w-full sm:w-auto"
-                    data-testid={`button-feature-cta-${title.toLowerCase().replace(/\s+/g, "-")}`}
-                  >
-                    {t('landing.featureSection.getStarted')}
-                  </Button>
-                </Link>
               </div>
               <div className="flex items-center gap-2 mt-4 text-sm text-slate-500">
                 <Check className="h-4 w-4 text-[#176BD0]" />

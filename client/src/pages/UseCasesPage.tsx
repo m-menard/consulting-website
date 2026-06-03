@@ -103,7 +103,7 @@ const UseCase = ({ icon, title, subtitle, description, features, stats, gradient
           ))}
         </ul>
 
-        <Link href="/login">
+        <Link href="/intake">
           <Button className="cta-button text-white font-medium border-0 mt-4" data-testid="button-get-started">
             Get Started Free
             <ArrowRight className="w-4 h-4 ml-2" />
@@ -534,13 +534,13 @@ export default function UseCasesPage() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/login">
+                <Link href="/intake">
                   <Button size="lg" className="cta-button text-white font-medium border-0 h-14 px-8 text-lg" data-testid="button-cta-start-trial">
                     Start Free Trial
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                 </Link>
-                <Link href="/pricing">
+                <Link href="/#pricing">
                   <Button size="lg" variant="outline" className="h-14 px-8 text-lg border-white/20 text-white hover:bg-white/10" data-testid="button-cta-view-pricing">
                     View Pricing
                   </Button>
