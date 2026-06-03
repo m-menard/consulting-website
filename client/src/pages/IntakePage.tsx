@@ -1,7 +1,15 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { Loader2, Send, Shield } from "lucide-react";
+import { CheckCircle2, ExternalLink, Loader2, Send, Shield } from "lucide-react";
+import { CalendlyInlineEmbed } from "@/components/CalendlyInlineEmbed";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -39,6 +47,7 @@ const BUDGETS = ["under_5k", "5k_20k", "20k_50k", "50k_plus"] as const;
 const TIMELINES = ["asap", "1_3_months", "3_6_months", "flexible"] as const;
 
 const SECTION_KEYS = ["contact", "business", "problem", "aiGoals", "projectDetails"] as const;
+const STRATEGY_CALL_CALENDLY_URL = "https://calendly.com/john-accellm/30min";
 
 const intakeFormSchema = z.object({
   name: z.string().min(2),
@@ -152,6 +161,7 @@ export default function IntakePage() {
   const shouldReduceMotion = useReducedMotion();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const { data: seoSettings } = useSeoSettings();
 
   const form = useForm<IntakeFormData>({
@@ -170,6 +180,24 @@ export default function IntakePage() {
     },
   });
 
+  const parseJsonResponse = async (response: Response) => {
+    const text = await response.text();
+    if (!text.trim()) {
+      throw new Error(
+        response.ok
+          ? "Empty response from server"
+          : `Server error (${response.status}). Make sure the API is running (npm run dev).`
+      );
+    }
+    try {
+      return JSON.parse(text) as { error?: string; message?: string; success?: boolean };
+    } catch {
+      throw new Error(
+        `Invalid server response (${response.status}). Make sure the API is running (npm run dev).`
+      );
+    }
+  };
+
   const onSubmit = async (data: IntakeFormData) => {
     setIsSubmitting(true);
     try {
@@ -178,15 +206,12 @@ export default function IntakePage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      const result = await response.json();
+      const result = await parseJsonResponse(response);
       if (!response.ok) {
         throw new Error(result.error || "Failed to submit form");
       }
       form.reset();
-      toast({
-        title: t("landing.intakePage.form.successTitle"),
-        description: t("landing.intakePage.form.successDescription"),
-      });
+      setShowSuccessModal(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (error: unknown) {
       const message =
@@ -621,6 +646,56 @@ export default function IntakePage() {
           </motion.div>
         </div>
       </section>
+
+      <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
+        <DialogContent
+          className="flex max-h-[92vh] w-[calc(100vw-1.5rem)] max-w-[1000px] flex-col gap-0 overflow-hidden border-0 bg-white p-0"
+          data-testid="dialog-intake-success"
+        >
+          <DialogHeader className="shrink-0 space-y-1 border-b border-slate-100 px-3 py-2 text-center sm:text-center">
+            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100">
+              <CheckCircle2 className="h-5 w-5 text-emerald-600" aria-hidden />
+            </div>
+            <DialogTitle className="text-lg leading-tight sm:text-xl">
+              {t("landing.intakePage.successModal.title")}
+            </DialogTitle>
+            <DialogDescription className="text-sm leading-snug text-slate-600 pb-0">
+              {t("landing.intakePage.successModal.description")}
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="shrink-0 overflow-x-auto overflow-y-hidden bg-white">
+            {showSuccessModal && (
+              <CalendlyInlineEmbed
+                key="intake-calendly"
+                url={STRATEGY_CALL_CALENDLY_URL}
+              />
+            )}
+          </div>
+
+          <div className="flex shrink-0 flex-col-reverse gap-2 border-t border-slate-100 bg-white px-3 py-2 sm:flex-row sm:items-center sm:justify-between">
+            <Button
+              type="button"
+              variant="outline"
+              className="w-full sm:w-auto"
+              onClick={() => setShowSuccessModal(false)}
+              data-testid="button-close-intake-success"
+            >
+              {t("landing.intakePage.successModal.close")}
+            </Button>
+            <a
+              href={STRATEGY_CALL_CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-1.5 text-sm font-medium text-[#176BD0] hover:underline w-full sm:w-auto py-2"
+              data-testid="link-calendly-new-tab"
+            >
+              {t("landing.intakePage.successModal.openInNewTab")}
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <Footer />
     </div>

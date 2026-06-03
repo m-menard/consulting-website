@@ -8,6 +8,7 @@ vite.config.ts.*
 .env
 .env.local
 .env.*.local
+secrets/
 
 # Keep example file
 !.env.example

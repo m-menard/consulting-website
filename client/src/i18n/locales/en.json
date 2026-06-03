@@ -589,19 +589,23 @@
         "items": {
           "userInput": {
             "title": "User Input",
-            "description": "API · UI · Internal Workflow"
+            "description": "API · UI · Internal Workflow",
+            "shortDescription": "Where requests enter the system."
           },
           "orchestration": {
             "title": "Orchestration",
-            "description": "Rules · Agents · Routing"
+            "description": "Rules · Agents · Routing",
+            "shortDescription": "Manages workflow execution."
           },
           "businessOutput": {
             "title": "Business Output",
-            "description": "Savings · Speed · Revenue"
+            "description": "Savings · Speed · Revenue",
+            "shortDescription": "Generates measurable business value."
           },
           "intelligenceLayer": {
             "title": "Intelligence Layer",
-            "description": "LLMs · RAG · Forecasting · Evaluation"
+            "description": "LLMs · RAG · Forecasting · Evaluation",
+            "shortDescription": "Provides AI-powered intelligence."
           }
         }
       }
@@ -1638,6 +1642,13 @@
         "successDescription": "Thank you. We'll review your responses and be in touch soon.",
         "errorTitle": "Failed to submit form",
         "errorDescription": "Please try again later."
+      },
+      "successModal": {
+        "title": "Successfully submitted!",
+        "description": "Thank you for sharing your details. Pick a time below for your 30-minute strategy call.",
+        "nextStep": "Select an available slot on the calendar.",
+        "openInNewTab": "Open calendar in a new tab",
+        "close": "Close"
       }
     },
     "blog": {

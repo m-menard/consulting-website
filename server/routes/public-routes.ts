@@ -27,28 +27,30 @@ import { db} from "../db";
 import { runAllSeedsForInstaller } from '../seed-all';
 import RAGKnowledgeService from '../services/rag-knowledge';
 import OpenAI from "openai";
+import {
+  appendIntakeToGoogleSheet,
+  isIntakeSheetsConfigured,
+} from '../services/intake-sheets-service';
 
 /**
  * Creates public routes for unauthenticated endpoints.
  * Includes installer, health, branding, SEO, public stats, contact form, and more.
  */
 
-// 1. Get the credential from the DB
+async function getOpenAIClient(): Promise<OpenAI> {
   const [credential] = await db
     .select({ value: globalSettings.value })
     .from(globalSettings)
     .where(eq(globalSettings.key, "openai_api_key"))
     .limit(1);
 
-  let openai;
-
-  // 2. Try the DB key first, then fallback to the Environment Variable
-  if (credential?.value) {
-    openai = new OpenAI({ apiKey: credential.value });
-  } else {
-    openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const apiKey =
+    (credential?.value as string | undefined) || process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    throw new Error("OpenAI API key is not configured");
   }
-
+  return new OpenAI({ apiKey });
+}
 
 export function createPublicRoutes(ctx: RouteContext): Router {
   const router = Router();
@@ -58,6 +60,9 @@ export function createPublicRoutes(ctx: RouteContext): Router {
    * Check if installation is complete by checking for any users in the database.
    */
   async function isInstalled(): Promise<boolean> {
+    if (process.env.SKIP_INSTALLER === "true") {
+      return true;
+    }
     try {
       const userCount = await db.select({ count: sql<number>`count(*)::int` }).from(users);
       return userCount[0]?.count > 0;
@@ -1143,28 +1148,57 @@ ${allUrls.map(u => {
 
       const data = validationResult.data;
 
-      const adminEmailSetting = await storage.getGlobalSetting('admin_email');
-      const smtpFromEmail = await storage.getGlobalSetting('smtp_from_email');
-      const adminEmail =
-        (adminEmailSetting?.value as string) ||
-        (smtpFromEmail?.value as string) ||
-        process.env.SMTP_USER;
-
-      const appNameSetting = await storage.getGlobalSetting('app_name');
-      const appName = (appNameSetting?.value as string) || '';
-
-      if (!adminEmail) {
-        console.error('No admin email configured for intake form');
+      if (!isIntakeSheetsConfigured()) {
+        console.error('[Intake] Google Sheets credentials not configured');
         return res.status(500).json({
-          error: "Intake form not configured. Please try again later.",
+          error: "Intake form storage is not configured. Please contact support.",
         });
       }
 
-      if (!emailService.isEnabled()) {
-        console.error('Email service is not configured');
-        return res.status(500).json({
-          error: "Email service not configured. Please contact the administrator.",
+      const aiGoalsLabel = data.aiGoals.map((g) => aiGoalLabels[g]).join(", ");
+      const budgetLabel = data.budget ? budgetLabels[data.budget] : undefined;
+      const timelineLabel = data.timeline ? timelineLabels[data.timeline] : undefined;
+
+      try {
+        await appendIntakeToGoogleSheet({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          linkedinUrl: data.linkedinUrl,
+          companyDescription: data.companyDescription,
+          industry: data.industry,
+          companySize: data.companySize,
+          mainProblem: data.mainProblem,
+          obstacles: data.obstacles,
+          aiGoalsLabel,
+          idealOutcome: data.idealOutcome,
+          budgetLabel,
+          timelineLabel,
         });
+      } catch (sheetError: unknown) {
+        console.error('[Intake] Google Sheets append failed:', sheetError);
+        return res.status(500).json({
+          error: "Failed to save your submission. Please try again later.",
+        });
+      }
+
+      console.log(`📊 [Intake] Saved to Google Sheets for ${data.email}`);
+
+      let adminEmail: string | undefined;
+      let appName = "";
+      try {
+        const adminEmailSetting = await storage.getGlobalSetting('admin_email');
+        const smtpFromEmail = await storage.getGlobalSetting('smtp_from_email');
+        adminEmail =
+          (adminEmailSetting?.value as string) ||
+          (smtpFromEmail?.value as string) ||
+          process.env.SMTP_USER;
+
+        const appNameSetting = await storage.getGlobalSetting('app_name');
+        appName = (appNameSetting?.value as string) || '';
+      } catch (settingsError) {
+        console.warn('[Intake] Could not load email settings from database:', settingsError);
+        adminEmail = process.env.SMTP_USER;
       }
 
       const fieldBlock = (label: string, value: string) => `
@@ -1262,18 +1296,24 @@ ${allUrls.map(u => {
         .filter(Boolean)
         .join("\n");
 
-      const subject = `[${appName}] Client Intake: ${data.name}`;
-      const result = await emailService.sendEmail(adminEmail, subject, htmlContent, undefined, {
-        replyTo: data.email,
-        text: textContent,
-      });
+      try {
+        if (adminEmail && emailService.isEnabled()) {
+          const subject = `[${appName}] Client Intake: ${data.name}`;
+          const result = await emailService.sendEmail(adminEmail, subject, htmlContent, undefined, {
+            replyTo: data.email,
+            text: textContent,
+          });
 
-      if (!result.success) {
-        console.error(`Intake form email failed: ${result.error}`);
-        return res.status(500).json({ error: "Failed to submit form. Please try again later." });
+          if (!result.success) {
+            console.error(`Intake form email failed: ${result.error}`);
+          } else {
+            console.log(`✉️ [Intake] Email notification sent to ${adminEmail} from ${data.email}`);
+          }
+        }
+      } catch (emailError) {
+        console.warn('[Intake] Optional email notification failed:', emailError);
       }
 
-      console.log(`✉️ [Intake] Form submission sent to ${adminEmail} from ${data.email}`);
       res.json({ success: true, message: "Thank you! We'll be in touch soon." });
     } catch (error: any) {
       console.error('Intake form error:', error);
@@ -1330,6 +1370,7 @@ ${allUrls.map(u => {
       const context = RAGKnowledgeService.formatResultsForAgent(results, 500);
 
       // Step 2: 🔥 ChatGPT se precise answer nikalo
+      const openai = await getOpenAIClient();
       const completion = await openai.chat.completions.create({
         model: "gpt-4o-mini", // fast + cheap
         messages: [

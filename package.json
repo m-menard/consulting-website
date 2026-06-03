@@ -4,7 +4,8 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "dev": "vite",
+    "dev": "cross-env NODE_ENV=development tsx server/index.ts",
+    "dev:client": "vite",
     "build": "vite build",
     "start": "vite preview --host 0.0.0.0 --port 5000",
     "check": "tsc",
@@ -93,6 +94,7 @@
     "express-ws": "^5.0.2",
     "framer-motion": "^11.13.1",
     "globals": "^16.5.0",
+    "googleapis": "^173.0.0",
     "hono": "^4.11.7",
     "i18next": "^25.6.3",
     "i18next-browser-languagedetector": "^8.2.0",

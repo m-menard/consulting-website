@@ -124,6 +124,31 @@ function SessionTimeoutWrapper({ children }: { children: React.ReactNode }) {
 }
 
 
+/** Public marketing/legal pages that work before platform installation (no admin user in DB). */
+const PUBLIC_PATHS_WITHOUT_INSTALL = new Set([
+  "/",
+  "/intake",
+  "/contact",
+  "/features",
+  "/pricing",
+  "/use-cases",
+  "/integrations",
+  "/blog",
+  "/privacy",
+  "/terms",
+  "/cookies",
+  "/login",
+  "/register",
+  "/team/login",
+  "/admin/team/login",
+]);
+
+function isPublicPathWithoutInstall(location: string): boolean {
+  if (PUBLIC_PATHS_WITHOUT_INSTALL.has(location)) return true;
+  if (location.startsWith("/blog/")) return true;
+  return false;
+}
+
 function PublicRouter() {
   return (
     <>
@@ -668,8 +693,13 @@ function Router() {
     );
   }
 
-  // Installation check - if not installed, redirect to installer unless already on /install
-  if (installStatus && !installStatus.installed && location !== '/install') {
+  // Installation check — only gate app/admin; marketing site + intake work without DB setup
+  if (
+    installStatus &&
+    !installStatus.installed &&
+    location !== "/install" &&
+    !isPublicPathWithoutInstall(location)
+  ) {
     console.log("Router - Not installed, redirecting to /install");
     return <Redirect to="/install" />;
   }

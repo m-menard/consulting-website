@@ -75,21 +75,25 @@ const architectureItems = [
   {
     titleKey: "landing.hero.architecture.items.userInput.title",
     descriptionKey: "landing.hero.architecture.items.userInput.description",
+    shortDescriptionKey: "landing.hero.architecture.items.userInput.shortDescription",
     image: "/images/architecture/user-input.png",
   },
   {
     titleKey: "landing.hero.architecture.items.orchestration.title",
     descriptionKey: "landing.hero.architecture.items.orchestration.description",
+    shortDescriptionKey: "landing.hero.architecture.items.orchestration.shortDescription",
     image: "/images/architecture/orchestration.png",
   },
   {
     titleKey: "landing.hero.architecture.items.businessOutput.title",
     descriptionKey: "landing.hero.architecture.items.businessOutput.description",
+    shortDescriptionKey: "landing.hero.architecture.items.businessOutput.shortDescription",
     image: "/images/architecture/business-output.png",
   },
   {
     titleKey: "landing.hero.architecture.items.intelligenceLayer.title",
     descriptionKey: "landing.hero.architecture.items.intelligenceLayer.description",
+    shortDescriptionKey: "landing.hero.architecture.items.intelligenceLayer.shortDescription",
     image: "/images/architecture/intelligence-layer.png",
   },
 ];
@@ -243,7 +247,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="relative bg-gradient-to-b from-[#EFF5FF] via-[#C5DBFA] to-[#0B2D68] pt-3 sm:pt-4 pb-14 sm:pb-20">
+      <div className="relative bg-gradient-to-b from-[#EFF5FF] via-[#C5DBFA] to-[#0B2D68] pt-3 sm:pt-4 pb-14 sm:pb-18">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -253,14 +257,14 @@ export function HeroSection() {
             <motion.div
               variants={cardVariants}
               custom={0}
-              className="rounded-2xl sm:rounded-3xl border border-white/20 bg-[#0B2D68]/50 p-4 sm:p-5 md:p-8 shadow-2xl backdrop-blur-sm"
+              className="rounded-2xl sm:rounded-3xl border border-white/20 bg-[#0B2D68]/50 p-4 sm:p-5 md:p-6 shadow-2xl backdrop-blur-sm"
               data-testid="hero-architecture-panel"
             >
-              <div className="mb-5 sm:mb-8 text-center">
+              <div className="mb-5 sm:mb-6 text-center">
                 <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-3 sm:px-4 py-1 text-[10px] sm:text-xs font-medium uppercase tracking-wide text-white/80">
                   {t("landing.hero.architecture.badge")}
                 </span>
-                <h3 className="mt-3 sm:mt-4 text-xl sm:text-2xl md:text-4xl font-bold text-white leading-tight">
+                <h3 className="mt-3 sm:mt-4 text-xl sm:text-2xl md:text-3xl font-bold text-white leading-tight">
                   {t("landing.hero.architecture.title")}
                 </h3>
                 <p className="mx-auto mt-3 sm:mt-4 max-w-3xl text-xs sm:text-sm md:text-lg leading-relaxed text-blue-100/90">
@@ -268,16 +272,16 @@ export function HeroSection() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-3 sm:gap-3.5 md:grid-cols-2">
                 {architectureItems.map((item, i) => (
                   <motion.div
                     key={item.titleKey}
                     custom={i}
                     variants={cardVariants}
-                    className="rounded-xl sm:rounded-2xl border border-white/15 bg-white/5 p-3 sm:p-4 md:p-5 text-left"
+                    className="rounded-xl sm:rounded-2xl border border-white/15 bg-white/5 p-3 sm:p-3.5 md:p-4 text-left"
                     data-testid={`hero-architecture-item-${i}`}
                   >
-                    <div className="flex items-start gap-3 sm:gap-4">
+                    <div className="flex items-center gap-3 sm:gap-4">
                       <span className="inline-flex h-20 w-20 sm:h-24 sm:w-24 items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-white/10 shrink-0">
                         <img
                           src={item.image}
@@ -287,8 +291,9 @@ export function HeroSection() {
                         />
                       </span>
                       <div className="min-w-0">
-                        <p className="text-base sm:text-lg font-semibold text-white">{t(item.titleKey)}</p>
-                        <p className="mt-1 text-xs sm:text-sm text-blue-100/85">{t(item.descriptionKey)}</p>
+                        <p className="text-base sm:text-lg font-semibold text-white leading-snug">{t(item.titleKey)}</p>
+                        <p className="mt-1 text-xs sm:text-sm text-blue-100/85 leading-snug">{t(item.descriptionKey)}</p>
+                        <p className="mt-1 text-[11px] sm:text-xs text-blue-100/65 leading-snug">{t(item.shortDescriptionKey)}</p>
                       </div>
                     </div>
                   </motion.div>
