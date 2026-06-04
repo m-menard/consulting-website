@@ -15,7 +15,7 @@
     },
     {
       "source": "/chatbot/:path*",
-      "destination": "http://185.238.250.203/chatbot/:path*"
+      "destination": "/api/dify-chatbot?slug=:path*"
     },
     {
       "source": "/_next/:path*",
