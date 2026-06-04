@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useMemo } from "react";
 import { useTheme } from "./ThemeProvider";
-import { siteBranding, type SiteBranding } from "@/config/site";
+import { siteBranding, siteSeo, type SiteBranding } from "@/config/site";
 
 type BrandingProviderState = {
   branding: SiteBranding;
@@ -34,13 +34,11 @@ export function BrandingProvider({ children }: { children: React.ReactNode }) {
   }, [branding.favicon_url]);
 
   useEffect(() => {
-    const expectedTitle = branding.app_tagline
-      ? `${branding.app_name} - ${branding.app_tagline}`
-      : branding.app_name;
+    const expectedTitle = siteSeo.defaultTitle;
     if (document.title !== expectedTitle) {
       document.title = expectedTitle;
     }
-  }, [branding.app_name, branding.app_tagline]);
+  }, []);
 
   const currentLogo =
     theme === "dark" ? branding.logo_url_dark : branding.logo_url_light;

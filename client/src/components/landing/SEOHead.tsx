@@ -16,6 +16,7 @@
  */
 import { useEffect } from "react";
 import { useBranding } from "@/components/BrandingProvider";
+import { siteSeo } from "@/config/site";
 
 interface OfferSchema {
   "@type": "Offer";
@@ -244,9 +245,7 @@ export function SEOHead({
 
   useEffect(() => {
     // Build the branding base title (what BrandingProvider sets)
-    const brandingTitle = branding.app_tagline 
-      ? `${effectiveSiteName} - ${branding.app_tagline}` 
-      : effectiveSiteName;
+    const brandingTitle = siteSeo.defaultTitle;
     
     // If title is just the app name or matches branding title, don't override - let BrandingProvider handle it
     const isDefaultTitle = title === effectiveSiteName || 
@@ -471,9 +470,7 @@ export function SEOHead({
 
     return () => {
       // Restore to branding title on cleanup
-      document.title = branding.app_tagline 
-        ? `${effectiveSiteName} - ${branding.app_tagline}` 
-        : effectiveSiteName;
+      document.title = siteSeo.defaultTitle;
       
       removeMetaTag("name", "description");
       removeMetaTag("name", "keywords");
@@ -529,7 +526,7 @@ export function SEOHead({
     twitterCreator,
     ogType,
     effectiveSiteName,
-    branding.app_tagline,
+    siteSeo.defaultTitle,
     noIndex,
     noFollow,
     additionalMetaTags,
