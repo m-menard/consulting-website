@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { z } from "zod";
-import { getAdminEmail, isEmailConfigured, sendEmail } from "./lib/email";
+import { getAdminEmail, isEmailConfigured, sendEmail } from "./lib/email.js";
 
 const contactSchema = z.object({
   name: z.string().min(2),

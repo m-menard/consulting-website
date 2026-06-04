@@ -67,3 +67,4 @@ attached_assets/
 INTERNAL-GUIDE.md
 scripts/create-production-zip.sh
 tmpdist/
+.vercel

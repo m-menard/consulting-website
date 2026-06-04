@@ -3,8 +3,8 @@ import { z } from "zod";
 import {
   appendIntakeToGoogleSheet,
   isIntakeSheetsConfigured,
-} from "./lib/intake-sheets";
-import { getAdminEmail, isEmailConfigured, sendEmail } from "./lib/email";
+} from "./lib/intake-sheets.js";
+import { getAdminEmail, isEmailConfigured, sendEmail } from "./lib/email.js";
 
 const companySizes = ["1-10", "11-50", "51-200", "200+"] as const;
 const aiGoals = [
