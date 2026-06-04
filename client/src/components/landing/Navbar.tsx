@@ -37,13 +37,8 @@ export function Navbar() {
   
   const pageTheme = routeThemeMap[location] || "light";
   
-  const resolveLogo = () => {
-    const logoForDarkBg = branding.logo_url_dark || branding.logo_url;
-    const logoForLightBg = branding.logo_url_light || branding.logo_url;
-    return logoForLightBg || logoForDarkBg;
-  };
-  
-  const currentLogo = resolveLogo();
+  const currentLogo =
+    pageTheme === "dark" ? branding.logo_url_dark : branding.logo_url_light;
   const needsLightText = false;
   const isAuthenticated = AuthStorage.isAuthenticated();
   const isAdmin = AuthStorage.isAdmin();
@@ -66,19 +61,11 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (currentLogo) {
+    [branding.logo_url_light, branding.logo_url_dark].forEach((src) => {
       const img = new Image();
-      img.src = currentLogo;
-    }
-    if (branding.logo_url_dark) {
-      const img = new Image();
-      img.src = branding.logo_url_dark;
-    }
-    if (branding.logo_url_light) {
-      const img = new Image();
-      img.src = branding.logo_url_light;
-    }
-  }, [currentLogo, branding.logo_url_dark, branding.logo_url_light]);
+      img.src = src;
+    });
+  }, [branding.logo_url_light, branding.logo_url_dark]);
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -188,7 +175,7 @@ export function Navbar() {
               <motion.img
                 src={currentLogo}
                 alt={branding.app_name || "Logo"}
-                className="h-9 w-auto max-w-[180px] object-contain"
+                className="h-9 w-auto max-w-[220px] object-contain"
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400 }}
                 data-testid="img-logo"
@@ -271,7 +258,7 @@ export function Navbar() {
                       <img
                         src={currentLogo}
                         alt={branding.app_name || "Logo"}
-                        className="h-9 w-auto max-w-[160px] object-contain"
+                        className="h-9 w-auto max-w-[200px] object-contain"
                         data-testid="img-mobile-logo"
                       />
                     )}

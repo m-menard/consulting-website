@@ -61,14 +61,12 @@ export function Footer() {
         <div className="py-12 sm:py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8">
           <div className="lg:col-span-2 space-y-6">
             <div className="flex items-center gap-2.5">
-              {branding.logo_url_dark && (
-                <img
-                  src={branding.logo_url_dark}
-                  alt={branding.app_name || "Logo"}
-                  className="h-10 w-auto max-w-[180px] object-contain"
-                  data-testid="img-footer-logo"
-                />
-              )}
+              <img
+                src={branding.logo_url_dark}
+                alt={branding.app_name || "Logo"}
+                className="h-10 w-auto max-w-[180px] object-contain"
+                data-testid="img-footer-logo"
+              />
             </div>
             <p className="text-slate-300/70 leading-relaxed max-w-sm">
               {branding.app_tagline || "AI-powered hiring platform for smarter, faster recruitment at scale."}

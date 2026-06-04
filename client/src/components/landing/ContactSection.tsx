@@ -167,7 +167,7 @@ export function ContactSection() {
 
             <div className="space-y-6">
               <motion.a
-                href={`mailto:support@${branding.app_name.toLowerCase().replace(/\s+/g, '')}.com`}
+                href={`mailto:contact@${branding.app_name.toLowerCase().replace(/\s+/g, '')}.ai`}
                 className="flex items-center gap-4 group"
                 whileHover={shouldReduceMotion ? {} : { x: 5 }}
                 data-testid="link-contact-email"
@@ -178,7 +178,7 @@ export function ContactSection() {
                 <div>
                   <p className="text-sm text-slate-500">{t('landing.contact.emailLabel')}</p>
                   <p className="text-lg font-semibold text-slate-900 group-hover:text-[#176BD0] transition-colors">
-                    support@{branding.app_name.toLowerCase().replace(/\s+/g, '')}.com
+                    contact@{branding.app_name.toLowerCase().replace(/\s+/g, '')}.ai
                   </p>
                 </div>
               </motion.a>

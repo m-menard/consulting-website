@@ -34,7 +34,6 @@ interface BrandingData {
   app_name: string;
   app_tagline: string;
   admin_email: string | null;
-  logo_url: string | null;
   logo_url_light: string | null;
   logo_url_dark: string | null;
   favicon_url: string | null;
@@ -136,7 +135,7 @@ export default function BrandingSettings() {
         social_linkedin_url: branding.social_linkedin_url || "",
         social_github_url: branding.social_github_url || ""
       });
-      setLogoLightPreview(branding.logo_url_light || branding.logo_url);
+      setLogoLightPreview(branding.logo_url_light);
       setLogoDarkPreview(branding.logo_url_dark);
       setFaviconPreview(branding.favicon_url);
     }
@@ -315,7 +314,7 @@ export default function BrandingSettings() {
     updateBrandingMutation.mutate(formData);
   };
 
-  const isConfigured = branding?.app_name && (branding?.logo_url || branding?.logo_url_light || branding?.logo_url_dark || branding?.favicon_url);
+  const isConfigured = branding?.app_name && (branding?.logo_url_light || branding?.logo_url_dark || branding?.favicon_url);
 
   if (isLoading) {
     return (
@@ -427,11 +426,11 @@ export default function BrandingSettings() {
                   {t("admin.branding.logoLight")}
                 </div>
                 <div className="px-4 py-3 bg-white dark:bg-slate-100 rounded-md border flex items-center gap-3">
-                  {branding?.logo_url_light || branding?.logo_url ? (
+                  {branding?.logo_url_light ? (
                     <>
                       <div className="h-10 w-16 bg-white rounded border flex items-center justify-center overflow-hidden">
                         <img 
-                          src={branding.logo_url_light || branding.logo_url || ""} 
+                          src={branding.logo_url_light} 
                           alt="Logo Light" 
                           className="max-h-full max-w-full object-contain"
                         />

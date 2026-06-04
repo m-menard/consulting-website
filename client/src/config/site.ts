@@ -6,9 +6,10 @@
 export interface SiteBranding {
   app_name: string;
   app_tagline: string;
-  logo_url: string | null;
-  logo_url_light: string | null;
-  logo_url_dark: string | null;
+  /** Navbar / light backgrounds */
+  logo_url_light: string;
+  /** Footer / dark backgrounds */
+  logo_url_dark: string;
   favicon_url: string | null;
   social_twitter_url: string | null;
   social_linkedin_url: string | null;
@@ -35,9 +36,8 @@ export const siteBranding: SiteBranding = {
   app_tagline:
     env("VITE_APP_TAGLINE") ??
     "Design, build, and deploy production-grade AI systems.",
-  logo_url: env("VITE_LOGO_URL") ?? null,
-  logo_url_light: env("VITE_LOGO_URL_LIGHT") ?? env("VITE_LOGO_URL") ?? null,
-  logo_url_dark: env("VITE_LOGO_URL_DARK") ?? env("VITE_LOGO_URL") ?? null,
+  logo_url_light: env("VITE_LOGO_URL_LIGHT") ?? "/logo-dark.png",
+  logo_url_dark: env("VITE_LOGO_URL_DARK") ?? "/logo-light.png",
   favicon_url: env("VITE_FAVICON_URL") ?? "/favicon.png",
   social_twitter_url: env("VITE_SOCIAL_TWITTER_URL") ?? null,
   social_linkedin_url: env("VITE_SOCIAL_LINKEDIN_URL") ?? null,

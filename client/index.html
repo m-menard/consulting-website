@@ -9,27 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-      (function() {
-        try {
-          var cached = localStorage.getItem('agenthr-branding:v1');
-          if (cached) {
-            var parsed = JSON.parse(cached);
-            if (parsed.data) {
-              if (parsed.data.app_name) {
-                document.title = parsed.data.app_tagline 
-                  ? parsed.data.app_name + ' - ' + parsed.data.app_tagline 
-                  : parsed.data.app_name;
-              }
-              if (parsed.data.favicon_url) {
-                var favicon = document.getElementById('dynamic-favicon');
-                if (favicon) favicon.href = parsed.data.favicon_url;
-              }
-            }
-          }
-        } catch(e) {}
-      })();
-    </script>
   </head>
   <body>
     <div id="root"></div>

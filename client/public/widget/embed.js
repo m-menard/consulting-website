@@ -270,7 +270,7 @@
     var brandName = config.brandName || config.name || 'Agent';
     var iconUrl = getAbsoluteUrl(config.iconPath || config.iconUrl);
     // User's widget icon takes priority over admin branding
-    var faviconUrl = iconUrl || brandingData?.favicon_url || brandingData?.logo_url;
+    var faviconUrl = iconUrl || brandingData?.favicon_url || brandingData?.logo_url_light;
     var appName = config.platformName || brandingData?.app_name || 'AgentHR';
     var primaryColor = config.primaryColor || '#ec4899';
     

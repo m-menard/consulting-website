@@ -43,9 +43,7 @@ export function BrandingProvider({ children }: { children: React.ReactNode }) {
   }, [branding.app_name, branding.app_tagline]);
 
   const currentLogo =
-    theme === "dark"
-      ? branding.logo_url_dark || branding.logo_url_light || branding.logo_url
-      : branding.logo_url_light || branding.logo_url_dark || branding.logo_url;
+    theme === "dark" ? branding.logo_url_dark : branding.logo_url_light;
 
   const value = useMemo<BrandingProviderState>(
     () => ({

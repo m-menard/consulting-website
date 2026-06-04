@@ -50,13 +50,13 @@ export function LeadershipSection() {
       name: t("landing.leadership.members.cto.name"),
       role: t("landing.leadership.members.cto.role"),
       image: "/images/team/cto.png",
-      imageClassName: "scale-[1.18] object-top group-hover:scale-[1.22]",
+      imageClassName: "scale-100 object-top group-hover:scale-105",
     },
     {
       name: t("landing.leadership.members.cpo.name"),
       role: t("landing.leadership.members.cpo.role"),
       image: "/images/team/cpo.png",
-      imageClassName: "scale-[1.16] object-top group-hover:scale-[1.2]",
+      imageClassName: "scale-100 object-top group-hover:scale-105",
     },
   ];
 
