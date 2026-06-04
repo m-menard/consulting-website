@@ -34,27 +34,15 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      window.difyChatbotConfig = {
+        token: '%VITE_DIFY_TOKEN%',
+        baseUrl: window.location.origin + '/dify',
+        inputs: {},
+        systemVariables: {},
+        userVariables: {},
+      };
+    </script>
+    <script src="/dify/embed.min.js" id="%VITE_DIFY_TOKEN%" defer></script>
   </body>
 </html>
-
-<script>
-  window.difyChatbotConfig = {
-      token: '7V3S2LdZRwOQ8EvT',
-      baseUrl: 'http://185.238.250.203',
-      inputs: {
-          // You can define the inputs from the Start node here
-          // key is the variable name
-          // e.g.
-          // name: "NAME"
-      },
-      systemVariables: {
-      },
-      userVariables: {
-      },
-  }
-</script>
-<script
-  src="http://185.238.250.203/embed.min.js"
-  id="7V3S2LdZRwOQ8EvT"
-  defer>
-</script>

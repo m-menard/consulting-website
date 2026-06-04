@@ -5,6 +5,10 @@
   "framework": null,
   "rewrites": [
     {
+      "source": "/dify/:path*",
+      "destination": "http://185.238.250.203/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
