@@ -26,7 +26,7 @@
       "destination": "http://185.238.250.203/console/:path*"
     },
     {
-      "source": "/api/:path*",
+      "source": "/api/:path((?!contact$|intake$|dify-chatbot$).*)",
       "destination": "http://185.238.250.203/api/:path*"
     },
     {

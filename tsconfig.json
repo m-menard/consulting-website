@@ -1,5 +1,5 @@
 {
-  "include": ["client/src/**/*", "api/**/*"],
+  "include": ["client/src/**/*", "api/**/*", "shared/**/*"],
   "exclude": [
     "node_modules",
     "dist",
@@ -70,7 +70,8 @@
     "baseUrl": ".",
     "types": ["node", "vite/client"],
     "paths": {
-      "@/*": ["./client/src/*"]
+      "@/*": ["./client/src/*"],
+      "@shared/*": ["./shared/*"]
     }
   }
 }

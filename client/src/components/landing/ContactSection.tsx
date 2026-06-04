@@ -36,6 +36,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useBranding } from "@/components/BrandingProvider";
 import { useTranslation } from "react-i18next";
+import { CONTACT_INBOX_EMAIL } from "@shared/contact-inbox";
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -167,7 +168,7 @@ export function ContactSection() {
 
             <div className="space-y-6">
               <motion.a
-                href={`mailto:contact@${branding.app_name.toLowerCase().replace(/\s+/g, '')}.ai`}
+                href={`mailto:${CONTACT_INBOX_EMAIL}`}
                 className="flex items-center gap-4 group"
                 whileHover={shouldReduceMotion ? {} : { x: 5 }}
                 data-testid="link-contact-email"
@@ -178,7 +179,7 @@ export function ContactSection() {
                 <div>
                   <p className="text-sm text-slate-500">{t('landing.contact.emailLabel')}</p>
                   <p className="text-lg font-semibold text-slate-900 group-hover:text-[#176BD0] transition-colors">
-                    contact@{branding.app_name.toLowerCase().replace(/\s+/g, '')}.ai
+                    {CONTACT_INBOX_EMAIL}
                   </p>
                 </div>
               </motion.a>

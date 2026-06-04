@@ -17,6 +17,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useTranslation } from "react-i18next";
+import { CONTACT_INBOX_EMAIL } from "@shared/contact-inbox";
 import {
   Form,
   FormControl,
@@ -123,7 +124,7 @@ export default function Contact() {
       title: t("landing.contactPage.supportChannels.email.title"),
       description: t("landing.contactPage.supportChannels.email.description"),
       action: t("landing.contactPage.supportChannels.email.action"),
-      href: "mailto:cs@diploy.in",
+      href: `mailto:${CONTACT_INBOX_EMAIL}`,
       external: false,
       testId: "card-support-email"
     },
