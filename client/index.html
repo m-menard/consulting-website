@@ -37,12 +37,12 @@
     <script>
       window.difyChatbotConfig = {
         token: '%VITE_DIFY_TOKEN%',
-        baseUrl: window.location.origin + '/dify',
+        baseUrl: '%VITE_DIFY_BASE_URL%',
         inputs: {},
         systemVariables: {},
         userVariables: {},
       };
     </script>
-    <script src="/dify/embed.min.js" id="%VITE_DIFY_TOKEN%" defer></script>
+    <script src="%VITE_DIFY_BASE_URL%/embed.min.js" id="%VITE_DIFY_TOKEN%" defer></script>
   </body>
 </html>

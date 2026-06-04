@@ -28,11 +28,6 @@ export default defineConfig({
         target: process.env.VITE_API_PROXY_TARGET || "http://127.0.0.1:3000",
         changeOrigin: true,
       },
-      "/dify": {
-        target: process.env.VITE_DIFY_UPSTREAM || "http://185.238.250.203",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/dify/, ""),
-      },
     },
   },
 });
