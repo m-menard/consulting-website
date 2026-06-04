@@ -22,8 +22,36 @@
       "destination": "http://185.238.250.203/_next/:path*"
     },
     {
+      "source": "/console/:path*",
+      "destination": "http://185.238.250.203/console/:path*"
+    },
+    {
       "source": "/api/:path*",
       "destination": "http://185.238.250.203/api/:path*"
+    },
+    {
+      "source": "/manifest.json",
+      "destination": "http://185.238.250.203/manifest.json"
+    },
+    {
+      "source": "/icon-192x192.png",
+      "destination": "http://185.238.250.203/icon-192x192.png"
+    },
+    {
+      "source": "/icon-512x512.png",
+      "destination": "http://185.238.250.203/icon-512x512.png"
+    },
+    {
+      "source": "/apple-touch-icon.png",
+      "destination": "http://185.238.250.203/apple-touch-icon.png"
+    },
+    {
+      "source": "/logo/:path*",
+      "destination": "http://185.238.250.203/logo/:path*"
+    },
+    {
+      "source": "/files/:path*",
+      "destination": "http://185.238.250.203/files/:path*"
     },
     {
       "source": "/(.*)",
