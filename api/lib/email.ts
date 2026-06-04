@@ -9,11 +9,16 @@ export interface SendEmailOptions {
   replyTo?: string;
 }
 
+function envTrim(key: string): string | undefined {
+  const value = process.env[key]?.trim();
+  if (!value) return undefined;
+  // Strip accidental quotes when pasting into Vercel / .env
+  return value.replace(/^["']|["']$/g, "");
+}
+
 export function isEmailConfigured(): boolean {
   return Boolean(
-    process.env.SMTP_HOST?.trim() &&
-      process.env.SMTP_USER?.trim() &&
-      process.env.SMTP_PASS?.trim()
+    envTrim("SMTP_HOST") && envTrim("SMTP_USER") && envTrim("SMTP_PASS")
   );
 }
 
@@ -42,23 +47,23 @@ export async function sendEmail(
     return { success: false, error: "SMTP is not configured" };
   }
 
-  const port = parseInt(process.env.SMTP_PORT || "587", 10);
+  const host = envTrim("SMTP_HOST")!;
+  const user = envTrim("SMTP_USER")!;
+  const pass = envTrim("SMTP_PASS")!;
+  const port = parseInt(envTrim("SMTP_PORT") || "587", 10);
   const secure = process.env.SMTP_SECURE === "true" || port === 465;
 
   const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
+    host,
     port,
     secure,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
+    auth: { user, pass },
   });
 
   const from =
-    process.env.SMTP_FROM?.trim() ||
-    process.env.SMTP_FROM_EMAIL?.trim() ||
-    process.env.SMTP_USER?.trim() ||
+    envTrim("SMTP_FROM") ||
+    envTrim("SMTP_FROM_EMAIL") ||
+    user ||
     "noreply@example.com";
 
   try {

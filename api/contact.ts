@@ -57,11 +57,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
 
     if (!result.success) {
-      return res.status(500).json({
-        error:
-          result.error ||
-          "Failed to send message. Please try again later.",
-      });
+      if (result.error) {
+        console.error("[Contact API] SMTP failed:", result.error);
+      }
+      const publicError = usesDevEmailSink()
+        ? result.error ||
+          "Failed to send message. Please try again later."
+        : "Failed to send message. Please try again later or email contact@accellm.ai.";
+      return res.status(500).json({ error: publicError });
     }
 
     return res.json({
