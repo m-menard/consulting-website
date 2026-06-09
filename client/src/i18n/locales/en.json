@@ -272,15 +272,16 @@
             "Decision-support outputs embedded in daily workflows"
           ]
         },
-        "aiInfrastructure": {
-          "title": "AI Infrastructure",
-          "description": "Implement data pipelines, retrieval architecture, evaluation loops, and observability that keep AI stable in production.",
-          "badge": "Platform",
-          "bestFor": "Teams moving from prototype to reliable production",
+        "aiGovernance": {
+          "title": "AI Governance & Responsible AI",
+          "description": "Adopt AI safely with practical policies, risk controls, and oversight for LLMs, copilots, agents, and automation.",
+          "badge": "Governance",
+          "bestFor": "Enterprise teams deploying LLMs, copilots, and AI agents at scale",
           "outcomes": [
-            "Data and retrieval pipelines built for reliability and scale",
-            "Evaluation loops to continuously improve model quality",
-            "Observability for latency, cost, and failure monitoring"
+            "AI usage policies and approval workflows",
+            "Risk assessments for tools, models, and use cases",
+            "Data privacy, security, and human review guardrails",
+            "Monitoring, audit readiness, and accountability controls"
           ]
         }
       }
@@ -665,6 +666,15 @@
         "bullet3": "Evaluation loops tied to business metrics",
         "bullet4": "Monitoring for latency, quality, and cost control"
       },
+      "feature4": {
+        "title": "AI Governance & Responsible AI",
+        "description": "Adopt AI safely with practical policies, risk controls, and oversight for LLMs, copilots, agents, and automation.",
+        "bullet1": "AI usage policies and approval workflows",
+        "bullet2": "Risk assessments for tools, models, and use cases",
+        "bullet3": "Data privacy, security, and human review guardrails",
+        "bullet4": "Monitoring, audit readiness, and accountability controls",
+        "freeCredit": "Build an AI governance roadmap"
+      },
       "mockup": {
         "language": "English (Singapore)",
         "voice": "Voice: Brian",
@@ -694,6 +704,15 @@
         "interviewed": "Actioned",
         "offered": "Completed",
         "interviewsScheduled": "3 automations completed today"
+      },
+      "governanceMockup": {
+        "dashboardTitle": "AI Governance Dashboard",
+        "programTitle": "Responsible AI Program",
+        "policyCoverage": "Policy Coverage",
+        "useCasesReviewed": "Use Cases Reviewed",
+        "highRiskWorkflows": "High-Risk Workflows",
+        "auditGapsResolved": "Audit Gaps Resolved",
+        "controlsImplemented": "5 governance controls implemented this month"
       },
       "getStarted": "GET STARTED",
       "freeTrial": "Book a Strategy Call",

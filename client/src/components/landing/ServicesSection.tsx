@@ -1,7 +1,14 @@
 import { motion, useInView } from "framer-motion";
-import { Bot, CheckCircle2, LineChart, Server, Settings2 } from "lucide-react";
+import { Bot, CheckCircle2, LineChart, Settings2, ShieldCheck } from "lucide-react";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
+
+interface ServiceAccent {
+  icon: string;
+  badge: string;
+  check: string;
+  imageBg?: string;
+}
 
 interface ServiceCardProps {
   title: string;
@@ -12,8 +19,15 @@ interface ServiceCardProps {
   icon: React.ReactNode;
   badge: string;
   gradient: string;
+  accent?: ServiceAccent;
   delay: number;
 }
+
+const defaultAccent: ServiceAccent = {
+  icon: "bg-[#EFF5FF] text-[#176BD0]",
+  badge: "border-[#176BD0]/20 bg-[#EFF5FF] text-[#176BD0]",
+  check: "text-[#176BD0]",
+};
 
 const ServiceCard = ({
   title,
@@ -24,6 +38,7 @@ const ServiceCard = ({
   icon,
   badge,
   gradient,
+  accent = defaultAccent,
   delay,
 }: ServiceCardProps) => (
   <motion.div
@@ -36,7 +51,7 @@ const ServiceCard = ({
   >
     <div className={`h-1.5 w-full ${gradient}`} />
     <div className="p-6">
-      <div className="mb-4 overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+      <div className={`mb-4 overflow-hidden rounded-xl border border-slate-200 ${accent.imageBg ?? "bg-slate-50"}`}>
         <img
           src={image}
           alt={title}
@@ -48,10 +63,10 @@ const ServiceCard = ({
       </div>
 
       <div className="mb-4 flex items-center justify-between">
-        <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#EFF5FF] text-[#176BD0]">
+        <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl ${accent.icon}`}>
           {icon}
         </div>
-        <span className="rounded-full border border-[#176BD0]/20 bg-[#EFF5FF] px-3 py-1 text-xs font-medium text-[#176BD0]">
+        <span className={`rounded-full border px-3 py-1 text-xs font-medium ${accent.badge}`}>
           {badge}
         </span>
       </div>
@@ -67,7 +82,7 @@ const ServiceCard = ({
       <ul className="space-y-2">
         {outcomes.map((outcome) => (
           <li key={outcome} className="flex items-start gap-2 text-sm text-slate-700">
-            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#176BD0]" />
+            <CheckCircle2 className={`mt-0.5 h-4 w-4 shrink-0 ${accent.check}`} />
             <span>{outcome}</span>
           </li>
         ))}
@@ -111,6 +126,27 @@ export function ServicesSection() {
       icon: <Bot className="h-6 w-6" />,
     },
     {
+      title: t("landing.services.cards.aiGovernance.title"),
+      description: t("landing.services.cards.aiGovernance.description"),
+      bestFor: t("landing.services.cards.aiGovernance.bestFor"),
+      outcomes: [
+        t("landing.services.cards.aiGovernance.outcomes.0"),
+        t("landing.services.cards.aiGovernance.outcomes.1"),
+        t("landing.services.cards.aiGovernance.outcomes.2"),
+        t("landing.services.cards.aiGovernance.outcomes.3"),
+      ],
+      image: "/images/services/ai-governance.png",
+      badge: t("landing.services.cards.aiGovernance.badge"),
+      gradient: "bg-gradient-to-r from-orange-400 to-orange-600",
+      accent: {
+        icon: "bg-orange-50 text-orange-600",
+        badge: "border-orange-200 bg-orange-50 text-orange-700",
+        check: "text-orange-600",
+        imageBg: "bg-[#FFF4ED]",
+      },
+      icon: <ShieldCheck className="h-6 w-6" />,
+    },
+    {
       title: t("landing.services.cards.appliedML.title"),
       description: t("landing.services.cards.appliedML.description"),
       bestFor: t("landing.services.cards.appliedML.bestFor"),
@@ -123,20 +159,6 @@ export function ServicesSection() {
       badge: t("landing.services.cards.appliedML.badge"),
       gradient: "bg-gradient-to-r from-emerald-500 to-teal-600",
       icon: <LineChart className="h-6 w-6" />,
-    },
-    {
-      title: t("landing.services.cards.aiInfrastructure.title"),
-      description: t("landing.services.cards.aiInfrastructure.description"),
-      bestFor: t("landing.services.cards.aiInfrastructure.bestFor"),
-      outcomes: [
-        t("landing.services.cards.aiInfrastructure.outcomes.0"),
-        t("landing.services.cards.aiInfrastructure.outcomes.1"),
-        t("landing.services.cards.aiInfrastructure.outcomes.2"),
-      ],
-      image: "/images/services/ai-infrastructure.png",
-      badge: t("landing.services.cards.aiInfrastructure.badge"),
-      gradient: "bg-gradient-to-r from-amber-500 to-orange-600",
-      icon: <Server className="h-6 w-6" />,
     },
   ];
 
@@ -197,6 +219,7 @@ export function ServicesSection() {
               icon={service.icon}
               badge={service.badge}
               gradient={service.gradient}
+              accent={service.accent}
               delay={index * 0.08}
             />
           ))}

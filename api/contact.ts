@@ -1,11 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { z } from "zod";
-import {
-  getAdminEmail,
-  isEmailConfigured,
-  sendEmail,
-  usesDevEmailSink,
-} from "./lib/email.js";
+import { getAdminEmail, isEmailConfigured, sendEmail, formatEmailSendError } from "./lib/email.js";
 
 const contactSchema = z.object({
   name: z.string().min(2),
@@ -32,7 +27,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const adminEmail = getAdminEmail();
     const appName = process.env.APP_NAME?.trim() || "AcceLLM";
 
-    if (!usesDevEmailSink() && !isEmailConfigured()) {
+    if (!isEmailConfigured()) {
       return res.status(500).json({
         error: "Contact form is not configured. Please email us directly at contact@accellm.ai.",
       });
@@ -60,18 +55,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       if (result.error) {
         console.error("[Contact API] SMTP failed:", result.error);
       }
-      const publicError = usesDevEmailSink()
-        ? result.error ||
-          "Failed to send message. Please try again later."
-        : "Failed to send message. Please try again later or email contact@accellm.ai.";
-      return res.status(500).json({ error: publicError });
+      return res.status(500).json({
+        error: formatEmailSendError(result.error),
+      });
     }
 
     return res.json({
       success: true,
-      message: usesDevEmailSink()
-        ? "Thank you! (Local dev: message logged in the API terminal — not emailed.)"
-        : "Thank you! We'll get back to you soon.",
+      message: "Thank you! We'll get back to you soon.",
     });
   } catch (error: unknown) {
     console.error("[Contact API]", error);

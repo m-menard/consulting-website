@@ -25,7 +25,8 @@ export default function LandingPage() {
     "AI agents",
     "RAG implementation",
     "applied machine learning",
-    "AI infrastructure",
+    "AI governance",
+    "responsible AI",
     "enterprise AI deployment",
     "AI strategy and execution",
     "business process automation"

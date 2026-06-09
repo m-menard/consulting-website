@@ -5,6 +5,7 @@ import { useRef, useState, useEffect } from "react";
 import { Link } from "wouter";
 import { AuthStorage } from "@/lib/auth-storage";
 import { useTranslation } from 'react-i18next';
+import { LogoMarquee } from "@/components/landing/LogoMarquee";
 
 const TypingWord = ({ words }: { words: string[] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -54,7 +55,7 @@ const TypingWord = ({ words }: { words: string[] }) => {
 
 const StatsBadge = ({ value, label }: { value: string; label: string }) => (
   <div 
-    className="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-white border border-slate-200 shadow-sm"
+    className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-white border border-slate-200 shadow-sm"
     data-testid={`stats-badge-${label.toLowerCase().replace(/\s+/g, "-")}`}
   >
     <span className="text-lg font-bold text-[#176BD0]">{value}</span>
@@ -96,16 +97,6 @@ const architectureItems = [
     shortDescriptionKey: "landing.hero.architecture.items.intelligenceLayer.shortDescription",
     image: "/images/architecture/intelligence-layer.png",
   },
-];
-
-const companyLogos = [
-  { name: "Linear", className: "text-lg font-bold tracking-tight" },
-  { name: "Triple Whale", className: "text-xl font-semibold" },
-  { name: "Simple Practice", className: "text-sm font-light tracking-widest" },
-  { name: "Avesha", className: "text-base font-medium tracking-wide" },
-  { name: "Machinify", className: "text-lg font-semibold" },
-  { name: "TomoCredit", className: "text-lg font-medium italic" },
-  { name: "AVENTIS", className: "text-base font-semibold tracking-wide" },
 ];
 
 const containerVariants = {
@@ -178,13 +169,13 @@ export function HeroSection() {
       className="relative flex flex-col overflow-hidden"
       data-testid="hero-section"
     >
-      <div className="bg-gradient-to-b from-white via-white to-[#EFF5FF] pt-28 pb-16 text-center">
+      <div className="bg-gradient-to-b from-white via-white to-[#EFF5FF] pt-24 pb-3 sm:pb-4 text-center">
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="space-y-8"
+            className="space-y-4 sm:space-y-5"
           >
             <motion.div variants={itemVariants} className="flex justify-center">
               <span className="text-sm font-medium text-[#176BD0] tracking-wide uppercase">
@@ -194,7 +185,7 @@ export function HeroSection() {
 
             <motion.h1
               variants={itemVariants}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-slate-900"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-slate-900"
               data-testid="hero-headline"
             >
               {t('landing.hero.headline')}
@@ -204,7 +195,7 @@ export function HeroSection() {
 
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed"
+              className="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
               data-testid="hero-subheadline"
             >
               {t('landing.hero.subheadlinePart1')}{" "}
@@ -214,7 +205,7 @@ export function HeroSection() {
 
             <motion.div 
               variants={itemVariants}
-              className="flex flex-wrap justify-center gap-3 pt-2"
+              className="flex flex-wrap justify-center gap-2 sm:gap-3"
             >
               <StatsBadge value="3X" label={t('landing.hero.statsFasterScreening')} />
               <StatsBadge value="40%" label={t('landing.hero.statsTimeSaved')} />
@@ -222,12 +213,12 @@ export function HeroSection() {
 
             <motion.div
               variants={itemVariants}
-              className="flex justify-center items-center pt-4"
+              className="flex justify-center items-center pt-1"
             >
               <Link href={getDashboardLink()}>
                 <Button
                   size="lg"
-                  className="h-14 px-10 text-base font-semibold bg-[#176BD0] hover:bg-[#1259B0] text-white border-0 rounded-full shadow-lg shadow-blue-500/20 transition-all duration-300 hover:shadow-blue-500/30"
+                  className="h-12 px-8 text-base font-semibold bg-[#176BD0] hover:bg-[#1259B0] text-white border-0 rounded-full shadow-lg shadow-blue-500/20 transition-all duration-300 hover:shadow-blue-500/30"
                   data-testid="button-hero-get-started"
                 >
                   {t('landing.hero.getStarted')}
@@ -237,7 +228,7 @@ export function HeroSection() {
 
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 pt-2"
+              className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6"
               data-testid="hero-trust-badges"
             >
               <TrustBadge text={t('landing.hero.trustFreeTrial')} />
@@ -247,42 +238,42 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="relative bg-gradient-to-b from-[#EFF5FF] via-[#C5DBFA] to-[#0B2D68] pt-3 sm:pt-4 pb-14 sm:pb-18">
+      <div className="relative bg-gradient-to-b from-[#EFF5FF] via-[#C5DBFA] to-[#0B2D68] pt-0 pb-8 sm:pb-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="mx-auto max-w-5xl"
+            className="mx-auto max-w-5xl space-y-5 sm:space-y-6"
           >
             <motion.div
               variants={cardVariants}
               custom={0}
-              className="rounded-2xl sm:rounded-3xl border border-white/20 bg-[#0B2D68]/50 p-4 sm:p-5 md:p-6 shadow-2xl backdrop-blur-sm"
+              className="rounded-2xl sm:rounded-3xl border border-white/20 bg-[#0B2D68]/50 p-3 sm:p-4 md:p-5 shadow-2xl backdrop-blur-sm"
               data-testid="hero-architecture-panel"
             >
-              <div className="mb-5 sm:mb-6 text-center">
-                <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-3 sm:px-4 py-1 text-[10px] sm:text-xs font-medium uppercase tracking-wide text-white/80">
+              <div className="mb-3 sm:mb-4 text-center">
+                <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] sm:text-xs font-medium uppercase tracking-wide text-white/80">
                   {t("landing.hero.architecture.badge")}
                 </span>
-                <h3 className="mt-3 sm:mt-4 text-xl sm:text-2xl md:text-3xl font-bold text-white leading-tight">
+                <h3 className="mt-2 sm:mt-3 text-lg sm:text-xl md:text-2xl font-bold text-white leading-tight">
                   {t("landing.hero.architecture.title")}
                 </h3>
-                <p className="mx-auto mt-3 sm:mt-4 max-w-3xl text-xs sm:text-sm md:text-lg leading-relaxed text-blue-100/90">
+                <p className="mx-auto mt-2 sm:mt-3 max-w-3xl text-xs sm:text-sm leading-relaxed text-blue-100/90">
                   {t("landing.hero.architecture.description")}
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 gap-3 sm:gap-3.5 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-2.5 sm:gap-3 md:grid-cols-2">
                 {architectureItems.map((item, i) => (
                   <motion.div
                     key={item.titleKey}
                     custom={i}
                     variants={cardVariants}
-                    className="rounded-xl sm:rounded-2xl border border-white/15 bg-white/5 p-3 sm:p-3.5 md:p-4 text-left"
+                    className="rounded-xl sm:rounded-2xl border border-white/15 bg-white/5 p-2.5 sm:p-3 text-left"
                     data-testid={`hero-architecture-item-${i}`}
                   >
                     <div className="flex items-center gap-3 sm:gap-4">
-                      <span className="inline-flex h-20 w-20 sm:h-24 sm:w-24 items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-white/10 shrink-0">
+                      <span className="inline-flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-white/10 shrink-0">
                         <img
                           src={item.image}
                           alt={t(item.titleKey)}
@@ -300,6 +291,14 @@ export function HeroSection() {
                 ))}
               </div>
             </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 0.5 }}
+            >
+              <LogoMarquee variant="dark" bounded />
+            </motion.div>
           </motion.div>
         </div>
 
@@ -307,7 +306,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.8, duration: 0.6 }}
-          className="flex justify-center mt-6 sm:mt-10"
+          className="flex justify-center mt-4 sm:mt-5"
         >
           <button
             onClick={handleScrollDown}
@@ -318,27 +317,6 @@ export function HeroSection() {
             <ChevronDown className="h-6 w-6 text-white/60 animate-bounce group-hover:text-white transition-colors" />
           </button>
         </motion.div>
-      </div>
-
-      <div className="relative z-10 border-t border-slate-200 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.6 }}
-            className="flex flex-wrap items-center justify-center gap-8 md:gap-12 lg:gap-16"
-          >
-            {companyLogos.map((logo) => (
-              <div 
-                key={logo.name}
-                className={`text-slate-400 hover:text-slate-600 transition-colors cursor-default ${logo.className}`}
-                data-testid={`logo-${logo.name.toLowerCase().replace(/\s+/g, "-")}`}
-              >
-                {logo.name}
-              </div>
-            ))}
-          </motion.div>
-        </div>
       </div>
     </section>
   );

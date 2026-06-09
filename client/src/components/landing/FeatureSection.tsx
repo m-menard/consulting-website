@@ -1,5 +1,5 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { Check, FileText, Mic, GitBranch, User, Calendar } from "lucide-react";
+import { Check, FileText, Mic, GitBranch, User, Calendar, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { useRef } from "react";
@@ -30,16 +30,16 @@ const ConnectingLine = () => {
   const pathLength = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
   
   return (
-    <div ref={ref} className="flex justify-center py-8">
+    <div ref={ref} className="flex justify-center py-3">
       <svg 
         width="4" 
-        height="120" 
-        viewBox="0 0 4 120" 
+        height="72" 
+        viewBox="0 0 4 72" 
         fill="none" 
         className="overflow-visible"
       >
         <motion.path
-          d="M2 0 Q2 30 2 60 Q2 90 2 120"
+          d="M2 0 Q2 18 2 36 Q2 54 2 72"
           stroke="url(#connectingGradientLight)"
           strokeWidth="2"
           strokeLinecap="round"
@@ -172,15 +172,84 @@ const PipelineVisual = () => {
   );
 };
 
+const AIGovernanceVisual = () => {
+  const { t } = useTranslation();
+  const metrics = [
+    { label: t('landing.featureSection.governanceMockup.policyCoverage'), value: "87%", width: "w-[87%]" },
+    { label: t('landing.featureSection.governanceMockup.useCasesReviewed'), value: "42", width: "w-[70%]" },
+    { label: t('landing.featureSection.governanceMockup.highRiskWorkflows'), value: "9", width: "w-[45%]" },
+    { label: t('landing.featureSection.governanceMockup.auditGapsResolved'), value: "16", width: "w-[64%]" },
+  ];
+
+  return (
+    <div className="relative flex justify-center">
+      <div className="bg-white rounded-2xl border border-blue-100 p-6 space-y-4 shadow-sm w-full max-w-sm">
+        <div className="flex items-center gap-3 mb-2">
+          <div className="w-10 h-10 rounded-xl bg-[#EFF5FF] flex items-center justify-center">
+            <ShieldCheck className="w-5 h-5 text-[#176BD0]" />
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-slate-800">{t('landing.featureSection.governanceMockup.dashboardTitle')}</p>
+            <p className="text-xs text-slate-400">{t('landing.featureSection.governanceMockup.programTitle')}</p>
+          </div>
+        </div>
+        <div className="space-y-3">
+          {metrics.map((metric, i) => (
+            <div key={i} className="space-y-1">
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-slate-700 font-medium">{metric.label}</span>
+                <span className="text-sm font-semibold text-[#176BD0]">{metric.value}</span>
+              </div>
+              <div className="h-1.5 bg-blue-50 rounded-full">
+                <div className={`${metric.width} h-full bg-[#176BD0] rounded-full`} />
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="flex items-center gap-2 pt-2">
+          <Check className="w-4 h-4 text-green-500" />
+          <span className="text-xs text-slate-500">{t('landing.featureSection.governanceMockup.controlsImplemented')}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+interface FeatureCardTheme {
+  panel: string;
+  checkBg: string;
+  checkIcon: string;
+  button: string;
+  footerCheck: string;
+}
+
 interface FeatureCardProps {
   title: string;
   description: string;
   bullets: string[];
   mockup: React.ReactNode;
   imagePosition: "left" | "right";
+  freeCredit?: string;
+  theme?: FeatureCardTheme;
 }
 
-const FeatureCard = ({ title, description, bullets, mockup, imagePosition }: FeatureCardProps) => {
+const defaultTheme: FeatureCardTheme = {
+  panel: "bg-[#EFF5FF]",
+  checkBg: "bg-[#176BD0]/15",
+  checkIcon: "text-[#176BD0]",
+  button: "bg-[#176BD0] hover:bg-[#1259B0]",
+  footerCheck: "text-[#176BD0]",
+};
+
+const FeatureCard = ({
+  title,
+  description,
+  bullets,
+  mockup,
+  imagePosition,
+  freeCredit,
+  theme = defaultTheme,
+}: FeatureCardProps) => {
   const { t } = useTranslation();
   const isLeft = imagePosition === "left";
   
@@ -190,20 +259,20 @@ const FeatureCard = ({ title, description, bullets, mockup, imagePosition }: Fea
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6 }}
-      className="py-8 md:py-12"
+      className="py-4 md:py-6"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className={isLeft ? "order-2 md:order-2" : "order-2 md:order-1"}>
-            <div className="bg-[#EFF5FF] rounded-2xl p-8">
-              <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">{title}</h3>
-              <p className="text-slate-600 mb-6 leading-relaxed">{description}</p>
+            <div className={`${theme.panel} rounded-2xl p-6 md:p-8`}>
+              <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">{title}</h3>
+              <p className="text-slate-600 mb-5 leading-relaxed">{description}</p>
               
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-2.5 mb-6">
                 {bullets.map((bullet, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-[#176BD0]/15 flex items-center justify-center mt-0.5 shrink-0">
-                      <Check className="h-3 w-3 text-[#176BD0]" />
+                    <div className={`w-5 h-5 rounded-full ${theme.checkBg} flex items-center justify-center mt-0.5 shrink-0`}>
+                      <Check className={`h-3 w-3 ${theme.checkIcon}`} />
                     </div>
                     <span className="text-slate-700">{bullet}</span>
                   </li>
@@ -213,16 +282,16 @@ const FeatureCard = ({ title, description, bullets, mockup, imagePosition }: Fea
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href="/intake">
                   <Button
-                    className="bg-[#176BD0] hover:bg-[#1259B0] text-white rounded-lg px-6 w-full sm:w-auto"
+                    className={`${theme.button} text-white rounded-lg px-6 w-full sm:w-auto`}
                     data-testid={`button-feature-strategy-call-${title.toLowerCase().replace(/\s+/g, "-")}`}
                   >
                     {t('landing.featureSection.freeTrial')}
                   </Button>
                 </Link>
               </div>
-              <div className="flex items-center gap-2 mt-4 text-sm text-slate-500">
-                <Check className="h-4 w-4 text-[#176BD0]" />
-                <span>{t('landing.featureSection.freeCredit')}</span>
+              <div className="flex items-center gap-2 mt-3 text-sm text-slate-500">
+                <Check className={`h-4 w-4 ${theme.footerCheck}`} />
+                <span>{freeCredit ?? t('landing.featureSection.freeCredit')}</span>
               </div>
             </div>
           </div>
@@ -247,7 +316,7 @@ export function FeatureSection() {
       className="relative bg-white" 
       data-testid="feature-section"
     >
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-4 text-center">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-2 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -293,6 +362,22 @@ export function FeatureSection() {
       <ConnectingLine />
 
       <FeatureCard
+        title={t('landing.featureSection.feature4.title')}
+        description={t('landing.featureSection.feature4.description')}
+        bullets={[
+          t('landing.featureSection.feature4.bullet1'),
+          t('landing.featureSection.feature4.bullet2'),
+          t('landing.featureSection.feature4.bullet3'),
+          t('landing.featureSection.feature4.bullet4')
+        ]}
+        freeCredit={t('landing.featureSection.feature4.freeCredit')}
+        mockup={<AIGovernanceVisual />}
+        imagePosition="right"
+      />
+
+      <ConnectingLine />
+
+      <FeatureCard
         title={t('landing.featureSection.feature3.title')}
         description={t('landing.featureSection.feature3.description')}
         bullets={[
@@ -302,7 +387,7 @@ export function FeatureSection() {
           t('landing.featureSection.feature3.bullet4')
         ]}
         mockup={<PipelineVisual />}
-        imagePosition="right"
+        imagePosition="left"
       />
     </section>
   );

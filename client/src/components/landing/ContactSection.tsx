@@ -113,7 +113,7 @@ export function ContactSection() {
       form.reset();
       toast({
         title: t('landing.contact.toast.successTitle'),
-        description: data.message || t('landing.contact.toast.successDescription'),
+        description: t('landing.contact.toast.successDescription'),
       });
     },
     onError: (error: any) => {
