@@ -359,15 +359,18 @@
       "members": {
         "ceo": {
           "name": "Clarence Stephen",
-          "role": "Chief Executive Officer"
+          "role": "Chief Executive Officer",
+          "linkedin": "https://www.linkedin.com/in/clarencestephen/"
         },
         "cto": {
           "name": "Jay Hamilton",
-          "role": "Chief Technology Officer"
+          "role": "Chief Technology Officer",
+          "linkedin": "https://www.linkedin.com/in/jay-hamilton-5a0a3674/"
         },
         "cpo": {
           "name": "John Ly",
-          "role": "Chief People Officer"
+          "role": "Chief People Officer",
+          "linkedin": "https://www.linkedin.com/in/john-ly-b181a89a/"
         }
       }
     },
@@ -631,7 +634,7 @@
       "contact": "Contact",
       "privacyPolicy": "Privacy Policy",
       "termsOfService": "Terms of Service",
-      "location": "San Francisco, CA",
+      "location": "Singapore",
       "allRightsReserved": "All rights reserved."
     },
     "featureSection": {
