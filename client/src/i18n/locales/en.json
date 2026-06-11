@@ -292,23 +292,17 @@
       "title": "See How AI Automation Transforms Businesses",
       "subtitle": "See how AI automation streamlines operations, boosts productivity, and drives growth.",
       "items": {
-        "machinify": {
-          "title": "Operationalizing complex payment integrity models",
-          "description": "Machinify needed to operationalize complex payment integrity models for non-technical auditors. We delivered a visual AI studio that surfaces model reasoning, supports review workflows, and enables continuous improvement.",
-          "impact1": "3-day model deployment cycle",
-          "impact2": "40% higher audit throughput"
+        "cgLife": {
+          "title": "Accelerating new business proposals with AI-orchestrated research",
+          "description": "CG Life, a life sciences commercialization agency, needed to cut the four-week, six-to-eight-person effort behind every new business proposal. We delivered a multi-agent RFP Co-Pilot and Archetype Builder that compress research and strategy into parallel AI workflows.",
+          "impact1": "~50% projected reduction in research & strategy resourcing",
+          "impact2": "+30% more pitches per year, without adding headcount"
         },
-        "tripleWhale": {
-          "title": "Autonomous RL agents for paid media optimization",
-          "description": "Triple Whale wanted to move beyond dashboards into fully autonomous growth execution. We built reinforcement-learning agents that optimize bids, budgets, and creatives continuously without sacrificing financial safety.",
-          "impact1": "15-20% ROAS lift in 30 days",
-          "impact2": "$450K incremental revenue generated"
-        },
-        "tomoCredit": {
-          "title": "Real-time underwriting without legacy credit dependence",
-          "description": "TomoCredit needed to underwrite responsibly without relying on legacy credit scores. We engineered a real-time cash-flow intelligence system that evaluates financial behavior directly from bank data.",
-          "impact1": "Sub 2 min approvals",
-          "impact2": "$100M debt facility support"
+        "givebutter": {
+          "title": "Scaling content and campaign discovery with AI workflows",
+          "description": "Givebutter faced two scale problems: producing SEO content across a crowded nonprofit market, and surfacing standout fundraising campaigns from thousands of customer accounts. We shipped two production AI workflows—a content intelligence system and a success stories pipeline—that replaced manual effort with automated scale.",
+          "impact1": "14+ competitors benchmarked automatically",
+          "impact2": "3 production AI workflows shipped and handed off"
         }
       }
     },

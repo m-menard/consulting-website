@@ -16,6 +16,12 @@ const routeThemeMap: Record<string, "dark" | "light"> = {
   "/intake": "light",
 };
 
+function getPageTheme(location: string): "dark" | "light" {
+  if (routeThemeMap[location]) return routeThemeMap[location];
+  if (location.startsWith("/case-studies")) return "light";
+  return "light";
+}
+
 export function Navbar() {
   const [location, setLocation] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -35,7 +41,8 @@ export function Navbar() {
     { sectionId: "leadership", label: t('landing.navbar.ourTeam') },
   ];
   
-  const pageTheme = routeThemeMap[location] || "light";
+  const pageTheme = getPageTheme(location);
+  const isCaseStudyPage = location.startsWith("/case-studies");
   
   const currentLogo =
     pageTheme === "dark" ? branding.logo_url_dark : branding.logo_url_light;
@@ -152,8 +159,8 @@ export function Navbar() {
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? "bg-white/95 backdrop-blur-xl shadow-sm border-b border-gray-200" 
+        isScrolled || isCaseStudyPage
+          ? "bg-white/95 backdrop-blur-xl shadow-sm border-b border-gray-200"
           : "bg-transparent"
       }`}
       data-testid="navbar"

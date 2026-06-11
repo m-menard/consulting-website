@@ -17,6 +17,8 @@ import BlogPost from "@/pages/BlogPost";
 import Contact from "@/pages/Contact";
 import IntakePage from "@/pages/IntakePage";
 import UseCasesPage from "@/pages/UseCasesPage";
+import CaseStudyPage from "@/pages/CaseStudyPage";
+import CadrianPage from "@/pages/CadrianPage";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
 const LEGACY_REDIRECTS = [
@@ -44,6 +46,12 @@ function MarketingRouter() {
           </Route>
         ))}
         <Route path="/use-cases" component={UseCasesPage} />
+        <Route path="/case-studies/cadrian" component={CadrianPage} />
+        <Route path="/case-studies/cadrian/:slug">
+          {(params) => <Redirect to={`/case-studies/${params.slug}`} />}
+        </Route>
+        <Route path="/case-studies/:slug" component={CaseStudyPage} />
+        <Route path="/cadrian">{() => <Redirect to="/case-studies/cadrian" />}</Route>
         <Route path="/contact" component={Contact} />
         <Route path="/intake" component={IntakePage} />
         <Route path="/blog/:slug" component={BlogPost} />
