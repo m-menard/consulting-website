@@ -18,7 +18,7 @@ export default function CadrianNav() {
 
         <nav className="flex items-center gap-1 sm:gap-2">
           <Link
-            href="/#use-cases"
+            href="/#case-studies"
             className="link-underline hidden px-3 py-2 text-sm text-muted transition-colors hover:text-fg sm:inline-block"
           >
             AcceLLM

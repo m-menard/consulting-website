@@ -66,14 +66,14 @@ function CaseStudyCard({
 
         <div className="flex flex-1 flex-col p-6 sm:p-7">
           <span
-            className="mb-4 inline-flex w-fit rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide"
+            className="mb-4 inline-flex w-fit rounded-full border px-3 py-1 text-xs font-semibold tracking-wide"
             style={{
               borderColor: `${accent}33`,
               backgroundColor: accentLight,
               color: accent,
             }}
           >
-            Case Study
+            {client}
           </span>
 
           <h3 className="mb-3 min-h-[5.25rem] line-clamp-3 text-xl font-bold leading-snug text-slate-900 sm:text-[1.35rem]">

@@ -80,7 +80,7 @@ export default function LandingPage() {
           <HowItWorks />
         </section>
 
-        <section id="use-cases">
+        <section id="case-studies" className="scroll-mt-20">
           <CaseStudiesSection />
         </section>
 

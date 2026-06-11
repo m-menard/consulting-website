@@ -151,11 +151,6 @@ export const CASE_STUDIES: CaseStudy[] = [
         note: "Projected",
       },
     ],
-    quote: {
-      text: "Great work everyone!",
-      author: "Jay",
-      role: "CG Life Leadership",
-    },
     whatsNext: [
       "Commercial AI Strategist: extending the platform from proposal support to always-on commercial intelligence",
       "Tighter RFP × Archetype integration: feeding live audience models directly into proposal strategy",

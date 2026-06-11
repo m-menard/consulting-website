@@ -36,7 +36,7 @@ export function Navbar() {
     { sectionId: "home", label: t('landing.navbar.home') },
     { sectionId: "services", label: t('landing.navbar.services') },
     { sectionId: "process", label: t('landing.navbar.process') },
-    { sectionId: "use-cases", label: t('landing.navbar.caseStudies') },
+    { sectionId: "case-studies", label: t('landing.navbar.caseStudies') },
     { sectionId: "pricing", label: t('landing.navbar.pricing') },
     { sectionId: "leadership", label: t('landing.navbar.ourTeam') },
   ];

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Link, Redirect, useParams } from "wouter";
 import { SEOHead } from "@/components/landing/SEOHead";
 import { Navbar } from "@/components/landing/Navbar";
@@ -8,7 +8,7 @@ import CountUpStat from "@/components/case-studies/CountUpStat";
 import FadeIn from "@/components/case-studies/FadeIn";
 import CgLifeWorkflow from "@/components/case-studies/illustrations/CgLifeWorkflow";
 import GivebutterPipeline from "@/components/case-studies/illustrations/GivebutterPipeline";
-import { caseStudyPath, getCaseStudy, CASE_STUDIES, type CaseStudy } from "@/lib/case-studies";
+import { caseStudyPath, getCaseStudy, type CaseStudy } from "@/lib/case-studies";
 import { useBranding } from "@/components/BrandingProvider";
 import { useSeoSettings } from "@/hooks/useSeoSettings";
 
@@ -46,13 +46,8 @@ export default function CaseStudyPage() {
     document.title = `${cs.client} Case Study | ${branding.app_name}`;
   }, [cs, branding.app_name]);
 
-  if (!cs) return <Redirect to="/#use-cases" />;
+  if (!cs) return <Redirect to="/#case-studies" />;
 
-  const currentIndex = CASE_STUDIES.findIndex((study) => study.slug === cs.slug);
-  const next =
-    currentIndex === -1 || CASE_STUDIES.length < 2
-      ? undefined
-      : CASE_STUDIES[(currentIndex + 1) % CASE_STUDIES.length];
   const Workflow = WORKFLOW_COMPONENTS[cs.workflow.kind];
 
   const seoTitle = `${cs.client} Case Study | ${branding.app_name}`;
@@ -247,40 +242,10 @@ export default function CaseStudyPage() {
           </section>
         )}
 
-        {next && next.slug !== cs.slug && (
-          <section className="mx-auto max-w-7xl px-4 pb-8 pt-4 sm:px-6 lg:px-8">
-            <FadeIn y={24}>
-              <Link href={caseStudyPath(next.slug)} className="group block">
-                <div
-                  className="flex flex-col items-start justify-between gap-6 overflow-hidden rounded-2xl border bg-slate-50 p-8 transition-all hover:-translate-y-1 hover:shadow-lg sm:flex-row sm:items-center lg:p-12"
-                  style={{ borderColor: `${next.accent}44` }}
-                >
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                      Next case study
-                    </p>
-                    <p className="mt-3 text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
-                      {next.client}
-                    </p>
-                    <p className="mt-2 max-w-md text-slate-600">{next.tagline}</p>
-                  </div>
-                  <span
-                    className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold"
-                    style={{ color: next.accentInk }}
-                  >
-                    Read next
-                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </span>
-                </div>
-              </Link>
-            </FadeIn>
-          </section>
-        )}
-
         <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <FadeIn>
             <Link
-              href="/#use-cases"
+              href="/#case-studies"
               className="inline-flex items-center gap-2 text-sm text-slate-600 transition-colors hover:text-[#176BD0]"
             >
               <ArrowLeft className="h-4 w-4" />
@@ -310,7 +275,7 @@ function PhotoHero({ cs }: { cs: CaseStudy }) {
         <FadeIn>
           <div className="mb-8 flex flex-wrap items-center gap-3">
             <Link
-              href="/#use-cases"
+              href="/#case-studies"
               className="inline-flex items-center gap-1.5 text-sm text-white/70 transition-colors hover:text-white"
             >
               <ArrowLeft className="h-3.5 w-3.5" />

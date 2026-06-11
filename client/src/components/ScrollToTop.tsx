@@ -21,6 +21,13 @@ export function ScrollToTop() {
   const [location] = useLocation();
 
   useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (hash) {
+      requestAnimationFrame(() => {
+        document.getElementById(hash)?.scrollIntoView({ behavior: "auto", block: "start" });
+      });
+      return;
+    }
     window.scrollTo(0, 0);
   }, [location]);
 
