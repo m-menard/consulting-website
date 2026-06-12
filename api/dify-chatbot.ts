@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-const UPSTREAM = process.env.DIFY_UPSTREAM_URL || "http://185.238.250.203";
+const UPSTREAM = process.env.DIFY_UPSTREAM_URL || "http://129.121.113.58";
 
 function rewriteDifyHtml(html: string, publicOrigin: string): string {
   const upstreamHost = new URL(UPSTREAM).host;
