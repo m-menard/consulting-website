@@ -1,0 +1,26 @@
+# https://accellm.ai
+User-agent: *
+Allow: /
+Allow: /use-cases
+Allow: /case-studies/
+Allow: /blog
+Allow: /contact
+Allow: /intake
+Allow: /privacy
+Allow: /terms
+Allow: /cookies
+Disallow: /api/
+
+User-agent: JinaBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://accellm.ai/sitemap.xml

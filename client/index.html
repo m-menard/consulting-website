@@ -3,8 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Loading...</title>
-    <meta name="description" content="" />
+    <title>AcceLLM - Engineering the Future of Intelligence</title>
+    <meta name="description" content="Design, build, and deploy production-grade AI systems that reduce cost, increase speed, and unlock measurable business outcomes." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://accellm.ai/" />
+    <meta property="og:title" content="AcceLLM - Engineering the Future of Intelligence" />
+    <meta property="og:description" content="Design, build, and deploy production-grade AI systems that reduce cost, increase speed, and unlock measurable business outcomes." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://accellm.ai/" />
+    <meta property="og:site_name" content="AcceLLM" />
+    <meta property="og:image" content="https://accellm.ai/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AcceLLM - Engineering the Future of Intelligence" />
+    <meta name="twitter:description" content="Design, build, and deploy production-grade AI systems that reduce cost, increase speed, and unlock measurable business outcomes." />
+    <meta name="twitter:image" content="https://accellm.ai/og-image.png" />
     <link rel="icon" type="image/png" href="/favicon.png" id="dynamic-favicon" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,16 +33,22 @@
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <main>
+        <h1>AcceLLM — AI Consulting for Production Systems</h1>
+        <p>We design, build, and deploy production-grade AI systems that drive real business outcomes.</p>
+        <nav aria-label="Site navigation">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/use-cases">Use Cases</a></li>
+            <li><a href="/case-studies/cg-life">Case Studies</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/intake">Get Started</a></li>
+          </ul>
+        </nav>
+      </main>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
-    <script>
-      window.difyChatbotConfig = {
-        token: '%VITE_DIFY_TOKEN%',
-        baseUrl: '%VITE_DIFY_BASE_URL%',
-        inputs: {},
-        systemVariables: {},
-        userVariables: {},
-      };
-    </script>
-    <script src="%VITE_DIFY_BASE_URL%/embed.min.js" id="%VITE_DIFY_TOKEN%" defer></script>
   </body>
 </html>

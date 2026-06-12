@@ -8,6 +8,7 @@ import { BrandingProvider } from "@/components/BrandingProvider";
 import { DirectionProvider } from "@/components/DirectionProvider";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import { AnalyticsScripts } from "@/components/AnalyticsScripts";
+import { DifyChatbotLoader } from "@/components/DifyChatbotLoader";
 import LandingPage from "@/pages/LandingPage";
 import PrivacyPolicy from "@/pages/policies/PrivacyPolicy";
 import TermsOfService from "@/pages/policies/TermsOfService";
@@ -73,6 +74,7 @@ export default function App() {
           <BrandingProvider>
             <TooltipProvider>
               <AnalyticsScripts />
+              <DifyChatbotLoader />
               <MarketingRouter />
               <Toaster />
               <CookieConsentBanner />
